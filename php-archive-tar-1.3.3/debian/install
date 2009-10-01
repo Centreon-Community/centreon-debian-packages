@@ -1,1 +1,1 @@
-Mail_Mime-*/*.php Mail_Mime-*/xmail.* /usr/share/php/Mail
+Archive_Tar-*/*.php Archive_Tar-*/xmail.* /usr/share/php/Archive
