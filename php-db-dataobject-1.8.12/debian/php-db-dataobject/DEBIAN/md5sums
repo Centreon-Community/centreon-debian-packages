@@ -1,0 +1,13 @@
+19c228411b986de7d32bac82b888e4b0  usr/share/doc/php-db-dataobject/package.xml
+3d67222d7a1b7c0a5afdc639da51d9dc  usr/share/doc/php-db-dataobject/copyright
+95103600b24d367a3846e8f9fac4f624  usr/share/doc/php-db-dataobject/docs/example.ini.gz
+d9eece49989f750607e0bc769f51f4bc  usr/share/doc/php-db-dataobject/changelog.gz
+3749ea5a5d4119381d55edf37513b4d9  usr/share/doc/php-db-dataobject/changelog.Debian.gz
+01d11185ecc622ba5f9c70fced970c2e  usr/share/doc/php-db-dataobject/README.Debian
+cb644fda015a1d911ef11ca699a39624  usr/share/php/DB/DataObject.php
+8f7382a61580d5be68e31a7544d454d7  usr/share/php/DB/DataObject/createTables.php
+ef739b7f1a662039f3f6fe64e579a0fb  usr/share/php/DB/DataObject/Generator.php
+b50c79d3a19d9e156c7bfd9a221fab55  usr/share/php/DB/DataObject/Cast.php
+06e890beb94da0cfd9782b220989f25f  usr/share/php/DB/DataObject/Error.php
+236c5bc019f5dc1cbb7a08d7c677397c  usr/share/php/.registry/db_dataobject.reg
+cdcc4ead8ef5e06df4381ca0976dcdad  usr/bin/DB/scripts/DB_DataObject_createTables.bat

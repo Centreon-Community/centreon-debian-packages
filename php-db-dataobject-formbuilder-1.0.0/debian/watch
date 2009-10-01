@@ -1,0 +1,2 @@
+version=3
+http://pear.php.net/package/DB_DataObject_FormBuilder/download http://download.pear.php.net/package/DB_DataObject_FormBuilder-([\d.]+)\.tgz
