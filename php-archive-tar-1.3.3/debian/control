@@ -1,0 +1,15 @@
+Source: php-archive-tar
+Section: web
+Priority: optional
+Maintainer: Olivier LI-KIANG-CHEONG <lkco@gezen.fr>
+Build-Depends: php-pear, debhelper (>= 5)
+Homepage: http://pear.php.net/package/Archive_Tar
+
+Package: php-archive-tar
+Architecture: all
+Depends: php-pear
+Description: PHP PEAR module for Tar file management class
+ This class provides handling of tar files in PHP.
+ It supports creating, listing, extracting and adding to tar files.
+ Gzip support is available if PHP has the zlib extension built-in or
+ loaded. Bz2 compression is also supported with the bz2 extension loaded.
