@@ -1,0 +1,22 @@
+Source: php-html-table
+Section: web
+Priority: optional
+Maintainer: Guillaume Watteeux <guillaume.watteeux@gmail.com>
+Build-Depends: debhelper (>= 5), dh-make-php (>= 0.2.3), cdbs
+Standards-Version: 3.7.2
+
+Package: php-html-table
+Architecture: all
+Depends: php-html-common
+Description: PEAR::HTML_Table makes the design of HTML tables easy, flexible, reusable and efficient.
+ The PEAR::HTML_Table package provides methods for easy and efficient 
+ design of HTML tables.
+  - Lots of customization options.
+  - Tables can be modified at any time.
+  - The logic is the same as standard HTML editors.
+  - Handles col and rowspans.
+  - PHP code is shorter, easier to read and to maintain.
+  - Tables options can be reused.
+ .
+ For auto filling of data and such then check out 
+ http://pear.php.net/package/HTML_Table_Matrix

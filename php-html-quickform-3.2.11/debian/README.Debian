@@ -1,0 +1,7 @@
+php-html-quickform for Debian
+--------------------------
+
+This extension has been created with dh-make-pear which is part
+of dh-make-php.
+
+ -- Guillaume Watteeux <guillaume.watteeux@gmail.com>, Thu, 01 Oct 2009 22:03:24 +0200
