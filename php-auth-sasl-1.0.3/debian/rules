@@ -36,7 +36,9 @@ install: build
 	rm -f debian/$(package)/usr/share/php/.depdb
 	rm -fr debian/$(package)/usr/share/php/.channels/
 	rm -f debian/$(package)/usr/share/php/.lock
-	rm -fr debian/$(package)/usr/share/php/.registry/
+	rm -fr debian/$(package)/usr/share/php/.registry/.channel.pecl.php.net/
+	rm -fr debian/$(package)/usr/share/php/.registry/.channel.__uri/
+
 	rm -f debian/$(package)/usr/share/php/.depdblock
 	### remove created tmp dir
 	rm -fr debian/$(package)/tmp/
