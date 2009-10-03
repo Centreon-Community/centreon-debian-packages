@@ -1,15 +1,6 @@
-centreon (2.0~rc5-1) unstable; urgency=low
-
-  * new release for RC5 of centreon2
-  * debian/control: add centreon2-ndo for specific ndo/centreon database 
-  * centreon2: move ArchiveLogInDb in archiveDayLog for new centreon reporting binary
-  * centreon2-plugins: work succesfull
-
- -- Guillaume Watteeux <guillaume.watteeux@gmail.com>  Wed, 10 Sep 2008 21:38:52 +0200
-
-centreon (2.0~rc4-1) unstable; urgency=low
+centreon (2.1.1) unstable; urgency=low
 
   * Initial release 
 
- -- Guillaume Watteeux <guillaume.watteeux@gmail.com>  Thu, 13 Mar 2008 19:24:47 +0100
+ -- Guillaume Watteeux <guillaume.watteeux@gmail.com>  Sat, 3 Oct 2009 23:20:31 +0100
 

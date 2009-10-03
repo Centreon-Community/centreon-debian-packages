@@ -87,8 +87,8 @@ centreon2:
 	install -m 644 debian/$@/mysql.sql \
 		debian/$@/usr/share/dbconfig-common/data/$@/install/mysql
 	# Add update sql
-	install -m 644 www/install/sql/Update-DB-2.0-RC4_to_2.0-RC5.sql \
-		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.0~rc5
+	#install -m 644 www/install/sql/centreon/Update-DB-2.1.1_to_2.1.2.sql \
+		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.2
 
 	rm -f debian/$@/mysql.sql
 	rm -rf debian/$@/mysql
@@ -120,8 +120,8 @@ centreon2-centstorage:
 
 	install -m 644 debian/$@/mysql.sql \
 		debian/$@/usr/share/dbconfig-common/data/$@/install/mysql
-	install -m 644 www/install/sql/Update-CSTG-2.0-RC4_to_2.0-RC5.sql \
-		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.0~rc5
+	#install -m 644 www/install/sql/centstorage/Update-CSTG-2.1.1_to_2.1.2.sql \
+		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.2
 	
 	rm -f debian/$@/mysql.sql
 	rm -rf debian/$@/mysql

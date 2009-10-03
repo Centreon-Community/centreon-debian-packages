@@ -3,7 +3,7 @@ Section: net
 Priority: extra
 Maintainer: Guillaume Watteeux <guillaume.watteeux@gmail.com>
 Homepage: http://www.centreon.com/
-Vcs-Browser: http://trac.centreon.com/browser/trunk/centreon
+Vcs-Browser: http://forge.centreon.com/repositories/browse/centreon/trunk/centreon
 Vcs-Svn: http://svn.centreon.com/trunk/centreon
 Standards-Version: 3.7.3
 Build-Depends: debhelper (>= 5), dpatch
