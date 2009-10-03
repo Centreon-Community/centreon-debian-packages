@@ -1,0 +1,2 @@
+create centreon2nagioscfg to update DB with correct nagios configuration
+for nagios2 or nagios3

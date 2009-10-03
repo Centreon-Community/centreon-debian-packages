@@ -1,0 +1,6 @@
+var/cache/centreon2/filesGeneration	usr/share/centreon2/filesGeneration
+var/cache/centreon2/filesUpload		usr/share/centreon2/filesUpload
+var/lib/centreon2/rrd			usr/share/centreon2/rrd
+usr/lib/centreon2/php			usr/share/centreon2/GPL_LIB
+var/lib/centreon2/SmartyCache		usr/lib/centreon2/php/SmartyCache
+
