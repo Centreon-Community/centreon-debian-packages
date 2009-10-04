@@ -7,7 +7,7 @@ Standards-Version: 3.7.2
 
 Package: php-html-quickform-advmultiselect
 Architecture: all
-Depends: php-html-quickform
+Depends: php-pear, php-html-quickform
 Description: Element for HTML_QuickForm that emulate a multi-select.
  The HTML_QuickForm_advmultiselect package adds an element to the
   HTML_QuickForm package that is two select boxes next to each other
