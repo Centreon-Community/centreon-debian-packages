@@ -1,0 +1,15 @@
+6542abbe2a7f94b152ebba189a459351  usr/share/doc/php-validate/copyright
+87df6b0a80cdef74ce00641a346201df  usr/share/doc/php-validate/changelog.gz
+c9c98799741755b993993e08b02dd725  usr/share/doc/php-validate/README.Debian
+4aa72b1f100e4a0422c9e5469a4c4a83  usr/share/doc/php-validate/docs/Example_Locale.php
+16476cc19b07247ff048683427d1e4ff  usr/share/doc/php-validate/docs/sample_multiple.php
+0be1d2a90b720fab704f401d64208381  usr/share/doc/php-validate/package.xml
+be9e2f40eeb595117e9097f0b9d563f7  usr/share/doc/php-validate/tests/testdate.phpt.gz
+9c186b77589a49c84fad1a2d6414eaf5  usr/share/doc/php-validate/tests/multiple.phpt
+f7d10063f82361d99bc246b97c8ff270  usr/share/doc/php-validate/tests/multicard.phpt
+b8c53662939f0d9086cc02ab402917b8  usr/share/doc/php-validate/tests/email.phpt.gz
+ee96c3a96ec4032d2c09cdb0aac96df4  usr/share/doc/php-validate/tests/uri.phpt
+b64938d8cc8986cc38289d9d6164e2fc  usr/share/doc/php-validate/tests/number.phpt
+43679e6c48acd9eae380b57bebe4915b  usr/share/doc/php-validate/changelog.Debian.gz
+bccdfaedfbe218c1bceebbf7214e78f2  usr/share/php/Validate.php
+b26343ddb33a632ff1a5a6c5c5c14439  usr/share/php/.registry/validate.reg

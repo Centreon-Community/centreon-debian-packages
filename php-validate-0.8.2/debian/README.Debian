@@ -1,0 +1,7 @@
+php-validate for Debian
+--------------------------
+
+This extension has been created with dh-make-pear which is part
+of dh-make-php.
+
+ -- root <root@lexx.org>, Sun, 04 Oct 2009 20:26:58 +0200

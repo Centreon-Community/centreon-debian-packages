@@ -1,0 +1,6 @@
+php-validate (0.8.2-1) unstable; urgency=low
+
+  * Initial Release (Closes #<ITP bug number>).
+
+ -- root <root@lexx.org>  Sun, 04 Oct 2009 20:26:58 +0200
+

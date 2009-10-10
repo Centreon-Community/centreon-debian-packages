@@ -1,0 +1,20 @@
+Source: php-validate
+Section: web
+Priority: optional
+Maintainer: root <root@lexx.org>
+Build-Depends: debhelper (>= 5), dh-make-php (>= 0.2.3), cdbs
+Standards-Version: 3.7.2
+
+Package: php-validate
+Architecture: all
+Depends: 
+Description: Validation class
+ Package to validate various datas. It includes :
+     - numbers (min/max, decimal or not)
+     - email (syntax, domain check, rfc822)
+     - string (predifined type alpha upper and/or lowercase, 
+ numeric,...)
+     - date (min, max, rfc822 compliant)
+     - uri (RFC2396)
+     - possibility valid multiple data with a single method call 
+ (::multiple)

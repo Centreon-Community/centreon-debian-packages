@@ -1,0 +1,15 @@
+Source: php-xml-rpc
+Section: web
+Priority: optional
+Maintainer: root <root@lexx.org>
+Build-Depends: debhelper (>= 5), dh-make-php (>= 0.2.3), cdbs
+Standards-Version: 3.7.2
+
+Package: php-xml-rpc
+Architecture: all
+Depends: 
+Description: PHP implementation of the XML-RPC protocol
+ A PEAR-ified version of Useful Inc's XML-RPC for PHP.
+ .
+ It has support for HTTP/HTTPS transport, proxies and authentication.
+ .

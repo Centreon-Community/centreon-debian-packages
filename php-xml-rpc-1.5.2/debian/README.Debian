@@ -1,0 +1,7 @@
+php-xml-rpc for Debian
+--------------------------
+
+This extension has been created with dh-make-pear which is part
+of dh-make-php.
+
+ -- root <root@lexx.org>, Mon, 05 Oct 2009 00:09:06 +0200

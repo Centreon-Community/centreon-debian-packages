@@ -1,0 +1,2 @@
+version=3
+http://pear.php.net/package/XML_RPC/download http://download.pear.php.net/package/XML_RPC-([\d.]+)\.tgz
