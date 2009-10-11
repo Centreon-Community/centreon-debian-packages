@@ -5,47 +5,17 @@
 ## DP: Change installedPath by libPath.
 
 @DPATCH@
-diff -urNad centreon-2.0-RC4~/bin/centstorage centreon-2.0-RC4/bin/centstorage
---- centreon-2.0-RC4~/bin/centstorage	2008-09-02 19:24:14.000000000 +0200
-+++ centreon-2.0-RC4/bin/centstorage	2008-09-03 22:22:11.000000000 +0200
-@@ -32,7 +32,9 @@
- use RRDs;
- use File::Copy;
+diff -urNad centreon-2.1.1~/bin/centstorage centreon-2.1.1/bin/centstorage
+--- centreon-2.1.1~/bin/centstorage	2009-10-12 00:25:48.000000000 +0200
++++ centreon-2.1.1/bin/centstorage	2009-10-12 00:29:15.000000000 +0200
+@@ -65,7 +65,9 @@
+ my $LOG = "@CENTREON_LOG@/centstorage.log";
+ my $PID = "@CENTREON_RUNDIR@/centstorage.pid";
  
 -my $installedPath = "@CENTREON_PATH@/";
 +#Not use in debian package
 +#my $installedPath = "@CENTREON_PATH@/";
 +my $libPath = "/usr/lib/centreon2-centstorage/"
  
- my $LOG = "@CENTREON_LOG@/centstorage.log";
- my $PID = "@CENTREON_RUNDIR@/centstorage.pid";
-@@ -75,14 +77,14 @@
- # Set signals
- $SIG{INT}  = \&catch_zap;
- 
--require $installedPath."lib/misc.pm";
--require $installedPath."lib/purge.pm";
--require $installedPath."lib/getHostData.pm";
--require $installedPath."lib/getServiceData.pm";
--require $installedPath."lib/identifyService.pm";
--require $installedPath."lib/verifyHostServiceIdName.pm";
--require $installedPath."lib/identifyMetric.pm";
--require $installedPath."lib/updateFunctions.pm";
-+require $libPath."misc.pm";
-+require $libPath."purge.pm";
-+require $libPath."getHostData.pm";
-+require $libPath."getServiceData.pm";
-+require $libPath."identifyService.pm";
-+require $libPath."verifyHostServiceIdName.pm";
-+require $libPath."identifyMetric.pm";
-+require $libPath."updateFunctions.pm";
- 
- sub CheckMySQLConnexion(){
- 	while ((!defined($con_oreon) || !$con_oreon->ping) && (!defined($con_ods) || !$con_ods->ping)){
-@@ -706,4 +708,4 @@
- } 
- 
- waitpid($pid, 0);
--exit(1);
-\ No newline at end of file
-+exit(1);
+ # Include Configuration Data
+ require "@CENTREON_ETC@/conf.pm";
