@@ -1,6 +1,5 @@
-php-db-dataobject-formbuilder (1.0.0-1) unstable; urgency=low
+PACKAGE (VERSION) UNRELEASED; urgency=low
 
-  * Initial Release (Closes #<ITP bug number>).
+  * Initial release. (Closes: #XXXXXX)
 
- -- david.hannequin@gmail.com  Thu, 01 Oct 2009 23:57:24 +0200
-
+ --  David HANNEQUIN <david.hannequin@gmail.com>  Mon, 23 Nov 2009 14:43:48 +0100
