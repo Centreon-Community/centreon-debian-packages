@@ -100,6 +100,12 @@ centreon2:
 		sed -i 's|@CENTREON_ETC@|/etc/centreon2|g;s|@CENTREON_GENDIR@|/var/cache/centreon2|g' {} \;
 	sed -i 's|@CENTREON_ETC@|/etc/centreon2|g' \
 		debian/$@/usr/share/$@/cron/centAcl.php
+	find debian/$@/usr/share/$@/www/ -name "*.php" -exec \
+		sed -i 's|@CENTREON_LOG@|/var/log/centreon2|g' {} \;
+
+	# Change macros in cron
+	find debian/$@/usr/share/$@/cron/ -type f -exec \
+		sed -i 's|@CENTREON_LOG@|/var/log/centreon2|g' {} \;
 
 centreon2-centstorage:
 	@echo "Doing $@"
@@ -150,7 +156,7 @@ centreon2-centstorage:
 	    -e 's|@CENTREON_ETC@|/etc/centreon2/centstorage|g' \
 	    -e 's|@RRD_PERL@|/usr/lib/perl5|g' \
 	    -i debian/$@/usr/sbin/centstorage
-	
+
 centreon2-centcore:
 	@echo "Doing $@"
 	dh_testdir		-p$@
