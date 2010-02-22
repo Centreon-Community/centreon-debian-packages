@@ -1,4 +1,4 @@
-PACKAGE (VERSION) UNRELEASED; urgency=low
+php-db-dataobject-formbuilder (1.0.0) UNRELEASED; urgency=low
 
   * Initial release. (Closes: #XXXXXX)
 
