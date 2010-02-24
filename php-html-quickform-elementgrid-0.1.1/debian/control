@@ -1,0 +1,15 @@
+Source: php-html-quickform-elementgrid
+Section: web
+Priority: optional
+Maintainer: Cedric TEMPLE <ctemple@merethis.com>
+Build-Depends: debhelper (>= 5), dh-make-php (>= 0.2.3), cdbs
+Standards-Version: 3.7.2
+
+Package: php-html-quickform-elementgrid
+Architecture: all
+Depends: php-html-quickform, php-html-table
+Description: An HTML_QuickForm meta-element which holds any other element in a grid
+ An HTML_QuickForm meta-element which holds multiple HTML_QuickForm 
+ elements in an HTML_Table. The elements in the table should behave 
+ exactly like normal elements in a form, such as freezing and getting 
+ defaults and submitted values correctly.

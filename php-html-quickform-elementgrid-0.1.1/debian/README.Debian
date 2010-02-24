@@ -1,0 +1,7 @@
+php-html-quickform-elementgrid for Debian
+--------------------------
+
+This extension has been created with dh-make-pear which is part
+of dh-make-php.
+
+ -- Cedric TEMPLE <ctemple@merethis.com>, Wed, 24 Feb 2010 15:56:17 +0100
