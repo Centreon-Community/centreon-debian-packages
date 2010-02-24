@@ -7,7 +7,7 @@ Standards-Version: 3.7.2
 
 Package: php-auth-sasl
 Architecture: all
-Depends: 
+Depends: php-pear, php5-common
 Description: Abstraction of various SASL mechanism responses
  Provides code to generate responses to common SASL mechanisms, 
  including:
