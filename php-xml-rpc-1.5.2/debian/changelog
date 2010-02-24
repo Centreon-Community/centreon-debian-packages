@@ -1,3 +1,9 @@
+php-xml-rpc (1.5.2-2) unstable; urgency=low
+
+  * Add dependancies
+
+ -- Cedric TEMPLE <ctemple@merethis.com>  Thu, 24 Feb 2010 17:12:06 +0200
+
 php-xml-rpc (1.5.2-1) unstable; urgency=low
 
   * Initial Release (Closes #<ITP bug number>).

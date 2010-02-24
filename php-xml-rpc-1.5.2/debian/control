@@ -7,7 +7,7 @@ Standards-Version: 3.7.2
 
 Package: php-xml-rpc
 Architecture: all
-Depends: 
+Depends: php-pear
 Description: PHP implementation of the XML-RPC protocol
  A PEAR-ified version of Useful Inc's XML-RPC for PHP.
  .
