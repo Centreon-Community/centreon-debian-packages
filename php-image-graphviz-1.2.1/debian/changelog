@@ -1,3 +1,9 @@
+php-image-graphviz (1.2.1-2) unstable; urgency=low
+
+  * php-image-graphviz does not want to install
+
+ -- Cedric TEMPLE <ctemple@merethis.com>  Wed, 24 Feb 2010 18:01:45 +0200
+
 php-image-graphviz (1.2.1-1) unstable; urgency=low
 
   * Initial Release (Closes #<ITP bug number>).
