@@ -1,3 +1,9 @@
+php-net-traceroute (0.21.1-2) unstable; urgency=low
+
+  * Fix dependancies
+
+ -- Cedric TEMPLE <ctemple@merethis.com>  Wed, 24 Feb 2010 17:46:08 +0200
+
 php-net-traceroute (0.21.1-1) unstable; urgency=low
 
   * Initial Release (Closes #<ITP bug number>).
