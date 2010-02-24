@@ -1,3 +1,9 @@
+php-db-dataobject (1.8.12-2) unstable; urgency=low
+
+  * Add dependancies
+
+ --  Cedric TEMPLE <ctemple@merethis.com>  Wed, 24 Feb 2010 13:51:53 +0200
+
 php-db-dataobject (1.8.12-1) unstable; urgency=low
 
   * Initial Release (Closes #<ITP bug number>).
