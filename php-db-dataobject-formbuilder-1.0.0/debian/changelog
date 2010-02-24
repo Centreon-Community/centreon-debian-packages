@@ -1,5 +1,5 @@
-php-db-dataobject-formbuilder (1.0.0) UNRELEASED; urgency=low
+php-db-dataobject-formbuilder (1.0.0-2) unstable; urgency=low
 
-  * Initial release. (Closes: #XXXXXX)
+  * Add dependancies
 
- --  David HANNEQUIN <david.hannequin@gmail.com>  Mon, 23 Nov 2009 14:43:48 +0100
+ --  Cedric TEMPLE <ctemple@merethis.com>  Wed, 24 Feb 2010 15:01:48 +0200

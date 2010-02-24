@@ -7,7 +7,7 @@ Standards-Version: 3.7.2
 
 Package: php-db-dataobject-formbuilder
 Architecture: all
-Depends: 
+Depends: php-pear, php-db-dataobject, php-html-quickform, php-date, php-html-table, php-html-quickform-elementgrid
 Description: Class to automatically build HTML_QuickForm objects from a DB_DataObject-derived class
  DB_DataObject_FormBuilder will aid you in rapid application 
  development using the packages DB_DataObject and HTML_QuickForm. For 
