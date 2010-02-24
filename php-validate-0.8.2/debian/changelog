@@ -1,3 +1,9 @@
+php-validate (0.8.2-2) unstable; urgency=low
+
+  * Add dependancies
+
+ -- Cedric TEMPLE <ctemple@merethis.com>  Wed, 24 Feb 2010 17:32:58 +0200
+
 php-validate (0.8.2-1) unstable; urgency=low
 
   * Initial Release (Closes #<ITP bug number>).
