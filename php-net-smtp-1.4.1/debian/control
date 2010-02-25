@@ -1,0 +1,13 @@
+Source: php-net-smtp
+Section: web
+Priority: optional
+Maintainer: Cedric TEMPLE <ctemple@merethis.com>
+Build-Depends: debhelper (>= 5), dh-make-php (>= 0.2.3), cdbs
+Standards-Version: 3.7.2
+
+Package: php-net-smtp
+Architecture: all
+Depends: php-pear, php-net-socket (>= 1.0.7)
+Description: An implementation of the SMTP protocol
+ Provides an implementation of the SMTP protocol using PEAR's 
+ Net_Socket class.
