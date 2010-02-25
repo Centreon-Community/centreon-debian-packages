@@ -1,0 +1,7 @@
+php-net-socket for Debian
+--------------------------
+
+This extension has been created with dh-make-pear which is part
+of dh-make-php.
+
+ -- Cedric TEMPLE <ctemple@merethis.com>, Thu, 25 Feb 2010 13:40:35 +0100
