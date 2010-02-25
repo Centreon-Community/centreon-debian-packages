@@ -1,0 +1,74 @@
+Source: centreon
+Section: net
+Priority: extra
+Maintainer: Guillaume Watteeux <guillaume.watteeux@gmail.com>
+Homepage: http://www.centreon.com/
+Vcs-Browser: http://forge.centreon.com/repositories/browse/centreon/trunk/centreon
+Vcs-Svn: http://svn.centreon.com/trunk/centreon
+Standards-Version: 3.7.3
+Build-Depends: debhelper (>= 5), dpatch
+
+Package: centreon2
+Architecture: any
+Depends: apache2, dbconfig-common, debconf (>= 0.5) | debconf-2.0, libnet-snmp-perl, librrds-perl, mysql-server (>= 5), nagios2 | nagios3, php-auth-sasl, php-date, php-db, php-db-dataobject, php-db-dataobject-formbuilder, php-html-common, php-html-quickform, php-html-quickform-advmultiselect, php-html-table, php-http, php-log, php-mdb2, php-net-ping, php-net-smtp, php-net-socket, php-net-traceroute, php-pear, php-soap, php-validate, php-xml-rpc, php5, php5-cli, php5-gd, php5-ldap, php5-mysql, php5-snmp, php5-xmlrpc, rrdtool (>= 1.2.15), sudo, ucf
+Recommends: nagios-plugins, snmp, snmpd
+Suggests: nagios2 | nagios3, nagios-images, nagios2-ndotutils-mysql | nagios3-ndoutils-mysql
+Description: This package (centreon) is a web front end to Nagios
+ Here is a non-exhaustive list of the functionalities provided by Centreon :
+ .
+  o A highly customizable and intuitive multi-user interface
+  o An enhanced configuration tool to setup the supervised perimeter
+  o Configuration wizards
+  o A frontend to all Nagios configuration files. These configurations 
+    are linked to save your working time.
+  o A Nagios configuration loader module
+  o A Nagios 2.x and 3.x compatibility
+  o A Nagios configuration file-checker thanks to Nagios Debugger
+  o Network devices and servers ID Cards which has all the basic
+    informations about these resources
+  o A customizable network cartography
+  o An access manager, including resources as well as interfaces restrictions
+  o And a lot more to discover
+
+Package: centreon2-plugins
+Architecture: all
+Depends: ${perl:Depends}, nagios-plugins
+Recommends: centreon2
+Description: Plugins for centreon (nagios)
+ features plugins for nagios/centreon
+
+Package: centreon2-plugins-traps
+Architecture: all
+Depends: ${perl:Depends}, centreon2-plugins
+Recommends: centreon2
+Description: Plugins Traps for centreon
+ feature traps process for centreon
+
+Package: centreon2-centcore
+Architecture: all
+Depends: ${perl:Depends}
+Recommends: centreon2, nagios2 | nagios3 
+Description: CentCore for centreon
+ CentCore function
+ o Manage Distributing service
+ 
+Package: centreon2-centstorage
+Architecture: all
+Depends: ${perl:Depends}, centreon2, mysql-server (>= 5)
+Recommends: rrdtool (>= 1.2.15)
+Description: CentStorage for centreon
+ CentStorage daemon for perfdata
+
+Package: centreon2-ndodb
+Architecture: all
+Depends: ${perl:Depends}, mysql-server (>= 5)
+Recommends: centreon2
+Description: Ndo database for centreon
+ NDO database with centreon specifications
+
+Package: centreon2-doc
+Section: doc
+Architecture: all
+Description: Documentation for centreon
+ Documentation for centreon, centcore, centstorage...
+
