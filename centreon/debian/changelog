@@ -1,5 +1,11 @@
 centreon (2.1.1) unstable; urgency=low
 
+  * Initial release
+
+ -- Cedric TEMPLE <ctemple@merethis.com>  Thu, 25 Feb 2010 11:08:31 +0200
+
+centreon (2.1.1) unstable; urgency=low
+
   * Initial release 
 
  -- Guillaume Watteeux <guillaume.watteeux@gmail.com>  Sat, 3 Oct 2009 23:20:31 +0100
