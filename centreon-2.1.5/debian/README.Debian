@@ -1,0 +1,40 @@
+centreon for Debian
+-------------------
+
+Using dbconfig-common for the database install is highly recommended.
+If you have chosen not to use it, you can find the SQL files used to
+install and upgrade the database in /usr/share/doc/centreon2/tmpl/mysql.
+You will need to use these files to manually install/upgrade the
+database yourself.
+
+Nagios configuration
+--------------------
+
+1. Centreon2 database configuration
+-----------------------------------
+After install centreon2, you must exec /usr/sbin/centreon2nagioscfg
+to configure your centreon2 install with nagios version configuration.
+If you don't, you must change manually in:
+Configuration -> Nagios -> nagios.cfg
+
+
+2. Nagios configuration path
+----------------------------
+Please change NAGIOSCFG and CGICFG parameters in:
+For nagios2: /etc/default/nagios2
+ NAGIOSCFG="/etc/nagios2/nagios.cfg"
+ CGICFG="/etc/nagios2/cgi.cfg"
+ Change by:
+ NAGIOSCFG="/etc/centreon2/nagioscfg/nagios.cfg"
+ CGICFG="/etc/centreon2/nagioscfg/cgi.cfg"
+
+For nagios3: /etc/default/nagios3
+ NAGIOSCFG="/etc/nagios3/nagios.cfg"
+ CGICFG="/etc/nagios3/cgi.cfg"
+ Change by:
+ NAGIOSCFG="/etc/centreon2/nagioscfg/nagios.cfg"
+ CGICFG="/etc/centreon2/nagioscfg/cgi.cfg"
+
+
+ -- Guillaume Watteeux <guillaume.watteeux@gmail.com>  Thu, 13 Mar 2008 19:24:47 +0100
+
