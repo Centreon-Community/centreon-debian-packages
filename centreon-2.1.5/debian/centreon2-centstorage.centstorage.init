@@ -43,7 +43,7 @@ NAME=centstorage
 DESC=centstorage
 LOGDIR=/var/log/centreon2/centstorage
 
-PIDFILE=/var/run/$NAME.pid 
+PIDFILE=/var/run/centreon2/$NAME.pid 
 
 test -x $DAEMON || exit 0
 #test -x $DAEMON_WRAPPER || exit 0
