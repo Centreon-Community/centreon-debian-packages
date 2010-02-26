@@ -15,5 +15,5 @@
 	$classdir='./class';
 	
 	/* Centreon2 Path */
-	$centreon_path='/usr/share/centreon2';
+	$centreon_path='/usr/share/centreon2/';
 ?>
