@@ -39,6 +39,10 @@ nagiosConfig() {
 	done
 	sed -i 's|@@nagios_version@@|'"$version"'|g' \
 	    /usr/share/dbconfig-common/data/centreon2/install/mysql
+
+	chmod u+w /etc/sudoers
+	cat /usr/share/doc/centreon2/examples/centreon2.sudo.${version} >> /etc/sudoers
+	chmod u-w /etc/sudoers
 }
 
 createUserConfig() {
