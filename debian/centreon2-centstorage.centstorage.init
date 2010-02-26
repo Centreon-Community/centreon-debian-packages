@@ -69,7 +69,7 @@ if [ -f /etc/default/$NAME ] ; then
 fi
 
 # test if config file exist
-test -f /etc/centreon2/$NAME/config.pm ||exit 0
+test -f /etc/centreon2/$NAME/conf.pm ||exit 0
 
 # Use this if you want the user to explicitly set 'RUN' in 
 # /etc/default/
