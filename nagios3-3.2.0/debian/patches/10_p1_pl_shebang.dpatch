@@ -1,0 +1,16 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_p1_pl_shebang.dpatch by Marc Haber <mh+debian-packages@zugschlus.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fix shebang of perl interpreter
+
+@DPATCH@
+diff -urNad trunk~/p1.pl trunk/p1.pl
+--- trunk~/p1.pl	2006-03-21 23:32:46.000000000 +0000
++++ trunk/p1.pl	2006-06-26 13:55:35.000000000 +0000
+@@ -1,3 +1,5 @@
++#!/usr/bin/perl
++
+  package Embed::Persistent;
+ 
+ # p1.pl for Nagios 2.0

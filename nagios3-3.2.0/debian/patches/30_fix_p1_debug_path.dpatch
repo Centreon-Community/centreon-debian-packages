@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 30_fix_p1_debug_path.dpatch by Alexander Wirt <formorer@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad nagios3-3.0.1~/p1.pl nagios3-3.0.1/p1.pl
+--- nagios3-3.0.1~/p1.pl	2007-12-26 18:52:04.000000000 +0100
++++ nagios3-3.0.1/p1.pl	2008-05-04 12:55:48.000000000 +0200
+@@ -16,7 +16,7 @@
+ # use constant	DEBUG_LEVEL		=> LEAVE_MSG | CACHE_DUMP ;
+ # use constant	DEBUG_LEVEL		=> LEAVE_MSG | CACHE_DUMP | PLUGIN_DUMP ;
+ 
+-use constant	DEBUG_LOG_PATH		=> '/usr/local/nagios/var/' ;
++use constant	DEBUG_LOG_PATH		=> '/var/log/nagios3/' ;
+ # use constant	DEBUG_LOG_PATH		=> './' ;
+ use constant	LEAVE_MSG_STREAM	=> DEBUG_LOG_PATH . 'epn_leave-msgs.log' ;
+ use constant	CACHE_DUMP_STREAM	=> DEBUG_LOG_PATH . 'epn_cache-dump.log' ;

@@ -1,0 +1,2 @@
+debian/httpd.webapps-common /usr/share/nagios3/debian
+debian-configs/cgi.cfg /etc/nagios3

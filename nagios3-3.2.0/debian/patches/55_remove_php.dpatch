@@ -1,0 +1,1242 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 55_remove_php.dpatch by Alexander Wirt <formorer@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad nagios3-3.2.0~/configure nagios3-3.2.0/configure
+--- nagios3-3.2.0~/configure	2009-08-12 20:28:10.000000000 +0200
++++ nagios3-3.2.0/configure	2009-08-29 09:40:22.000000000 +0200
+@@ -7158,7 +7158,7 @@
+ fi
+ 
+ 
+-                                                                                                                        ac_config_files="$ac_config_files Makefile subst pkginfo base/Makefile common/Makefile contrib/Makefile cgi/Makefile html/Makefile module/Makefile xdata/Makefile daemon-init t-tap/Makefile"
++                                                                                                                        ac_config_files="$ac_config_files Makefile subst pkginfo base/Makefile common/Makefile contrib/Makefile cgi/Makefile html/Makefile module/Makefile xdata/Makefile daemon-init t-tap/Makefile html/side.html html/index.html"
+ 
+ 
+ test "x$prefix" = xNONE && prefix=$ac_default_prefix
+@@ -7639,6 +7639,8 @@
+   "contrib/Makefile" ) CONFIG_FILES="$CONFIG_FILES contrib/Makefile" ;;
+   "cgi/Makefile" ) CONFIG_FILES="$CONFIG_FILES cgi/Makefile" ;;
+   "html/Makefile" ) CONFIG_FILES="$CONFIG_FILES html/Makefile" ;;
++  "html/side.html" ) CONFIG_FILES="$CONFIG_FILES html/side.html" ;;
++  "html/index.html" ) CONFIG_FILES="CONFIG_FILES html/index.htm" ;; 
+   "module/Makefile" ) CONFIG_FILES="$CONFIG_FILES module/Makefile" ;;
+   "xdata/Makefile" ) CONFIG_FILES="$CONFIG_FILES xdata/Makefile" ;;
+   "daemon-init" ) CONFIG_FILES="$CONFIG_FILES daemon-init" ;;
+@@ -8478,7 +8480,6 @@
+ 
+ 
+ perl subst include/locations.h
+-perl subst html/config.inc.php
+ 
+ 
+ echo ""
+diff -urNad nagios3-3.2.0~/configure.in nagios3-3.2.0/configure.in
+--- nagios3-3.2.0~/configure.in	2009-08-12 20:28:10.000000000 +0200
++++ nagios3-3.2.0/configure.in	2009-08-29 09:40:22.000000000 +0200
+@@ -786,7 +786,7 @@
+ 
+ AC_PATH_PROG(PERL,perl)
+ 
+-AC_OUTPUT(Makefile subst pkginfo base/Makefile common/Makefile contrib/Makefile cgi/Makefile html/Makefile module/Makefile xdata/Makefile daemon-init t-tap/Makefile)
++AC_OUTPUT(Makefile subst pkginfo base/Makefile common/Makefile contrib/Makefile cgi/Makefile html/Makefile module/Makefile xdata/Makefile daemon-init t-tap/Makefile html/index.html html/side.html)
+ 
+ 
+ perl subst include/locations.h
+diff -urNad nagios3-3.2.0~/html/Makefile.in nagios3-3.2.0/html/Makefile.in
+--- nagios3-3.2.0~/html/Makefile.in	2009-07-08 00:34:51.000000000 +0200
++++ nagios3-3.2.0/html/Makefile.in	2009-08-29 09:40:22.000000000 +0200
+@@ -28,7 +28,7 @@
+ 	rm -f stylesheets/*~
+ 
+ distclean: clean
+-	rm -f Makefile config.inc.php
++	rm -f Makefile index.html side.html
+ 
+ devclean: distclean
+ 
+@@ -41,15 +41,10 @@
+ 	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/docs/images
+ 	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/images
+ 	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/images/logos
+-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/includes
+ 	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/ssi
+ 	$(INSTALL) -m 664 $(INSTALL_OPTS) robots.txt $(DESTDIR)$(HTMLDIR)
+ 	$(INSTALL) -m 664 $(INSTALL_OPTS) docs/robots.txt $(DESTDIR)$(HTMLDIR)/docs
+-# Remove old HTML files (PHP files are used now)
+-	rm -f $(DESTDIR)$(HTMLDIR)/index.html
+-	rm -f $(DESTDIR)$(HTMLDIR)/main.html
+-	rm -f $(DESTDIR)$(HTMLDIR)/side.html
+-	for file in *.php; \
++	for file in *.html; \
+ 	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR); done
+ #	for file in media/*.wav; \
+ #	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/media; done
+@@ -71,8 +66,6 @@
+ 	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images; done
+ 	for file in images/logos/*.*; \
+ 	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images/logos; done
+-	for file in includes/*.*; \
+-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/includes; done
+ 
+ install-unstripped:
+ 	$(MAKE) install
+diff -urNad nagios3-3.2.0~/html/config.inc.php.in nagios3-3.2.0/html/config.inc.php.in
+--- nagios3-3.2.0~/html/config.inc.php.in	2008-12-14 19:00:46.000000000 +0100
++++ nagios3-3.2.0/html/config.inc.php.in	1970-01-01 01:00:00.000000000 +0100
+@@ -1,20 +0,0 @@
+-<?php
+-//
+-
+-
+-$cfg['cgi_config_file']='@sysconfdir@/cgi.cfg';  // location of the CGI config file
+-
+-$cfg['cgi_base_url']='@cgiurl@';
+-
+-
+-// FILE LOCATION DEFAULTS
+-$cfg['main_config_file']='@sysconfdir@/nagios.cfg';  // default location of the main Nagios config file
+-$cfg['status_file']='@localstatedir@/status.dat'; // default location of Nagios status file
+-$cfg['state_retention_file']='@localstatedir@/retention.dat'; // default location of Nagios retention file
+-
+-
+-
+-// utilities
+-require_once(dirname(__FILE__).'/includes/utils.inc.php');
+-
+-?>
+diff -urNad nagios3-3.2.0~/html/includes/utils.inc.php nagios3-3.2.0/html/includes/utils.inc.php
+--- nagios3-3.2.0~/html/includes/utils.inc.php	2009-03-10 21:05:43.000000000 +0100
++++ nagios3-3.2.0/html/includes/utils.inc.php	1970-01-01 01:00:00.000000000 +0100
+@@ -1,473 +0,0 @@
+-<?php
+-// HELPER UTILITIES
+-
+-require_once(dirname(__FILE__).'/../config.inc.php');
+-
+-function get_update_information(){
+-	global $cfg;
+-	
+-	// initialize array
+-	$updateinfo=array(
+-		"found_update_info" => false,
+-		"update_checks_enabled" => true,
+-		"last_update_check" => "",
+-		"update_available" => false,
+-		"update_version" => "",
+-		);
+-	
+-	// first read CGI config file to determine main file location
+-	$ccfc=read_cgi_config_file();
+-	//print_r($ccfc);
+-	
+-	// read main config file to determine file locations
+-	if(isset($ccf['main_config_file']))
+-		$mcf=$ccf['main_config_file'];
+-	else
+-		$mcf="";
+-	$mcfc=read_main_config_file($mcf);
+-	//print_r($mcfc);
+-
+-	if(isset($mcf['status_file']))
+-		$sf=$mcf['status_file'];
+-	else
+-		$sf="";
+-
+-	if(isset($mcf['state_retention_file']))
+-		$rf=$mcf['state_retention_file'];
+-	else
+-		$rf="";
+-
+-
+-	///////////////////////////////////////////////
+-	// GET PROGRAM VARIABLES FROM MAIN CONFIG  FILE
+-	///////////////////////////////////////////////
+-	
+-	// are update checks enabled?
+-	if(isset($mcfc['check_for_updates']) && $mcfc['check_for_updates']=="0")
+-		$updateinfo["update_checks_enabled"]=false;
+-		
+-
+-	/////////////////////////////////////////
+-	// DETERMINE UPDATE INFO FROM STATUS FILE
+-	/////////////////////////////////////////
+-	
+-	// read status file (just first few lines)
+-	$sfc=read_status_file($sf,50);
+-	//print_r($sfc);
+-	//exit();
+-	
+-	// last update time
+-	if(isset($sfc['info']['last_update_check'])){
+-		$updateinfo["last_update_check"]=$sfc['info']['last_update_check'];
+-		$updateinfo["found_update_info"]=true;
+-		}
+-	
+-	// update available
+-	if(isset($sfc['info']['update_available'])){
+-		if($sfc['info']['update_available']=="1")
+-			$updateinfo["update_available"]=true;
+-		else
+-			$updateinfo["update_available"]=false;
+-		}
+-	
+-	// update version
+-	if(isset($sfc['info']['new_version'])){
+-		$updateinfo["update_version"]=$sfc['info']['new_version'];
+-		}
+-		
+-	// did we find update information in the status file? if so, we're done
+-	if($updateinfo["found_update_info"]==true)
+-		return $updateinfo;
+-
+-
+-	////////////////////////////////////////////
+-	// DETERMINE UPDATE INFO FROM RETENTION FILE
+-	////////////////////////////////////////////
+-	
+-	// Nagios might be shutdown (ie, no status file), so try and read data from the retention file
+-
+-	// read retentiion file (just first few lines)
+-	$rfc=read_retention_file($rf,50);
+-	//print_r($rfc);
+-	//exit();
+-	
+-	// last update time
+-	if(isset($rfc['info']['last_update_check'])){
+-		$updateinfo["last_update_check"]=$rfc['info']['last_update_check'];
+-		$updateinfo["found_update_info"]=true;
+-		}
+-	
+-	// update available
+-	if(isset($rfc['info']['update_available'])){
+-		if($rfc['info']['update_available']=="1")
+-			$updateinfo["update_available"]=true;
+-		else
+-			$updateinfo["update_available"]=false;
+-		}
+-	
+-	// update version
+-	if(isset($rfc['info']['new_version'])){
+-		$updateinfo["update_version"]=$rfc['info']['new_version'];
+-		}
+-		
+-	
+-	return $updateinfo;
+-	}
+-	
+-
+-
+-
+-////////////////////////////////////////////////////////////////////////////////////////////////
+-// FILE PROCESSING FUNCTIONS
+-////////////////////////////////////////////////////////////////////////////////////////////////
+-
+-// reads variables from main config file
+-function read_main_config_file($thefile=""){
+-	global $cfg;
+-	
+-	$contents=array();
+-	
+-	// file name can be overridden from default
+-	if(isset($thefile) && $thefile!="")
+-		$fname=$thefile;
+-	else
+-		$fname=$cfg['main_config_file'];
+-		
+-	// open main config file for reading...
+-	if(($fh=@fopen($fname,'r'))!=FALSE){
+-		// read all lines in the config file
+-		while(!feof($fh)){
+-			$s=fgets($fh);
+-			
+-			// skip comments
+-			if($s[0]=='#')
+-				continue;
+-				
+-			// skip blank lines
+-			// TODO - is this necessary?
+-			
+-			// split comments out from config
+-			$s2=explode(";",$s);
+-				
+-			// get var/val pairs
+-			$v=explode("=",$s2[0]);
+-			
+-			if(isset($v[0]) && isset($v[1])){
+-
+-				// trim var/val pairs
+-				$v[0]=trim($v[0]);
+-				$v[1]=trim($v[1]);
+-
+-				// allow for multiple values for some variables...
+-				$arr=false;
+-				if(!strcmp($v[0],"cfg_file"))
+-					$arr=true;
+-				else if(!strcmp($v[0],"cfg_dir"))
+-					$arr=true;
+-					
+-				if($arr==true)
+-					$contents[$v[0]][] = $v[1];
+-				else
+-					$contents[$v[0]] = $v[1];
+-				}
+-			}
+-		fclose($fh);
+-		}
+-
+-	return $contents;
+-	}
+-	
+-	
+-// reads variables from cgi config file
+-function read_cgi_config_file($thefile=""){
+-	global $cfg;
+-	
+-	$contents=array();
+-	
+-	// file name can be overridden from default
+-	if(isset($thefile) && $thefile!="")
+-		$fname=$thefile;
+-	else
+-		$fname=$cfg['cgi_config_file'];
+-		
+-	// open cgi config file for reading...
+-	if(($fh=@fopen($fname,'r'))!=FALSE){
+-		// read all lines in the config file
+-		while(!feof($fh)){
+-			$s=fgets($fh);
+-			
+-			// skip comments
+-			if($s[0]=='#')
+-				continue;
+-				
+-			// skip blank lines
+-			// TODO - is this necessary?
+-			
+-			// split comments out from config
+-			$s2=explode(";",$s);
+-				
+-			// get var/val pairs
+-			$v=explode("=",$s2[0]);
+-			
+-			if(isset($v[0]) && isset($v[1])){
+-
+-				// trim var/val pairs
+-				$v[0]=ltrim(rtrim($v[0]));
+-				$v[1]=ltrim(rtrim($v[1]));
+-
+-				// do not allow for multiple values
+-				$contents[$v[0]] = $v[1];
+-				}
+-			}
+-		fclose($fh);
+-		}
+-
+-	return $contents;
+-	}
+-	
+-	
+-
+-// reads status file
+-function read_status_file($thefile="",$maxlines=0){
+-	global $cfg;
+-	
+-	$contents=array(
+-		"info" => array(),
+-		"programstatus" => array(),
+-		"hoststatus" => array(),
+-		"servicestatus" => array(),
+-		"contactstatus" => array()
+-		);
+-		
+-	$statustype="unknown";
+-	$current_host=0;
+-	$current_service=0;
+-	$current_contact=0;
+-	
+-	// file name can be overridden from default
+-	if(isset($thefile) && $thefile!="")
+-		$fname=$thefile;
+-	else
+-		$fname=$cfg['status_file'];
+-		
+-	// open file for reading...
+-	$x=0;
+-	if(($fh=@fopen($fname,'r'))!=FALSE){
+-		// read all lines
+-		while(!feof($fh)){
+-
+-			$x++;
+-			if($maxlines>0 && $x>$maxlines)
+-				break;
+-
+-			$s=fgets($fh);
+-			
+-			// skip comments
+-			if($s[0]=='#')
+-				continue;
+-				
+-			// trim lines
+-			$s=ltrim(rtrim($s));
+-				
+-			// skip blank lines
+-			if($s=="")
+-				continue;
+-			
+-			// we are in a new type of status data or new entry
+-			if(!strcmp($s,"info {")){
+-				$statustype="info";
+-				continue;
+-				}
+-			else if(!strcmp($s,"programstatus {")){
+-				$statustype="programstatus";
+-				continue;
+-				}
+-			else if(!strcmp($s,"hoststatus {")){
+-				$statustype="hoststatus";
+-				$current_host++;
+-				continue;
+-				}
+-			else if(!strcmp($s,"servicestatus {")){
+-				$statustype="servicestatus";
+-				$current_service++;
+-				continue;
+-				}
+-			else if(!strcmp($s,"contactstatus {")){
+-				$statustype="contactstatus";
+-				$current_contact++;
+-				continue;
+-				}
+-				
+-			// we just ended an entry...
+-			else if(!strcmp($s,"}")){
+-				$statustype="unknown";
+-				continue;
+-				}
+-				
+-			// get/split var/val pairs
+-			$v=explode("=",$s);
+-			$var="";
+-			$val="";
+-			if(isset($v[0]) && isset($v[1])){
+-				// trim var/val pairs
+-				$var=ltrim(rtrim($v[0]));
+-				$val=ltrim(rtrim($v[1]));
+-				}
+-				
+-			// INFO AND PROGRAM STATUS 
+-			if($statustype=="info" || $statustype=="programstatus"){
+-				$contents[$statustype][$var]=$val;
+-				continue;
+-				}
+-			// HOST STATUS
+-			else if($statustype=="hoststatus"){
+-				$contents[$statustype][$current_host][$var]=$val;
+-				continue;
+-				}
+-			
+-			// SERVICE STATUS
+-			else if($statustype=="servicestatus"){
+-				$contents[$statustype][$current_service][$var]=$val;
+-				continue;
+-				}
+-			
+-			// CONTACT STATUS
+-			else if($statustype=="contactstatus"){
+-				$contents[$statustype][$current_contact][$var]=$val;
+-				continue;
+-				}
+-			}
+-		fclose($fh);
+-		}
+-		
+-	$contents["total_hosts"]=$current_host;
+-	$contents["total_services"]=$current_service;
+-	$contents["total_contacts"]=$current_contact;
+-
+-	return $contents;
+-	}
+-
+-
+-
+-
+-// reads retention file
+-function read_retention_file($thefile="",$maxlines=0){
+-	global $cfg;
+-	
+-	$contents=array(
+-		"info" => array(),
+-		"program" => array(),
+-		"host" => array(),
+-		"service" => array(),
+-		"contact" => array()
+-		);
+-		
+-	$datatype="unknown";
+-	$current_host=0;
+-	$current_service=0;
+-	$current_contact=0;
+-	
+-	// file name can be overridden from default
+-	if(isset($thefile) && $thefile!="")
+-		$fname=$thefile;
+-	else
+-		$fname=$cfg['state_retention_file'];
+-
+-	// open file for reading...
+-	$x=0;
+-	if(($fh=@fopen($fname,'r'))!=FALSE){
+-		// read all lines
+-		while(!feof($fh)){
+-
+-			$x++;
+-			if($maxlines>0 && $x>$maxlines)
+-				break;
+-
+-			$s=fgets($fh);
+-			
+-			// skip comments
+-			if($s[0]=='#')
+-				continue;
+-				
+-			// trim lines
+-			$s=ltrim(rtrim($s));
+-				
+-			// skip blank lines
+-			if($s=="")
+-				continue;
+-
+-			// we are in a new type of status data or new entry
+-			if(!strcmp($s,"info {")){
+-				$datatype="info";
+-				continue;
+-				}
+-			else if(!strcmp($s,"program {")){
+-				$datatype="program";
+-				continue;
+-				}
+-			else if(!strcmp($s,"host {")){
+-				$datatype="host";
+-				$current_host++;
+-				continue;
+-				}
+-			else if(!strcmp($s,"service {")){
+-				$datatype="service";
+-				$current_service++;
+-				continue;
+-				}
+-			else if(!strcmp($s,"contact {")){
+-				$datatype="contact";
+-				$current_contact++;
+-				continue;
+-				}
+-				
+-			// we just ended an entry...
+-			else if(!strcmp($s,"}")){
+-				$datatype="unknown";
+-				continue;
+-				}
+-				
+-			// get/split var/val pairs
+-			$v=explode("=",$s);
+-			$var="";
+-			$val="";
+-			if(isset($v[0]) && isset($v[1])){
+-				// trim var/val pairs
+-				$var=ltrim(rtrim($v[0]));
+-				$val=ltrim(rtrim($v[1]));
+-				}
+-				
+-			// INFO AND PROGRAM STATUS 
+-			if($datatype=="info" || $datatype=="program"){
+-				$contents[$datatype][$var]=$val;
+-				continue;
+-				}
+-			// HOST STATUS
+-			else if($datatype=="host"){
+-				$contents[$datatype][$current_host][$var]=$val;
+-				continue;
+-				}
+-			
+-			// SERVICE STATUS
+-			else if($datatype=="service"){
+-				$contents[$datatype][$current_service][$var]=$val;
+-				continue;
+-				}
+-			
+-			// CONTACT STATUS
+-			else if($datatype=="contact"){
+-				$contents[$datatype][$current_contact][$var]=$val;
+-				continue;
+-				}
+-			}
+-		fclose($fh);
+-		}
+-		
+-	$contents["total_hosts"]=$current_host;
+-	$contents["total_services"]=$current_service;
+-	$contents["total_contacts"]=$current_contact;
+-
+-	return $contents;
+-	}
+-
+-?>
+\ No newline at end of file
+diff -urNad nagios3-3.2.0~/html/index.html.in nagios3-3.2.0/html/index.html.in
+--- nagios3-3.2.0~/html/index.html.in	1970-01-01 01:00:00.000000000 +0100
++++ nagios3-3.2.0/html/index.html.in	2009-08-29 09:40:22.000000000 +0200
+@@ -0,0 +1,28 @@
++<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
++
++<HTML>
++<HEAD>
++<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
++<TITLE>Nagios</TITLE>
++<link rel="shortcut icon" href="images/favicon.ico" type="image/ico">
++</HEAD>
++<FRAMESET BORDER="0" FRAMEBORDER="0" FRAMESPACING="0" COLS="180,*">
++<FRAME SRC="side.html" NAME="side" TARGET="main">
++<FRAME SRC="main.html" NAME="main">
++</FRAMESET>
++
++<NOFRAMES>
++<!-- This page requires a web browser which supports frames. --> 
++<p>
++<center>
++<h2>Nagios</h2>
++<a href="http://www.nagios.org/" alt="Nagios Home">www.nagios.org</a><br>
++Copyright (c) 1999-2007 Ethan Galstad<br>
++</center>
++</p>
++<p>
++<i>Note: These pages require a browser which supports frames</i>
++</p>
++</NOFRAMES>
++
++</HTML>
+diff -urNad nagios3-3.2.0~/html/index.php nagios3-3.2.0/html/index.php
+--- nagios3-3.2.0~/html/index.php	2009-01-23 17:12:17.000000000 +0100
++++ nagios3-3.2.0/html/index.php	1970-01-01 01:00:00.000000000 +0100
+@@ -1,29 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+-
+-<html>
+-<head>
+-<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+-<title>Nagios</title>
+-<link rel="shortcut icon" href="images/favicon.ico" type="image/ico">
+-</head>
+-
+-<frameset cols="180,*">
+-<frame src="side.php" name="side" frameborder="0">
+-<frame src="main.php" name="main" frameborder="0">
+-
+-<noframes>
+-<!-- This page requires a web browser which supports frames. --> 
+-<h2>Nagios</h2>
+-<p align="center">
+-<a href="http://www.nagios.org/">www.nagios.org</a><br>
+-Copyright (c) 1999-2009 Ethan Galstad<br>
+-</p>
+-<p>
+-<i>Note: These pages require a browser which supports frames</i>
+-</p>
+-</noframes>
+-
+-</frameset>
+-
+-</html>
+-
+diff -urNad nagios3-3.2.0~/html/main.html nagios3-3.2.0/html/main.html
+--- nagios3-3.2.0~/html/main.html	1970-01-01 01:00:00.000000000 +0100
++++ nagios3-3.2.0/html/main.html	2009-08-29 09:40:22.000000000 +0200
+@@ -0,0 +1,91 @@
++<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
++
++<HTML>
++<HEAD>
++<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
++<TITLE>Nagios</TITLE>
++
++<STYLE type="text/css">
++
++<!--
++
++	.main { font-family: arial,serif; background-color : white; color: black; font-size: 12pt; }
++
++	.version { font-family: arial,serif; text-align: center; color: red; font-weight: bold; font-size: 18pt; }
++	.releaseDate { font-family: arial,serif; text-align: center; font-size: 12pt; }
++	.whatsNew { font-family: arial,serif; text-align: center; font-size: 12pt; }
++
++	.disclaimer { font-family: arial,serif; text-align: center; font-size: 8pt; }
++
++	.infoBox { font-family: arial,serif; font-size : 12pt; background-color : #A5A3A3; padding: 2; }
++	
++	.supportBox { font-family: arial,serif; text-align: left; font-size: 12pt; }
++
++	.supportH1 {  font-size: 18pt;  font-weight: bold;  }
++
++-->
++	
++</STYLE>
++
++</HEAD>
++
++<body>
++<p>
++<table width="90%" border="0">
++  <tr>
++    <td>
++    <div align="center">
++<a href="http://www.nagios.org/" target="_blank"><IMG SRC="images/logofullsize.png" BORDER="0" ALT="Nagios" TITLE="Nagios"></a><br clear=all>
++<span class="main">Copyright (c) 1999-2008 Ethan Galstad</span><br>
++</div>    </td>
++    <td>
++    <div>
++<div align=center CLASS="version">Version 3.2.0</div>
++<div align=center CLASS="releaseDate">August 12, 2009</div>
++<div align=center CLASS="whatsNew"><a href="docs/whatsnew.html">Read what's new in Nagios 3</a></div>
++</div>    </td>
++  </tr>
++</table>
++</p>
++<table width="90%" border="0">
++	<tr>
++	  <td width="300">
++        <div align="center"><a href="http://www.nagios.org/support/?src=nagios" target="_blank"><img src="images/globe-support-150x150.png" alt="Global Support" width="150" height="150" border="0" style="padding: 0 0 0 70px;" title="Worldwide Support from Nagios"></a></div></td>
++   	  <td>
++        <div class="supportBox">
++          <p>          
++          <p><span class="supportH1">Need help with Nagios? </span><br>
++          A variety of worldwide support options are available to help you get Nagios up and running quickly. Visit <a href="http://www.nagios.org/support/?src=nagios" target="_blank">www.nagios.org/support/</a> for information on:<br>
++          <ul>
++           <li>Installation</li>
++           <li>Configuration</li>
++            <li>Performance Tuning</li>
++            <li>Integration</li>
++            <li>Customization</li>
++          </ul>   
++          </p>
++          </div>      </td>
++  </tr>
++</table>
++
++
++
++
++<p>
++<div align=center>
++<br clear=all>
++<a href="http://www.nagios.com/" target="_blank"><img src="images/NagiosEnterprises-whitebg-112x46.png" width="112" height="46" border="0" style="padding: 0 20px 0 0;" title="Nagios Enterprises"></a>  <a href="http://www.nagios.org/" target="_blank"><img src="images/weblogo1.png" width="102" height="47" border="0" style="padding: 0 0 0 40px;" title="Nagios.org"></a><br clear=all>
++</div> 
++</p>
++
++<div align="center">
++<a href="http://sourceforge.net/projects/nagios"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=26589&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a>
++</div>
++
++<div align="center" CLASS="disclaimer">
++<br />
++Nagios and the Nagios logo are trademarks, servicemarks, registered trademarks or registered servicemarks owned by Nagios Enterprises, LLC.<br />
++Nagios is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.<br />
++</div>
++</body>
++</html>
+diff -urNad nagios3-3.2.0~/html/main.php nagios3-3.2.0/html/main.php
+--- nagios3-3.2.0~/html/main.php	2009-08-12 20:28:10.000000000 +0200
++++ nagios3-3.2.0/html/main.php	1970-01-01 01:00:00.000000000 +0100
+@@ -1,78 +0,0 @@
+-<?php
+-include_once(dirname(__FILE__).'/includes/utils.inc.php');
+-
+-?>
+-
+-
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+-
+-<HTML>
+-
+-<HEAD>
+-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+-<TITLE>Nagios</TITLE>
+-<LINK REL='stylesheet' TYPE='text/css' HREF='stylesheets/common.css'>
+-</HEAD>
+-
+-<BODY id="splashpage">
+-
+-
+-<div id="mainbrandsplash">
+-<div id="mainlogo">
+-<a href="http://www.nagios.org/" target="_blank"><img src="images/logofullsize.png" border="0" alt="Nagios" title="Nagios"></a>
+-</div>
+-</div>
+-
+-<div id="currentversioninfo">
+-<div class="product">Nagios<sup><span style="font-size: small;">&reg;</span></sup> Core<sup><span style="font-size: small;">&trade;</span></sup></div>
+-<div class="version">Version 3.2.0</div>
+-<div class="releasedate">August 12, 2009</div>
+-<div class="checkforupdates"><a href="http://www.nagios.org/checkforupdates/?version=3.2.0&product=nagioscore" target="_blank">Check for updates</a></div>
+-<div class="whatsnew"><a href="docs/whatsnew.html">Read what's new in Nagios Core 3</a></div>
+-</div>
+-
+-
+-<div id="updateversioninfo">
+-<?php
+-	$updateinfo=get_update_information();
+-	//print_r($updateinfo);
+-	//$updateinfo['update_checks_enabled']=false;
+-	//$updateinfo['update_available']=true;
+-	if($updateinfo['update_checks_enabled']==false){
+-?>
+-		<div class="updatechecksdisabled">
+-		<div class="warningmessage">Warning: Automatic Update Checks are Disabled!</div>
+-		<div class="submessage">Disabling update checks presents a possible security risk.  Visit <a href="http://www.nagios.org/" target="_blank">nagios.org</a> to check for updates manually or enable update checks in your Nagios config file.</a></div>
+-		</div>
+-<?php
+-		}
+-	else if($updateinfo['update_available']==true){
+-?>
+-		<div class="updateavailable">
+-		<div class="updatemessage">A new version of Nagios is available!</div>
+-		<div class="submessage">Visit <a href="http://www.nagios.org/" target="_blank">nagios.org</a> to download Nagios <?php echo $updateinfo['update_version'];?>.</div>
+-		</div>
+-<?php
+-		}
+-?>
+-</div>
+-
+-
+-<div id="mainfooter">
+-<div id="maincopy">Copyright &copy; 2009 Nagios Core Development Team and Community Contributors.<br>Copyright &copy; 1999-2009 Ethan Galstad.<br>See the THANKS file for more information on contributors.</div>
+-<div CLASS="disclaimer">
+-Nagios Core is licensed under the GNU General Public License and is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.  Nagios, Nagios Core and the Nagios logo are trademarks, servicemarks, registered trademarks or registered servicemarks owned by Nagios Enterprises, LLC.  Usage of the Nagios marks are governed by our <A href="http://www.nagios.org/legal/trademarkpolicy/">trademark policy</a>.
+-</div>
+-<div class="logos">
+-<a href="http://www.nagios.com/" target="_blank"><img src="images/NagiosEnterprises-whitebg-112x46.png" width="112" height="46" border="0" style="padding: 0 20px 0 0;" title="Nagios Enterprises"></a>  
+-
+-<a href="http://www.nagios.org/" target="_blank"><img src="images/weblogo1.png" width="102" height="47" border="0" style="padding: 0 40px 0 40px;" title="Nagios.org"></a>
+-
+-<a href="http://sourceforge.net/projects/nagios"><img src="images/sflogo.png" width="88" height="31" border="0" alt="SourceForge.net Logo" /></a>
+-</div>
+-</div> 
+-
+-
+-</BODY>
+-</HTML>
+-
+diff -urNad nagios3-3.2.0~/html/side.html.in nagios3-3.2.0/html/side.html.in
+--- nagios3-3.2.0~/html/side.html.in	1970-01-01 01:00:00.000000000 +0100
++++ nagios3-3.2.0/html/side.html.in	2009-08-29 09:40:40.000000000 +0200
+@@ -0,0 +1,277 @@
++<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
++
++<HTML>
++<HEAD>
++<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
++<TITLE>Nagios</TITLE>
++
++<STYLE type="text/css">
++
++<!--
++
++	TABLE.NavBarTitle { font-family: verdana,arial,serif; background-color: black; border: thin solid white; padding: 1; }
++	TD.NavBarTitle { font-family: verdana,arial,serif; background-color: black; color: #DEE7C6; font-size: 10pt; font-weight: bold; text-decoration: none; }
++	.NavBarItem { font-family: verdana,arial,serif; background-color: black; color: #DEE7C6; font-size: 8pt; font-weight: bold; text-decoration: none; }
++	.NavBarSearchItem { font-family: verdana,arial,serif; background-color: black; color: #DEE7C6; font-size: 8pt; }
++	INPUT.NavBarSearchItem { font-family: verdana,arial,serif; background-color: white; color: black; font-size: 8pt; }
++	BODY.navbar { font-family: verdana,arial,serif; background-color: white; color: black;  background-color: black }
++
++-->
++	
++</STYLE>
++
++</HEAD>
++
++<BODY CLASS='navbar'>
++
++<SCRIPT LANGUAGE="JavaScript">
++<!--
++
++if(parseInt(navigator.appVersion.substring(0,1))>=3){
++  doton = new Image(13,14);
++  doton.src = "images/orangedot.gif";
++  dotoff = new Image(13,14);
++  dotoff.src = "images/greendot.gif";
++  }
++
++function switchdot(name,on){
++  if(parseInt(navigator.appVersion.substring(0,1))>=3){
++    image = eval("" + (on == 1 ? "doton.src" : "dotoff.src"));
++    document[name].src=image;
++    }
++  }
++
++//-->
++</SCRIPT>
++
++
++
++<table width="150" border="0">
++  <tr>
++    <td>
++      <div align="center"><a href="http://www.nagios.org" target="_blank"><img src="images/sblogo.png" border="0" alt="Nagios"></a></div>
++    </td>
++  </tr>
++</table>
++
++<table width="150">
++  <tr>
++    <td>
++      <table width="100%" class="NavBarTitle" cellspacing="0">
++        <tr>
++  	  <td class="NavBarTitle">General</td>
++	</tr>
++      </table>
++    </td>
++  </tr>
++</table>
++
++<table width=150 border="0" cellpadding=0 cellspacing=0>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="home-dot"></td>
++    <td nowrap width=134><a href="main.html" target="main" onMouseOver="switchdot('home-dot',1)" onMouseOut="switchdot('home-dot',0)" class="NavBarItem">Home</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="docs-dot"></td>
++    <td nowrap><a href="docs/index.html" target="main" onMouseOver="switchdot('docs-dot',1)" onMouseOut="switchdot('docs-dot',0)" class="NavBarItem">Documentation</a></td>
++  </tr>
++  <tr>
++    <td colspan="2" height="10"></td>
++  </tr>
++</table>
++
++<table width="150">
++  <tr>
++    <td>
++      <table width="100%" class="NavBarTitle" cellspacing="0">
++        <tr>
++  	  <td class="NavBarTitle">Monitoring</td>
++	</tr>
++      </table>
++    </td>
++  </tr>
++</table>
++
++<table width="150" border="0" cellpadding=0 cellspacing=0>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="tac-dot"></td>
++    <td nowrap width=134><a href="@cgiurl@/tac.cgi" target="main" onMouseOver="switchdot('tac-dot',1)" onMouseOut="switchdot('tac-dot',0)" class="NavBarItem">Tactical Overview</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="status-dot"></td>
++    <td nowrap><a href="@cgiurl@/status.cgi?host=all" target="main" onMouseOver="switchdot('status-dot',1)" onMouseOut="switchdot('status-dot',0)" class="NavBarItem">Service Detail</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="hoststatus-dot"></td>
++    <td nowrap><a href="@cgiurl@/status.cgi?hostgroup=all&style=hostdetail" target="main" onMouseOver="switchdot('hoststatus-dot',1)" onMouseOut="switchdot('hoststatus-dot',0)" class="NavBarItem">Host Detail</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="hgstatus-dot"></td>
++    <td nowrap><a href="@cgiurl@/status.cgi?hostgroup=all&style=overview" target="main" onMouseOver="switchdot('hgstatus-dot',1)" onMouseOut="switchdot('hgstatus-dot',0)" class="NavBarItem">Hostgroup Overview</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="hgstatus2-dot"></td>
++    <td nowrap><a href="@cgiurl@/status.cgi?hostgroup=all&style=summary" target="main" onMouseOver="switchdot('hgstatus2-dot',1)" onMouseOut="switchdot('hgstatus2-dot',0)" class="NavBarItem">Hostgroup Summary</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="hgstatus3-dot"></td>
++    <td nowrap><a href="@cgiurl@/status.cgi?hostgroup=all&style=grid" target="main" onMouseOver="switchdot('hgstatus3-dot',1)" onMouseOut="switchdot('hgstatus3-dot',0)" class="NavBarItem">Hostgroup Grid</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="sgstatus1-dot"></td>
++    <td nowrap><a href="@cgiurl@/status.cgi?servicegroup=all&style=overview" target="main" onMouseOver="switchdot('sgstatus1-dot',1)" onMouseOut="switchdot('sgstatus1-dot',0)" class="NavBarItem">Servicegroup Overview</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="sgstatus2-dot"></td>
++    <td nowrap><a href="@cgiurl@/status.cgi?servicegroup=all&style=summary" target="main" onMouseOver="switchdot('sgstatus2-dot',1)" onMouseOut="switchdot('sgstatus2-dot',0)" class="NavBarItem">Servicegroup Summary</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="sgstatus3-dot"></td>
++    <td nowrap><a href="@cgiurl@/status.cgi?servicegroup=all&style=grid" target="main" onMouseOver="switchdot('sgstatus3-dot',1)" onMouseOut="switchdot('sgstatus3-dot',0)" class="NavBarItem">Servicegroup Grid</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="statusmap-dot"></td>
++    <td nowrap><a href="@cgiurl@/statusmap.cgi?host=all" target="main" onMouseOver="switchdot('statusmap-dot',1)" onMouseOut="switchdot('statusmap-dot',0)" class="NavBarItem">Status Map</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="statuswrl-dot"></td>
++    <td nowrap><a href="@cgiurl@/statuswrl.cgi?host=all" target="main" onMouseOver="switchdot('statuswrl-dot',1)" onMouseOut="switchdot('statuswrl-dot',0)" class="NavBarItem">3-D Status Map</a></td>
++  </tr>
++  <tr> 
++    <td colspan="2" height="10"></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="svcproblems-dot"></td>
++    <td nowrap><a href="@cgiurl@/status.cgi?host=all&servicestatustypes=28" target="main" onMouseOver="switchdot('svcproblems-dot',1)" onMouseOut="switchdot('svcproblems-dot',0)" class="NavBarItem">Service Problems</a></td>
++  </tr>
++  <tr> 
++    <td width=13></td>
++    <td nowrap><img src="images/greendot.gif" width="13" height="14" name="svcproblemsu-dot" align="absmiddle"><a href="@cgiurl@/status.cgi?host=all&type=detail&hoststatustypes=3&serviceprops=42&servicestatustypes=28" target="main" onMouseOver="switchdot('svcproblemsu-dot',1)" onMouseOut="switchdot('svcproblemsu-dot',0)" class="NavBarItem">Unhandled</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="hostproblems-dot"></td>
++    <td nowrap><a href="@cgiurl@/status.cgi?hostgroup=all&style=hostdetail&hoststatustypes=12" target="main" onMouseOver="switchdot('hostproblems-dot',1)" onMouseOut="switchdot('hostproblems-dot',0)" class="NavBarItem">Host Problems</a></td>
++  </tr>
++  <tr> 
++    <td width=13></td>
++    <td nowrap><img src="images/greendot.gif" width="13" height="14" name="hostproblemsu-dot" align="absmiddle"><a href="@cgiurl@/status.cgi?hostgroup=all&style=hostdetail&hoststatustypes=12&hostprops=42" target="main" onMouseOver="switchdot('hostproblemsu-dot',1)" onMouseOut="switchdot('hostproblemsu-dot',0)" class="NavBarItem">Unhandled</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="outages-dot"></td>
++    <td nowrap><a href="@cgiurl@/outages.cgi" target="main" onMouseOver="switchdot('outages-dot',1)" onMouseOut="switchdot('outages-dot',0)" class="NavBarItem">Network Outages</a></td>
++  </tr>
++  <tr> 
++    <td colspan="2" height="10"></td>
++  </tr>
++  <tr> 
++    <td width=13></td>
++    <td nowrap class="NavBarSearchItem">Show Host:</td>
++  </tr>
++  <tr> 
++    <td width=13></td>
++    <td nowrap>
++	<form method="get" action="@cgiurl@/status.cgi" target="main">
++	<input type='hidden' name='navbarsearch' value='1'>
++	<input type='text' name='host' size='15' class="NavBarSearchItem">
++	</form>
++    </td>
++  </tr>
++  <tr> 
++    <td colspan="2" height="10"></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="comment-dot"></td>
++    <td nowrap><a href="@cgiurl@/extinfo.cgi?&type=3" target="main" onMouseOver="switchdot('comment-dot',1)" onMouseOut="switchdot('comment-dot',0)" class="NavBarItem">Comments</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="downtime-dot"></td>
++    <td nowrap><a href="@cgiurl@/extinfo.cgi?&type=6" target="main" onMouseOver="switchdot('downtime-dot',1)" onMouseOut="switchdot('downtime-dot',0)" class="NavBarItem">Downtime</a></td>
++  </tr>
++  <tr> 
++    <td colspan="2" height="10"></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="processinfo-dot"></td>
++    <td nowrap><a href="@cgiurl@/extinfo.cgi?&type=0" target="main" onMouseOver="switchdot('processinfo-dot',1)" onMouseOut="switchdot('processinfo-dot',0)" class="NavBarItem">Process Info</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="performance-dot"></td>
++    <td nowrap><a href="@cgiurl@/extinfo.cgi?&type=4" target="main" onMouseOver="switchdot('performance-dot',1)" onMouseOut="switchdot('performance-dot',0)" class="NavBarItem">Performance Info</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="queue-dot"></td>
++    <td nowrap><a href="@cgiurl@/extinfo.cgi?&type=7" target="main" onMouseOver="switchdot('queue-dot',1)" onMouseOut="switchdot('queue-dot',0)" class="NavBarItem">Scheduling Queue</a></td>
++  </tr>
++  <tr>
++    <td colspan="2" height="10"></td>
++  </tr>
++</table>
++
++<table width="150">
++  <tr>
++    <td>
++      <table width="100%" class="NavBarTitle" cellspacing="0">
++        <tr>
++  	  <td class="NavBarTitle">Reporting</td>
++	</tr>
++      </table>
++    </td>
++  </tr>
++</table>
++
++<table width="150" border="0" cellpadding=0 cellspacing=0>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="trends-dot"></td>
++    <td nowrap width=134><a href="@cgiurl@/trends.cgi" target="main" onMouseOver="switchdot('trends-dot',1)" onMouseOut="switchdot('trends-dot',0)" class="NavBarItem">Trends</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="avail-dot"></td>
++    <td nowrap><a href="@cgiurl@/avail.cgi" target="main" onMouseOver="switchdot('avail-dot',1)" onMouseOut="switchdot('avail-dot',0)" class="NavBarItem">Availability</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="histogram-dot"></td>
++    <td nowrap><a href="@cgiurl@/histogram.cgi" target="main" onMouseOver="switchdot('histogram-dot',1)" onMouseOut="switchdot('histogram-dot',0)" class="NavBarItem">Alert Histogram</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="history-dot"></td>
++    <td nowrap><a href="@cgiurl@/history.cgi?host=all" target="main" onMouseOver="switchdot('history-dot',1)" onMouseOut="switchdot('history-dot',0)" class="NavBarItem">Alert History</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="summary-dot"></td>
++    <td nowrap><a href="@cgiurl@/summary.cgi" target="main" onMouseOver="switchdot('summary-dot',1)" onMouseOut="switchdot('summary-dot',0)" class="NavBarItem">Alert Summary</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="notifications-dot"></td>
++    <td nowrap><a href="@cgiurl@/notifications.cgi?contact=all" target="main" onMouseOver="switchdot('notifications-dot',1)" onMouseOut="switchdot('notifications-dot',0)" class="NavBarItem">Notifications</a></td>
++  </tr>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="logfile-dot"></td>
++    <td nowrap><a href="@cgiurl@/showlog.cgi" target="main" onMouseOver="switchdot('logfile-dot',1)" onMouseOut="switchdot('logfile-dot',0)" class="NavBarItem">Event Log</a></td>
++  </tr>
++  <tr>
++    <td colspan="2" height="10"></td>
++  </tr>
++</table>
++
++
++<table width="150">
++  <tr>
++    <td>
++      <table width="100%" class="NavBarTitle" cellspacing="0">
++        <tr>
++  	  <td class="NavBarTitle">Configuration</td>
++	</tr>
++      </table>
++    </td>
++  </tr>
++</table>
++
++<table width="150" border="0" cellpadding=0 cellspacing=0>
++  <tr> 
++    <td width=13><img src="images/greendot.gif" width="13" height="14" name="config-dot"></td>
++    <td nowrap width=134><a href="@cgiurl@/config.cgi" target="main" onMouseOver="switchdot('config-dot',1)" onMouseOut="switchdot('config-dot',0)" class="NavBarItem">View Config</a></td>
++  </tr>
++</table>
++
++</BODY>
++</HTML>
+diff -urNad nagios3-3.2.0~/html/side.php nagios3-3.2.0/html/side.php
+--- nagios3-3.2.0~/html/side.php	2009-03-10 21:05:43.000000000 +0100
++++ nagios3-3.2.0/html/side.php	1970-01-01 01:00:00.000000000 +0100
+@@ -1,127 +0,0 @@
+-<?php
+-include_once(dirname(__FILE__).'/includes/utils.inc.php');
+-
+-$link_target="main";
+-?>
+-
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+-
+-<html>
+-
+-<head>
+-<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+-<TITLE>Nagios</TITLE>
+-<link href="stylesheets/common.css" type="text/css" rel="stylesheet">
+-</head>
+-
+-<body class='navbar'>
+-
+-
+-
+-<div class="navbarlogo">
+-<a href="http://www.nagios.org" target="_blank"><img src="images/sblogo.png" border="0" alt="Nagios"></a>
+-</div>
+-
+-<div class="navsection">
+-<div class="navsectiontitle">General</div>
+-<div class="navsectionlinks">
+-<ul class="navsectionlinks">
+-<li><a href="main.php" target="<?php echo $link_target;?>">Home</a></li>
+-<li><a href="docs/" target="<?php echo $link_target;?>">Documentation</a></li>
+-</ul>
+-</div>
+-</div>
+-
+-
+-<div class="navsection">
+-<div class="navsectiontitle">Current Status</div>
+-<div class="navsectionlinks">
+-<ul class="navsectionlinks">
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/tac.cgi" target="<?php echo $link_target;?>">Tactical Overview</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/statusmap.cgi?host=all" target="<?php echo $link_target;?>">Map</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?hostgroup=all&amp;style=hostdetail" target="<?php echo $link_target;?>">Hosts</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?host=all" target="<?php echo $link_target;?>">Services</a></li>
+-<li>
+-<a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?hostgroup=all&amp;style=overview" target="<?php echo $link_target;?>">Host Groups</a>
+-<ul>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?hostgroup=all&amp;style=summary" target="<?php echo $link_target;?>">Summary</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?hostgroup=all&amp;style=grid" target="<?php echo $link_target;?>">Grid</a></li>
+-</ul>
+-</li>
+-<li>
+-<a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?servicegroup=all&amp;style=overview" target="<?php echo $link_target;?>">Service Groups</a>
+-<ul>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?servicegroup=all&amp;style=summary" target="<?php echo $link_target;?>">Summary</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?servicegroup=all&amp;style=grid" target="<?php echo $link_target;?>">Grid</a></li>
+-</ul>
+-</li>
+-<li>
+-<a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?host=all&amp;servicestatustypes=28" target="<?php echo $link_target;?>">Problems</a>
+-<ul>
+-<li>
+-<a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?host=all&amp;servicestatustypes=28" target="<?php echo $link_target;?>">Services</a> (<a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?host=all&amp;type=detail&amp;hoststatustypes=3&amp;serviceprops=42&amp;servicestatustypes=28" target="<?php echo $link_target;?>">Unhandled</a>)
+-</li>
+-<li>
+-<a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?hostgroup=all&amp;style=hostdetail&amp;hoststatustypes=12" target="<?php echo $link_target;?>">Hosts</a> (<a href="<?php echo $cfg["cgi_base_url"];?>/status.cgi?hostgroup=all&amp;style=hostdetail&amp;hoststatustypes=12&amp;hostprops=42" target="<?php echo $link_target;?>">Unhandled</a>)
+-</li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/outages.cgi" target="<?php echo $link_target;?>">Network Outages</a></li>
+-</ul>
+-</li>
+-</ul>
+-</div>
+-
+-
+-<div class="navbarsearch">
+-<form method="get" action="<?php echo $cfg["cgi_base_url"];?>/status.cgi" target="<?php echo $link_target;?>">
+-<fieldset>
+-<legend>Quick Search:</legend>
+-<input type='hidden' name='navbarsearch' value='1'>
+-<input type='text' name='host' size='15' class="NavBarSearchItem">
+-</fieldset>
+-</form>
+-</div>
+-
+-</div>
+-
+-
+-<div class="navsection">
+-<div class="navsectiontitle">Reports</div>
+-<div class="navsectionlinks">
+-<ul class="navsectionlinks">
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/avail.cgi" target="<?php echo $link_target;?>">Availability</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/trends.cgi" target="<?php echo $link_target;?>">Trends</a></li>
+-
+-<li>
+-<a href="<?php echo $cfg["cgi_base_url"];?>/history.cgi?host=all" target="<?php echo $link_target;?>">Alerts</a>
+-<ul>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/history.cgi?host=all" target="<?php echo $link_target;?>">History</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/summary.cgi" target="<?php echo $link_target;?>">Summary</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/histogram.cgi" target="<?php echo $link_target;?>">Histogram</a></li>
+-</ul>
+-</li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/notifications.cgi?contact=all" target="<?php echo $link_target;?>">Notifications</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/showlog.cgi" target="<?php echo $link_target;?>">Event Log</a></li>
+-</ul>
+-</div>
+-</div>
+-
+-
+-<div class="navsection">
+-<div class="navsectiontitle">System</div>
+-<div class="navsectionlinks">
+-<ul class="navsectionlinks">
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/extinfo.cgi?type=3" target="<?php echo $link_target;?>">Comments</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/extinfo.cgi?type=6" target="<?php echo $link_target;?>">Downtime</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/extinfo.cgi?type=0" target="<?php echo $link_target;?>">Process Info</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/extinfo.cgi?type=4" target="<?php echo $link_target;?>">Performance Info</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/extinfo.cgi?type=7" target="<?php echo $link_target;?>">Scheduling Queue</a></li>
+-<li><a href="<?php echo $cfg["cgi_base_url"];?>/config.cgi" target="<?php echo $link_target;?>">Configuration</a></li>
+-</ul>
+-</div>
+-</div>
+-
+-
+-
+-
+-</BODY>
+-</HTML>
