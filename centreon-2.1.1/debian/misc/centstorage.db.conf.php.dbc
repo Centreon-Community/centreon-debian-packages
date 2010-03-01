@@ -1,7 +1,0 @@
-<?php
-	$conf_centreon['hostCentstorage']	= "_DBC_DBSERVER_";
-# For a moment, not used. Use grant privilege on centreon2 user
-#	$conf_centreon['user']			= "_DBC_DBUSER_";
-#	$conf_centreon['password']		= "_DBC_DBPASS_";
-	$conf_centreon['dbctsg']		= "_DBC_DBNAME_";	
-?>
