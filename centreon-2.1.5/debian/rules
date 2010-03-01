@@ -158,7 +158,7 @@ centreon2-centstorage:
 
 	# Change macros for centstorage
 	sed -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
-	    -e 's|@CENTREON_RUNDIR|/var/run/centreon2|g' \
+	    -e 's|@CENTREON_RUNDIR@|/var/run/centreon2|g' \
 	    -e 's|@CENTREON_ETC@|/etc/centreon2/centstorage|g' \
 	    -e 's|@RRD_PERL@|/usr/lib/perl5|g' \
 	    -i debian/$@/usr/sbin/centstorage
