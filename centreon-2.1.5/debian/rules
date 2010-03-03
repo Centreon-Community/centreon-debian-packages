@@ -56,17 +56,17 @@ clean: unpatch
 	rm -f build-arch-stamp build-indep-stamp configure-stamp
 	dh_clean -k
 
-patch: 
-# patch-stamp
-# patch-stamp:
-#	@echo "Doing $@"
-#	dpatch apply-all -v
-#	#dpatch call-all -a=pkg-info >patch-stamp
+patch:  patch-stamp
+
+patch-stamp:
+	@echo "Doing $@"
+	dpatch apply-all -v
+	# dpatch call-all -a=pkg-info >patch-stamp
 
 unpatch:
-#	@echo "Doing $@"
-#	dpatch deapply-all
-#	rm -rf patch-stamp debian/patched
+	@echo "Doing $@"
+	dpatch deapply-all
+	rm -rf patch-stamp debian/patched
 
 centreon2: 
 	@echo "Doing $@"
@@ -261,6 +261,9 @@ binary-indep: build install
 	dh_installdebconf
 	dh_installlogrotate	-pcentreon2 
 #	dh_installlogcheck
+	rm -f debian/centreon2-centstorage.centstorage.init debian/centreon2-centcore.init
+	cp SOURCE_DIR/tmpl/install/centstorage.init.d debian/centreon2-centstorage.centstorage.init
+	cp SOURCE_DIR/tmpl/install/centcore.init.d debian/centreon2-centcore.init
 	dh_installinit 		-pcentreon2-centstorage	--name=centstorage
 	dh_installinit 		-pcentreon2-centcore	--name=centcore
 	dh_installcron 		-pcentreon2		--name=centreon2

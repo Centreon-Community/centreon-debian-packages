@@ -1,0 +1,31 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 00_add_bash_to_centstorage.dpatch by  <ctemple@srvi-packaging-ubuntu-i386.merethis.net>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@ -patch
+diff -urNad centreon-2.1.5~/SOURCE_DIR/tmpl/install/centcore.init.d centreon-2.1.5/SOURCE_DIR/tmpl/install/centcore.init.d
+--- centreon-2.1.5~/SOURCE_DIR/tmpl/install/centcore.init.d	2010-02-25 15:53:19.000000000 +0100
++++ centreon-2.1.5/SOURCE_DIR/tmpl/install/centcore.init.d	2010-03-02 18:28:56.000000000 +0100
+@@ -138,7 +138,7 @@
+ 	    # Test if running directory exist.
+ 	    rundir_exist
+ 	    echo "Starting Centcore"
+-	    su - nagios -c "nice -n $NICE $Bin >> $DemLog 2>&1"
++	    su - nagios -s "/bin/bash" -c "nice -n $NICE $Bin >> $DemLog 2>&1"
+ 	    if [ -d $LockDir ]; then 
+ 	    	touch $LockDir/$LockFile; 
+ 	    fi
+diff -urNad centreon-2.1.5~/SOURCE_DIR/tmpl/install/centstorage.init.d centreon-2.1.5/SOURCE_DIR/tmpl/install/centstorage.init.d
+--- centreon-2.1.5~/SOURCE_DIR/tmpl/install/centstorage.init.d	2010-02-25 15:53:19.000000000 +0100
++++ centreon-2.1.5/SOURCE_DIR/tmpl/install/centstorage.init.d	2010-03-02 18:29:12.000000000 +0100
+@@ -135,7 +135,7 @@
+ 	    # Test if running directory exist.
+ 	    rundir_exist
+ 	    echo "Starting centstorage Collector : centstorage"
+-	    su - nagios -c "$centstorageBin >> $centstorageDemLog 2>&1"
++	    su - nagios -s "/bin/bash" -c "$centstorageBin >> $centstorageDemLog 2>&1"
+ 	    if [ -d $centstorageLockDir ]; then 
+ 	    	touch $centstorageLockDir/$centstorageLockFile; 
+ 	    fi
