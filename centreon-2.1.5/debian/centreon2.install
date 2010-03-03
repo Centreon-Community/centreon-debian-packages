@@ -11,9 +11,9 @@ SOURCE_DIR/www/class				usr/share/centreon2/www
 SOURCE_DIR/www/img					usr/share/centreon2/www
 SOURCE_DIR/www/include				usr/share/centreon2/www
 SOURCE_DIR/www/install/createTables.sql		usr/share/doc/centreon2/tmpl/mysql
-SOURCE_DIR/www/install/insertBaseConf.sql		use/share/doc/centreon2/tmpl/mysql
-SOURCE_DIR/www/install/insertCmd-Tps.sql		use/share/doc/centreon2/tmpl/mysql
-SOURCE_DIR/www/install/insertMacros.sql		use/share/doc/centreon2/tmpl/mysql
+SOURCE_DIR/www/install/insertBaseConf.sql		usr/share/doc/centreon2/tmpl/mysql
+SOURCE_DIR/www/install/insertCmd-Tps.sql		usr/share/doc/centreon2/tmpl/mysql
+SOURCE_DIR/www/install/insertMacros.sql		usr/share/doc/centreon2/tmpl/mysql
 SOURCE_DIR/www/lib					usr/share/centreon2/www
 SOURCE_DIR/www/locale				usr/share/centreon2/www
 SOURCE_DIR/www/menu				usr/share/centreon2/www
