@@ -264,7 +264,7 @@ binary-indep: build install
 	rm -f debian/centreon2-centstorage.centstorage.init debian/centreon2-centcore.init
 	cp SOURCE_DIR/tmpl/install/centstorage.init.d debian/centreon2-centstorage.centstorage.init
 	cp SOURCE_DIR/tmpl/install/centcore.init.d debian/centreon2-centcore.init
-	dh_installinit 		-pcentreon2-centstorage	--name=centstorage
+	dh_installinit 		-pcentreon2-centstorage	--name=centstorage --no-start
 	dh_installinit 		-pcentreon2-centcore	--name=centcore
 	dh_installcron 		-pcentreon2		--name=centreon2
 	dh_installcron 		-pcentreon2-centstorage	--name=centstorage
