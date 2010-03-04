@@ -13,6 +13,7 @@ UPDATE `options` SET `value`='/var/log/centreon2/' WHERE options.key='debug_path
 
 UPDATE `cfg_nagios` SET `log_file` = '/var/log/@@nagios_version@@/nagios.log',
 `cfg_dir` = '/etc/nagios3/',
+`object_cache_file` = '/var/cache/nagios3/objects.cache',
 `temp_file` = '/var/cache/@@nagios_version@@/nagios.tmp',
 `status_file` = '/var/cache/@@nagios_version@@/status.dat',
 `p1_file` = '/usr/lib/@@nagios_version@@/p1.pl',
@@ -30,7 +31,7 @@ UPDATE `cfg_nagios` SET `log_file` = '/var/log/@@nagios_version@@/nagios.log',
 UPDATE `cfg_cgi` SET `main_config_file` = '/etc/nagios3/nagios.cfg',
 `physical_html_path` = '/usr/lib/cgi-bin/@@nagios_version@@/',
 `url_html_path` = '/@@nagios_version@@',
-`nagios_check_command` = '/usr/lib/nagios/plugins/check_nagios /var/lib/@@nagios_version@@/status.dat 5 /usr/sbin/@@nagios_version@@' WHERE `cfg_cgi`.`cgi_id` =10 LIMIT 1 ;
+`nagios_check_command` = '/usr/lib/nagios/plugins/check_nagios /var/cache/@@nagios_version@@/status.dat 5 /usr/sbin/@@nagios_version@@' WHERE `cfg_cgi`.`cgi_id` =10 LIMIT 1 ;
 
 UPDATE `cfg_ndo2db` SET `ndo2db_user` = 'nagios',
 `ndo2db_group` = 'nagios' WHERE `cfg_ndo2db`.`id` =1 LIMIT 1 ;
