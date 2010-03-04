@@ -136,6 +136,9 @@ case "$1" in
 	setperm nagios www-data 0770 /var/log/centreon2
 	setperm nagios www-data 0770 /var/log/centreon2/centstorage/
 	setperm centreon nagios 0770 /var/run/centreon2
+	setperm nagios www-data 0770 /etc/nagios3
+	chown nagios:www-data /etc/nagios3/*.cfg
+	chmod 0770 /etc/nagios3/*.cfg
 
 	# reset the password
 	db_set centreon2/adminpass ""
