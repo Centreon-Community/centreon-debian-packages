@@ -35,7 +35,6 @@
    <file baseinstalldir="DB" md5sum="06e890beb94da0cfd9782b220989f25f" name="DataObject/Error.php" role="php" />
    <file baseinstalldir="DB" md5sum="ef739b7f1a662039f3f6fe64e579a0fb" name="DataObject/Generator.php" role="php" />
    <file baseinstalldir="DB" md5sum="4c00a370a034c011f31087653ec55ff2" name="docs/example.ini" role="doc" />
-   <file baseinstalldir="DB" md5sum="cdcc4ead8ef5e06df4381ca0976dcdad" name="scripts/DB_DataObject_createTables.bat" role="script" />
    <file baseinstalldir="DB" md5sum="cb644fda015a1d911ef11ca699a39624" name="DataObject.php" role="php">
     <tasks:replace from="@version@" to="version" type="package-info" />
    </file>
