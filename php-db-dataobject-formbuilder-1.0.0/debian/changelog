@@ -1,5 +1,12 @@
+php-db-dataobject-formbuilder (1.0.0-3) unstable; urgency=low
+
+  * Delete microsoft file
+  * Add forgoten maintener name
+
+ --  David HANNEQUIN <david.hannequin@gmail.com>  Tue, 04 Mar 2010 22:25:48 +0200
+
 php-db-dataobject-formbuilder (1.0.0-2) unstable; urgency=low
 
-  * Add dependancies
+  * Add dependencies
 
  --  Cedric TEMPLE <ctemple@merethis.com>  Wed, 24 Feb 2010 15:01:48 +0200

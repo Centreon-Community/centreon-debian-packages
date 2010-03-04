@@ -1,7 +1,7 @@
 Source: php-db-dataobject-formbuilder
 Section: web
 Priority: optional
-Maintainer: david.hannequin@gmail.com
+Maintainer: David Hannequin <david.hannequin@gmail.com>
 Build-Depends: debhelper (>= 5), dh-make-php (>= 0.2.3), cdbs
 Standards-Version: 3.7.2
 
@@ -18,12 +18,4 @@ Description: Class to automatically build HTML_QuickForm objects from a DB_DataO
  simple but working HTML_QuickForm object that you can use to test 
  your application. It also provides a processing method that will 
  automatically detect if an insert() or update() command has to be 
- executed after the form has been submitted. If you have set up 
- DataObject&apos;s links.ini file correctly, it will also 
- automatically detect if a table field is a foreign key and will 
- populate a selectbox with the linked table&apos;s entries. There are 
- many optional parameters that you can place in your DataObjects.ini 
- or in the properties of your derived classes, that you can use to 
- fine-tune the form-generation, gradually turning the prototypes into 
- fully-featured forms, and you can take control at any stage of the 
- process.
+ executed after the form has been submitted. 
