@@ -12,7 +12,7 @@ UPDATE `options` SET `value`='/var/log/centreon2/' WHERE options.key='debug_path
 
 
 UPDATE `cfg_nagios` SET `log_file` = '/var/log/@@nagios_version@@/nagios.log',
-`cfg_dir` = '/etc/centreon2/nagioscfg',
+`cfg_dir` = '/etc/nagios3/',
 `temp_file` = '/var/cache/@@nagios_version@@/nagios.tmp',
 `status_file` = '/var/cache/@@nagios_version@@/status.dat',
 `p1_file` = '/usr/lib/@@nagios_version@@/p1.pl',
@@ -25,9 +25,9 @@ UPDATE `cfg_nagios` SET `log_file` = '/var/log/@@nagios_version@@/nagios.log',
 `lock_file` = '/var/log/@@nagios_version@@/nagios.lock',
 `state_retention_file` = '/var/lib/@@nagios_version@@/retention.dat',
 `service_perfdata_file` = '/tmp/service-perfdata',
-`broker_module` = '/usr/lib/ndoutils/ndomod.o config_file=/etc/centreon2/nagioscfg/ndomod.cfg' WHERE `cfg_nagios`.`nagios_id` =1 LIMIT 1 ;
+`broker_module` = '/usr/lib/ndoutils/ndomod.o config_file=/etc/nagios3/ndomod.cfg' WHERE `cfg_nagios`.`nagios_id` =1 LIMIT 1 ;
 
-UPDATE `cfg_cgi` SET `main_config_file` = '/etc/centreon2/nagioscfg/nagios.cfg',
+UPDATE `cfg_cgi` SET `main_config_file` = '/etc/nagios3/nagios.cfg',
 `physical_html_path` = '/usr/lib/cgi-bin/@@nagios_version@@/',
 `url_html_path` = '/@@nagios_version@@',
 `nagios_check_command` = '/usr/lib/nagios/plugins/check_nagios /var/lib/@@nagios_version@@/status.dat 5 /usr/sbin/@@nagios_version@@' WHERE `cfg_cgi`.`cgi_id` =10 LIMIT 1 ;
