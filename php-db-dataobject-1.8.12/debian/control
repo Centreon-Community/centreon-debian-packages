@@ -1,7 +1,7 @@
 Source: php-db-dataobject
 Section: web
 Priority: optional
-Maintainer: david.hannequin@gmail.com
+Maintainer: David Hannequin <david.hannequin@gmail.com>
 Build-Depends: debhelper (>= 5), dh-make-php (>= 0.2.3), cdbs
 Standards-Version: 3.7.2
 
