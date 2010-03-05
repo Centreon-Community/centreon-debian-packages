@@ -32,21 +32,21 @@ Description: This package (centreon) is a web front end to Nagios
 
 Package: centreon2-plugins
 Architecture: all
-Depends: ${perl:Depends}, nagios-plugins
+Depends: libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl, nagios-plugins
 Recommends: centreon2
 Description: Plugins for centreon (nagios)
  features plugins for nagios/centreon
 
 Package: centreon2-plugins-traps
 Architecture: all
-Depends: ${perl:Depends}, centreon2-plugins
+Depends: libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl, centreon2-plugins
 Recommends: centreon2
 Description: Plugins Traps for centreon
  feature traps process for centreon
 
 Package: centreon2-centcore
 Architecture: all
-Depends: ${perl:Depends}
+Depends: libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl
 Recommends: centreon2, nagios3 
 Description: CentCore for centreon
  CentCore function
@@ -54,14 +54,14 @@ Description: CentCore for centreon
  
 Package: centreon2-centstorage
 Architecture: all
-Depends: ${perl:Depends}, centreon2, mysql-server (>= 5)
+Depends: libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl, centreon2, mysql-server (>= 5)
 Recommends: rrdtool (>= 1.2.15)
 Description: CentStorage for centreon
  CentStorage daemon for perfdata
 
 Package: centreon2-ndodb
 Architecture: all
-Depends: ${perl:Depends}, mysql-server (>= 5)
+Depends: libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl, mysql-server (>= 5)
 Recommends: centreon2
 Description: Ndo database for centreon
  NDO database with centreon specifications
