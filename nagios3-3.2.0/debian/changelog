@@ -1,3 +1,9 @@
+nagios3 (3.2.0-5ubuntu1) lucid; urgency=low
+
+  * Add the capability to do a restart whenever nagios is not started
+
+ -- Cedric Temple <ctemple@merethis.com>  Fri, 05 Mar 2010 14:36:35 +0200
+
 nagios3 (3.2.0-4ubuntu1) lucid; urgency=low
 
   * Merge from debian testing, remaining changes:

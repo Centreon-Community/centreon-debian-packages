@@ -215,7 +215,7 @@ case "$1" in
   ;;
   restart)
     log_daemon_msg "Restarting $DESC" "$NAME"
-    stop
+    stop || true
     if [ -z "$?" -o "$?" = "0" ]; then
       start
     fi
