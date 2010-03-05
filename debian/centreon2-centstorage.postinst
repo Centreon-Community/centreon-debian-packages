@@ -86,6 +86,14 @@ case "$1" in
 		dbc_generate_include_perms='0640'
 		dbc_go centreon2-centstorage $@
 	fi
+	chown nagios:www-data /var/lib/centreon2-centstorage/metrics
+	chmod 750 /var/lib/centreon2-centstorage/metrics
+	chown nagios:www-data /var/lib/centreon2-centstorage/log
+	chmod 750 /var/lib/centreon2-centstorage/log
+	chown nagios:www-data /var/lib/centreon2-centstorage/nagios-perf
+	chmod 750 /var/lib/centreon2-centstorage/nagios-perf
+	chown nagios:www-data /var/lib/centreon2-centstorage/status
+	chmod 750 /var/lib/centreon2-centstorage/status
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
