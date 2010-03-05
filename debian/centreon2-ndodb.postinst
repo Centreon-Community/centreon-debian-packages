@@ -56,6 +56,9 @@ case "$1" in
 		. /usr/share/dbconfig-common/dpkg/postinst.mysql
 		dbc_go centreon2-ndodb $@
 	fi
+	chown www-data:nagios /etc/nagios3/*.cfg
+	chmod 770 /etc/nagios3/*.cfg
+	
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
