@@ -67,6 +67,7 @@ db_version 2.0
 
 case "$1" in
     configure)
+	/etc/init.d/nagios3 stop
 	if ! getent passwd centreon > /dev/null ; then 
 		echo 'Adding system-user for centreon' 1>&2
 		adduser --system --group --home /var/run/centreon2 \
