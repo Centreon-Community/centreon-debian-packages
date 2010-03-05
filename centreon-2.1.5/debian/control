@@ -61,7 +61,7 @@ Description: CentStorage for centreon
 
 Package: centreon2-ndodb
 Architecture: all
-Depends: libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl, mysql-server (>= 5)
+Depends: libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl, mysql-server (>= 5), ndoutils-nagios3-mysql
 Recommends: centreon2
 Description: Ndo database for centreon
  NDO database with centreon specifications
