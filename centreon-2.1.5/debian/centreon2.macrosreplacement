@@ -33,7 +33,7 @@ s:@NAGIOSTATS_BINARY@:/usr/sbin/nagios3stats:g
 s:@NAGIOS_PLUGIN@:/usr/lib/nagios/plugins:g
 s:@P1_PL@:/usr/lib/nagios3/p1.pl:g
 s:@NAGIOS_INIT_SCRIPT@:/etc/init.d/nagios3:g
-s:@NDOMOD_BINARY@:/usr/lib/nagios3/ndomod.o:g
+s:@NDOMOD_BINARY@:/usr/lib/ndoutils/ndomod-mysql-3x.o:g
 s:@CENTSTORAGE_RRD@:/var/lib/centreon2:g
 s:@NAGIOS_IMG@:/usr/share/nagios3/htdocs/images/logos:g
 s:@WEB_USER@:www-data:g
