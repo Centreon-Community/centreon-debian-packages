@@ -26,7 +26,7 @@ UPDATE `cfg_nagios` SET `log_file` = '/var/log/@@nagios_version@@/nagios.log',
 `lock_file` = '/var/log/@@nagios_version@@/nagios.lock',
 `state_retention_file` = '/var/lib/@@nagios_version@@/retention.dat',
 `service_perfdata_file` = '/tmp/service-perfdata',
-`broker_module` = '/usr/lib/ndoutils/ndomod.o config_file=/etc/nagios3/ndomod.cfg' WHERE `cfg_nagios`.`nagios_id` =1 LIMIT 1 ;
+`broker_module` = '/usr/lib/ndoutils/ndomod-mysql-3x.o config_file=/etc/nagios3/ndomod.cfg' WHERE `cfg_nagios`.`nagios_id` =1 LIMIT 1 ;
 
 UPDATE `cfg_cgi` SET `main_config_file` = '/etc/nagios3/nagios.cfg',
 `physical_html_path` = '/usr/lib/cgi-bin/@@nagios_version@@/',
