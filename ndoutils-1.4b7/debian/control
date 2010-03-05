@@ -1,0 +1,49 @@
+Source: ndoutils
+Section: net
+Priority: extra
+Maintainer: Hendrik Frenzel <hfrenzel@scunc.net>
+Build-Depends: debhelper (>= 5), dpatch, autotools-dev, libmysqlclient15-dev | libmysqlclient-dev
+Uploaders: Debian Nagios Maintainer Group <pkg-nagios-devel@lists.alioth.debian.org>
+Standards-Version: 3.7.3
+Homepage: http://www.nagios.org
+Vcs-Svn: svn://svn.debian.org/svn/pkg-nagios/ndoutils/trunk/
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-nagios/ndoutils/trunk/
+Dm-Upload-Allowed: yes
+
+Package: ndoutils-nagios3-mysql
+Architecture: any
+Provides: ndoutils, ndoutils-mysql
+Conflicts: ndoutils-nagios2-mysql (< ${source:Version}), ndoutils-pgsql
+Depends: ndoutils-common (>= ${source:Version}), nagios3, mysql-client, ucf, debconf, dbconfig-common, ${shlibs:Depends}, ${misc:Depends}
+Recommends: mysql-server
+Suggests: ndoutils-doc
+Description: This provides the NDOUtils for Nagios with MySQL support
+ The NDOUtils (Nagios Data Output Utils) addon allows you to move status
+ and event information from Nagios to a database for later retrieval and
+ processing.
+ .
+ This package uses Nagios 3 and MySQL databases.
+
+Package: ndoutils-common
+Architecture: any
+Conflicts: ndoutils-nagios2-mysql (< ${source:Version})
+Depends: ndoutils | ndoutils-nagios3, ucf, dbconfig-common, ${shlibs:Depends}, ${misc:Depends}
+Suggests: ndoutils-doc
+Description: This provides the NDOUtils for Nagios with MySQL support
+ The NDOUtils (Nagios Data Output Utils) addon allows you to move status
+ and event information from Nagios to a database for later retrieval and
+ processing.
+ .
+ This package contains common shared files for NDOUtils.
+
+Package: ndoutils-doc
+Section: doc
+Architecture: all
+Suggests: ndoutils
+Description: Documentation for ndoutils
+ The NDOUtils (Nagios Data Output Utils) addon allows you to move status
+ and event information from Nagios to a database for later retrieval and
+ processing.
+ .
+ This is the documentation package.
+

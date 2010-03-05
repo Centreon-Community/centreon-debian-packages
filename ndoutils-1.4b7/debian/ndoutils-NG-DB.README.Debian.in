@@ -1,0 +1,27 @@
+ndoutils for Debian
+-------------------
+
+The NDO utilities includes a Nagios event broker module (NDOMOD.O) that exports
+data from the Nagios daemon. You have to enable it after installing the package.
+
+Edit /etc/@@NG@@/nagios.cfg and change or append the following line:
+
+ broker_module=/usr/lib/ndoutils/ndomod-@@DB@@-@@NGV@@.o config_file=/etc/@@NG@@/ndomod.cfg
+
+Don't forget to restart Nagios after changing the configuration:
+
+ invoke-rc.d @@NG@@ restart
+
+After configuring Nagios to use the NDO utilities broker module, you have to
+enable the NDO utilities daemon in /etc/default/ndoutils by setting
+
+ ENABLE_NDOUTILS=1
+
+and start the daemon
+
+ invoke-rc.d ndoutils start
+
+For more information and a detailed documentation about the NDO utilities 
+install the ndoutils-doc package.
+
+ -- Hendrik Frenzel <hfrenzel@scunc.net>  Mon, 09 Jul 2007 19:27:42 +0200
