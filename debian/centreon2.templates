@@ -18,14 +18,14 @@ Description: The passwords do not match
 
 Template: centreon2/adminlogin
 Type: string
-Default: centadmin
+Default: centreon
 Description: Centreon Web administrator login
  Please enter the Centreon Web administrator's login.
  It will use to access to your Centreon Web console.
 
 Template: centreon2/adminmail
 Type: string
-Default: centadmin@localhost
+Default: centreon@localhost
 Description: Centreon Web administrator e-mail address:
  Please enter the Centreon Web administrator's e-mail address
  to your Centreon Web console.
