@@ -41,7 +41,7 @@ nagiosConfig() {
 	    /usr/share/dbconfig-common/data/centreon2/install/mysql
 
 	chmod u+w /etc/sudoers
-	cat /usr/share/doc/centreon2/examples/centreon2.sudo.${version} >> /etc/sudoers
+	grep '## BEGIN: CENTREON SUDO' /etc/sudoers > /dev/null || cat /usr/share/doc/centreon2/examples/centreon2.sudo.${version} >> /etc/sudoers
 	chmod u-w /etc/sudoers
 }
 
