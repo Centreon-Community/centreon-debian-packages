@@ -69,6 +69,7 @@ case "$1" in
     
         rm -f /etc/centreon2/nagioscfg/*
 	rm -f /var/log/centreon2/*
+	sed '/## BEGIN: CENTREON SUDO/{:z;h;N;/## END: CENTREON SUDO/ !b z;x;d}' /etc/sudoers
 	clean_tmp_file
     ;;
 
