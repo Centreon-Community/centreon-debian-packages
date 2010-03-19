@@ -1,0 +1,11 @@
+Package: centreon-2.1-fr-fr
+Version: 1.1-1
+Architecture: all
+Maintainer: david Hannequin <david.hannequin@gmail.com>
+Installed-Size: 188
+Depends: centreon2 (>= 2.1.5), gettext
+Section: unknown
+Priority: extra
+Homepage: http://www.centreon.com/Centreon/language-packs.html
+Description: Centreon french language pack.
+ Centreon french language pack.
