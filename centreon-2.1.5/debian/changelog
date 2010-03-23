@@ -1,3 +1,9 @@
+centreon (2.1.5-2) unstable; urgency=low
+
+  * Fix centstorage init script to be Debian compliant (thanks David Hannequin)
+
+ -- Cedric TEMPLE <ctemple@merethis.com>  Tue, 23 Mar 2010 16:51:31 +0200
+
 centreon (2.1.5-1) unstable; urgency=low
 
   * upgrade to version 2.1.5
