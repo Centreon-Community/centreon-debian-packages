@@ -1,0 +1,19 @@
+Source: centreon-clapi
+Section: net
+Priority: extra
+Maintainer: David Hannequin <david.hannequin@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.7.3
+Homepage: http://forge.centreon.com/projects/show/centreon-clapi
+
+Package: centreon-clapi
+Architecture: all
+Depends: centreon2 
+Description: Centreon Command Line API
+ The goal of this module is to use centreon in command line 
+ to automate some tasks. For example, using centreon-clapi 
+ gives you the following features :
+  - generate configuration files for a nagios instance
+  - restart a nagios instance
+  - reload a nagios instance
+  - test configuration files for a nagios instance...

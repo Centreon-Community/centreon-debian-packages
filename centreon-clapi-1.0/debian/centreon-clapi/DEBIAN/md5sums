@@ -1,0 +1,13 @@
+209634bb0238704c4874c35d615ae59e  usr/share/centreon2/www/modules/centreon-clapi/.htaccess
+d41d8cd98f00b204e9800998ecf8427e  usr/share/centreon2/www/modules/centreon-clapi/.api/index.html
+c06d0e17d8ffef222e223c4bc14d085c  usr/share/centreon2/www/modules/centreon-clapi/core/class/centreon.Config.Poller.class.php
+7134d264ab51f565be739f2d04e47175  usr/share/centreon2/www/modules/centreon-clapi/core/class/centreonAPI.class.php
+d41d8cd98f00b204e9800998ecf8427e  usr/share/centreon2/www/modules/centreon-clapi/core/class/index.html
+615f18b9092cd2ab53aa425aefc73e34  usr/share/centreon2/www/modules/centreon-clapi/core/centreon
+d41d8cd98f00b204e9800998ecf8427e  usr/share/centreon2/www/modules/centreon-clapi/core/index.html
+3d526b15f475fa8515d4dd88ce74a47b  usr/share/centreon2/www/modules/centreon-clapi/etc/api.conf.php
+d41d8cd98f00b204e9800998ecf8427e  usr/share/centreon2/www/modules/centreon-clapi/etc/index.html
+c3a57ef3982c98b4c788bf61a7ca623f  usr/share/doc/centreon-clapi/README
+76c86ed2ba041ade3aa2f8e342f83dc5  usr/share/doc/centreon-clapi/copyright
+b23aae313a750f87d051f2e832e0a5d4  usr/share/doc/centreon-clapi/changelog.Debian.gz
+c8372902524c1eb3d5f7b7615ad87a3f  usr/share/doc/centreon-clapi/README.Debian

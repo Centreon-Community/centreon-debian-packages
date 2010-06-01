@@ -1,0 +1,18 @@
+This package was debianized by David Hannequin <david.hannequin@gmail.com> on
+Sat, 22 May 2010 11:27:54 +0200.
+
+It was downloaded from http://download.centreon.com/index.php?id=129
+
+Upstream Author:
+
+    Julien Mathis jmathis@merethis.com
+
+Copyright:
+
+    Copyright 2009 Julien Mathis
+
+License:
+
+The Debian packaging is (C) 2010, David Hannequin <david.hannequin@gmail.com> and
+is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
+
