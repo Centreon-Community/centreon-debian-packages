@@ -236,7 +236,7 @@ install-clean:
 	dh_clean -k
 
 
-install: install-clean centreon2 centreon2-centstorage centreon2-plugins centreon2-ndodb build
+install: install-clean centreon2 centreon2-centcore centreon2-centstorage centreon2-plugins centreon2-ndodb build
 	@echo "Doing $@"
 	dh_testdir
 	dh_testroot
