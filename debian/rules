@@ -26,6 +26,7 @@ sourcedir=${PROGNAME}-${PROGVERSION}
 
 configure: configure-stamp
 configure-stamp:
+	@echo "Doing $@"
 	dh_testdir
 	# Add here commands to configure the package.
 	tar xzf ${PROGNAME}-${PROGVERSION}.tar.gz
@@ -56,7 +57,8 @@ clean: unpatch
 	rm -f build-arch-stamp build-indep-stamp configure-stamp
 	dh_clean -k
 
-patch:  patch-stamp
+patch: configure-stamp patch-stamp
+	@echo "Doing $@"
 
 patch-stamp:
 	@echo "Doing $@"
@@ -66,7 +68,8 @@ patch-stamp:
 unpatch:
 	@echo "Doing $@"
 	dpatch deapply-all
-	rm -rf patch-stamp debian/patched
+	rm -rf patch-stamp debian/patched configure-stamp
+	rm -fr SOURCE_DIR
 
 centreon2: 
 	@echo "Doing $@"

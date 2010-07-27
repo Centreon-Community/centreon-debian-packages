@@ -1,3 +1,11 @@
+centreon (2.1.5-3) unstable; urgency=low
+
+  * Fix centreon2-centcore packag has empty
+  * Fix install centcore.init in /etc/init.d
+  * Fix "./debian/rules patch|unpatch"
+
+ -- Olivier LI-KIANG-CHEONG <lkco@gezen.fr>  Tue, 27 Jul 2010 10:04:55 +0200
+
 centreon (2.1.5-2) unstable; urgency=low
 
   * Fix centstorage init script to be Debian compliant (thanks David Hannequin)
