@@ -1,0 +1,8 @@
+SOURCE_DIR/plugins/src/centreon.conf			usr/lib/nagios/plugins
+SOURCE_DIR/plugins/src/centreon.pm				usr/lib/nagios/plugins
+SOURCE_DIR/plugins/src/check*centreon*			usr/lib/nagios/plugins
+SOURCE_DIR/plugins/src/check_meta_service			usr/lib/nagios/plugins
+SOURCE_DIR/plugins/src/check_snmp*				usr/lib/nagios/plugins
+SOURCE_DIR/plugins/src/process-service-perfdata		usr/lib/nagios/plugins
+SOURCE_DIR/plugins/src/submit_host_check_result		usr/lib/nagios/plugins
+SOURCE_DIR/plugins/src/submit_service_check_result		usr/lib/nagios/plugins

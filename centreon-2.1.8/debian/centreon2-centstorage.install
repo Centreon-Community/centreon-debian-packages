@@ -1,0 +1,9 @@
+SOURCE_DIR/bin/centstorage                 	usr/sbin
+SOURCE_DIR/bin/logAnalyser				usr/sbin
+SOURCE_DIR/bin/nagiosPerfTrace			usr/sbin
+SOURCE_DIR/cron/archiveDayLog			usr/sbin
+debian/misc/centstorage.db.conf.php.dbc	usr/share/doc/centreon2-centstorage/tmpl
+SOURCE_DIR/lib/*.pm				usr/share/centreon2/lib
+debian/misc/centreon2-centstorage/conf.pm	etc/centreon2/centstorage
+SOURCE_DIR/www/install/createTablesCentstorage.sql	usr/share/doc/centreon2-centstorage
+
