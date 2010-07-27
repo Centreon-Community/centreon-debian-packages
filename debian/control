@@ -46,7 +46,7 @@ Description: Plugins Traps for centreon
 
 Package: centreon2-centcore
 Architecture: all
-Depends: libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl
+Depends: libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl, centreon2-centstorage
 Recommends: centreon2, nagios3 
 Description: CentCore for centreon
  CentCore function
