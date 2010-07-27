@@ -69,7 +69,6 @@ unpatch:
 	@echo "Doing $@"
 	dpatch deapply-all
 	rm -rf patch-stamp debian/patched configure-stamp
-	rm -fr SOURCE_DIR
 
 centreon2: 
 	@echo "Doing $@"
