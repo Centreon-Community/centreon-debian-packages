@@ -14,7 +14,7 @@
 #export DH_VERBOSE=1
 
 export PROGNAME=centreon
-export PROGVERSION=2.1.5
+export PROGVERSION=2.1.8
 
 # Use dpatch
 include /usr/share/dpatch/dpatch.make
