@@ -94,12 +94,15 @@ centreon2:
 
 	install -m 644 debian/$@/mysql.sql \
 		debian/$@/usr/share/dbconfig-common/data/$@/install/mysql
-	# Add update sql
-	#install -m 644 www/install/sql/centreon/Update-DB-2.1.1_to_2.1.2.sql \
-	#	debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.2
 
 	rm -f debian/$@/mysql.sql
 	rm -rf debian/$@/mysql
+
+	# Add update sql
+	install -m 644 SOURCE_DIR/www/install/sql/centreon/Update-DB-2.1.3_to_2.1.4.sql \
+		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.4
+	install -m 644 SOURCE_DIR/www/install/sql/centreon/Update-DB-2.1.4_to_2.1.5.sql \
+		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.5
 
 	dh_install	-p$@ 
 
@@ -121,6 +124,7 @@ centreon2-centstorage:
 	dh_testroot		-p$@
 	dh_installdirs		-p$@
 
+	# install the SQL schemes
 	mkdir debian/$@/mysql
 	touch debian/$@/mysql.sql
 	cp SOURCE_DIR/www/install/createTablesCentstorage.sql	debian/$@/mysql/1
@@ -134,11 +138,17 @@ centreon2-centstorage:
 
 	install -m 644 debian/$@/mysql.sql \
 		debian/$@/usr/share/dbconfig-common/data/$@/install/mysql
-	#install -m 644 www/install/sql/centstorage/Update-CSTG-2.1.1_to_2.1.2.sql \
-	#	debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.2
 
 	rm -f debian/$@/mysql.sql
 	rm -rf debian/$@/mysql
+
+	# Add update sql
+	install -m 644 SOURCE_DIR/www/install/sql/centstorage/Update-CSTG-2.1.2_to_2.1.3.sql \
+		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.3
+	install -m 644 SOURCE_DIR/www/install/sql/centstorage/Update-CSTG-2.1.3_to_2.1.4.sql \
+		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.4
+	install -m 644 SOURCE_DIR/www/install/sql/centstorage/Update-CSTG-2.1.4_to_2.1.5.sql \
+		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.5
 
 	dh_install	-p$@ 
 
@@ -231,6 +241,14 @@ centreon2-ndodb:
 	rm -f debian/$@/mysql.sql
 	rm -rf debian/$@/mysql
 
+	# Add update sql
+	install -m 644 SOURCE_DIR/www/install/sql/brocker/Update-NDO-2.1.2_to_2.1.3.sql \
+		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.3
+	install -m 644 SOURCE_DIR/www/install/sql/brocker/Update-NDO-2.1.3_to_2.1.4.sql \
+		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.4
+	install -m 644 SOURCE_DIR/www/install/sql/brocker/Update-NDO-2.1.4_to_2.1.5.sql \
+		debian/$@/usr/share/dbconfig-common/data/$@/upgrade/mysql/2.1.5
+
 	dh_install		-p$@ 
 
 install-clean:
@@ -265,7 +283,7 @@ binary-indep: build install
 #	dh_installlogcheck
 	cp SOURCE_DIR/tmpl/install/centstorage.init.d debian/centreon2-centstorage.centstorage.init
 	cp SOURCE_DIR/tmpl/install/centcore.init.d debian/centreon2-centcore.centcore.init
-	dh_installinit 		-pcentreon2-centstorage	--name=centstorage --no-start
+	dh_installinit 		-pcentreon2-centstorage	--name=centstorage
 	dh_installinit 		-pcentreon2-centcore	--name=centcore
 	dh_installcron 		-pcentreon2		--name=centreon2
 	dh_installcron 		-pcentreon2-centstorage	--name=centstorage
