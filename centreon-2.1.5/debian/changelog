@@ -1,11 +1,3 @@
-centreon (2.1.5-4) unstable; urgency=low
-
-  * Fix upgrading databases with dbconfig 
-  * Start Centstorage after install
-  * Delete bad macro #DEBHELPER#
-
- -- Olivier LI-KIANG-CHEONG <lkco@gezen.fr>  Wed, 28 Jul 2010 17:23:18 +0200
-
 centreon (2.1.5-3) unstable; urgency=low
 
   * Fix centreon2-centcore packag has empty
