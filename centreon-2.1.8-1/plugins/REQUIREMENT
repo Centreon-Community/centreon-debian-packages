@@ -1,0 +1,11 @@
+###########################
+# Oreon Plugins Requirement
+###########################
+
+- Perl in /usr/bin/perl - or just run 'perl script'
+- Net::SNMP
+- Config::IniFiles
+- centreon perl module (centreon.pm)
+- Centreon configuration file for Centreon perl module (Centreon.conf)
+- file 'utils.pm' in plugin diretory (/usr/local/nagios/libexec)
+- sed program for installation script

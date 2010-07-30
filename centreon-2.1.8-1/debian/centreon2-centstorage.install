@@ -1,0 +1,8 @@
+bin/centstorage                 	usr/sbin
+bin/logAnalyser				usr/sbin
+bin/nagiosPerfTrace			usr/sbin
+cron/archiveDayLog			usr/sbin
+debian/misc/centstorage.db.conf.php.dbc	usr/share/doc/centreon2-centstorage/tmpl
+lib/*.pm				usr/share/centreon2/lib
+debian/misc/centreon2-centstorage/conf.pm	etc/centreon2/centstorage
+www/install/createTablesCentstorage.sql	usr/share/doc/centreon2-centstorage
