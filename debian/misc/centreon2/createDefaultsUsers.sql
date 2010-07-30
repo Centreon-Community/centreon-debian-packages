@@ -23,7 +23,26 @@ INSERT INTO `contact` (
 `contact_autologin_key`
 )
 VALUES (
-NULL , NULL , NULL , '@@admlogin@@', '@@admlogin@@', '@@admpass@@', 'en_US', NULL , NULL , '@@admmail@@', NULL , NULL , '1', '1', 'txt', '1', '', NULL , NULL , NULL
+'19' , '1' , '1' , '@@admlogin@@', '@@admlogin@@', '@@admpass@@', 'en_US', 'd,r' , 'w,u,c,r' , '@@admmail@@', NULL , NULL , '1', '1', 'txt', '1', '', NULL , NULL , NULL
 );
 
+-- Create default Host Notification Commands
+INSERT INTO `contact_hostcommands_relation` (
+`chr_id` ,
+`contact_contact_id` ,
+`command_command_id`
+)
+VALUES (
+NULL , '19', '35'
+);
+
+-- Create default Services Notification Commands
+INSERT INTO `contact_servicecommands_relation` (
+`csc_id` , 
+`contact_contact_id` , 
+`command_command_id`
+)
+VALUES (
+NULL , '19', '36'
+);
 
