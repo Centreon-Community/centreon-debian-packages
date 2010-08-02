@@ -54,14 +54,14 @@ Description: CentCore for centreon
  
 Package: centreon2-centstorage
 Architecture: all
-Depends: debconf (>= 5), libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl, centreon2, mysql-server (>= 5)
+Depends: debconf (>= 0.5), libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl, centreon2, mysql-server (>= 5)
 Recommends: rrdtool (>= 1.2.15)
 Description: CentStorage for centreon
  CentStorage daemon for perfdata
 
 Package: centreon2-ndodb
 Architecture: all
-Depends: debconf (>= 5), libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl, mysql-server (>= 5), ndoutils-nagios3-mysql
+Depends: debconf (>= 0.5), libnet-snmp-perl, perl, libdbd-mysql-perl, libconfig-inifiles-perl, mysql-server (>= 5), ndoutils-nagios3-mysql
 Recommends: centreon2
 Description: Ndo database for centreon
  NDO database with centreon specifications
