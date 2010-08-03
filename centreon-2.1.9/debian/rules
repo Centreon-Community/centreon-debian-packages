@@ -212,11 +212,6 @@ centreon2-centcore:
 	dh_testroot		-p$@
 	dh_installdirs		-p$@
 
-	sed -e 's|@CENTREON_DIR@|/usr/share/centreon2|g' \
-	    -e 's|@CENTCORE_BINDIR@|/usr/sbin|g' \
-	    -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
-	    -e 's|@CENTREON_RUNDIR@|/var/run/centreon2|g' \
-	    -i tmpl/install/centcore.init.d 
 
 	dh_install		-p$@ 
 	
@@ -228,6 +223,14 @@ centreon2-centcore:
 	    -e 's|@BIN_SCP@|/usr/bin/scp|g' \
 	    -e 's|@CENTREON_ETC@|/etc/centreon2|g' \
 	    -i debian/$@/usr/sbin/centcore      	
+
+	sed -e 's|@CENTREON_DIR@|/usr/share/centreon2|g' \
+	    -e 's|@CENTCORE_BINDIR@|/usr/sbin|g' \
+	    -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
+	    -e 's|@CENTREON_RUNDIR@|/var/run/centreon2|g' \
+	    -e 's|@CENTREON_ETC@|/etc/centreon2|g' \
+	    -e 's|@NAGIOS_USER@|nagios|g' \
+	    -i tmpl/install/centcore.init.d 
 
 
 centreon2-plugins:
