@@ -1,0 +1,42 @@
+{$form.javascript}
+<form {$form.attributes}>
+	<div align=center>
+		 <table class="ListTableMedium">
+		 	<tr class="ListHeader"><td class="tactical_light_header"><img src="./img/icones/16x16/flag_red.gif">&nbsp;&nbsp;{$form.header.title}</td></tr>
+			<tr class="list_two">
+	            <td class="FormRowField" style='padding-left:15px;'><input type="checkbox" id="sticky" checked>&nbsp;{$form.sticky.label}</td>
+	        </tr>
+			<tr class="list_one">
+				<td class="FormRowValue" style='padding-left:15px;'><input type="checkbox" id="notify">&nbsp;{$form.notify.label}</td>
+			</tr>
+			<tr class="list_two">
+				<td class="FormRowValue" style='padding-left:15px;'><input type="checkbox" id="persistent" checked>&nbsp;{$form.persistent.label}</td>
+			</tr>
+			<tr class="list_one">
+				<td class="FormRowValue" style='padding-left:15px;'>{$authorlabel}&nbsp;:&nbsp;{$authoralias}</td>
+			</tr>
+			<tr class="list_two">
+				<td class="FormRowValue" style='padding-left:15px;padding-right:15px;'>{$form.comment.label}:<br />{$form.comment.html}</td>
+			</tr>
+			{if $cmd == '72'}
+			<tr class="list_one">
+	            <td class="FormRowField" style='padding-left:15px;'><input type="checkbox" id="ackhostservice" checked>&nbsp;{$form.ackhostservice.label}</td>
+	        </tr>
+			{/if}
+			<tr class="list_two">
+				<td class="FormRowValue" style='padding-left:15px;'><input type="checkbox" id="force_check" checked>&nbsp;{$form.force_check.label}</td>
+			</tr>
+		</table>
+		<div id="validForm">
+			<p>{$form.action.html}</p>
+			<p>{$form.submit.html}&nbsp;&nbsp;&nbsp;{$form.reset.html}</p>
+		</div>
+	</div>	
+	{$form.hidden}
+	<input name="o" type="hidden" value="{$o}" />
+	<input name="p" type="hidden" value="{$p}" />
+	<input name="cmd" type="hidden" value="{$cmd}" />
+	{foreach item=it from=$select}	
+		<input name="select[{$it}]" type="hidden" value="1" />
+	{/foreach}
+</form>

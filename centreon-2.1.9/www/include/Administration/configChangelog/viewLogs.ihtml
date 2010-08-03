@@ -1,0 +1,34 @@
+<form name='form' method='POST'>
+<table class="ajaxOption">
+	<tr>
+		<td>{$search_object_str} : <input type='text' name='searchO' value='{$searchO}' /></td>
+		<td>{$search_user_str} : <input type='text' name='searchU' value='{$searchU}' /></td>
+		<td>&nbsp;&nbsp;&nbsp;{$obj_str} : <select name='otype' />{$obj_type}</select></td>
+		<td><input type='submit' name='SearchB' value='Search' /></td>
+	</tr>
+</table>
+<br />
+<table class="ListTableSmall">
+	<tr class="ListHeader">				
+		<td	class="ListColHeaderCenter" style="white-space:nowrap;">{$type}</td>	
+		<td	class="ListColHeaderCenter" style="white-space:nowrap;">{$object_name}</td>
+	</tr>
+	{assign var='classStyle' value='list_two'}
+	{foreach key=key item=item from=$tabz_obj_name}
+		{if $classStyle == 'list_two'}
+			{assign var='classStyle' value='list_one'}
+		{else}
+			{assign var='classStyle' value='list_two'}
+		{/if}
+		<tr class='{$classStyle}'>
+			<td>
+				<a href="./main.php?p={$p}&object_type={$tabz_obj_type.$key}&object_id={$tabz_obj_id.$key}&searchU={$searchU}&searchO={$searchO}&otype={$type_id}">{$tabz_obj_type.$key}</a>
+			</td>
+			<td>
+				<a href="./main.php?p={$p}&object_type={$tabz_obj_type.$key}&object_id={$tabz_obj_id.$key}&searchU={$searchU}&searchO={$searchO}&otype={$type_id}">{$tabz_obj_name.$key}</a>
+			</td>
+		</tr>
+	{/foreach}
+</table>
+{$form.hidden}
+</form>

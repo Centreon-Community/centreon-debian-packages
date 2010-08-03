@@ -1,0 +1,461 @@
+## Centreon 2.1.9
+
+=> fix: change heartbeat for RRDTool databases
+=> fix: remove problem with js and topology (can cause problem with pause button in the monitoring)
+=> fix: remove special char problem in object descriptions
+=> fix: remove issue when acknownledging a service (#1731) => remove problem with / in centcore when user send external command to pollers
+=> fix: Improve sql request in monitoring
+=> fix: remove issue with PEAR upgrade during upgrade step
+=> fix: accepte % in metric name
+=> fix: remove problem with # in host or service name in the monitoring
+=> fix: add rules checks for meta service form
+=> fix: remove a warning in centstorage
+=> fix: fix error with snmp version field in host template configuration
+=> enhancement: Update prototype lib.
+
+
+## Centreon 2.1.8
+
+=> fix: problem with macro not replaced during install step in centAcl.php
+=> fix: problem with a bad comment in trap handler
+=> enhancement: generate traps during install/upgrade process 
+
+## Centreon 2.1.7
+
+=> fix: hardcoded path in topcounter status
+=> fix: problem in ACL (generation flag not updated)
+=> fix: problem with icones in monitoring
+=> enhancement: Time for ACL generation  
+=> enhancement: request number for ACL generation
+=> fix: add lock for centACL.php
+=> enhancement: improvement of ACL action (service schedule forced not link with service schedule)
+=> enhancement: SNMPTT configuration optimization
+=> enhancement: Add long output in monitoring 
+
+## Centreon 2.1.6
+
+=> fix: missing column in eventlog csv export
+=> fix: GMT generation problem
+=> fix: problem with massive change on hosts
+=> fix: prevents SQL injection in ping tool
+=> fix: multiple external commands due to mouse clicks on menu 
+=> fix: poller selection on monitoring page
+=> enhancement: enhanced centstorage purge/sync
+=> enhancement: better ACL engine
+=> feature: displays poller information (running state, latency...)
+
+
+## Centreon 2.1.5
+
+=> fix: problem with graph and nsclient ++
+=> fix: problem with last year in reporting
+=> fix: hostgroup escalation export
+=> fix: cgi.cfg generation 
+=> fix:	problem on icone un service extended information
+=> fix: problem on downtime for services and hosts
+=> fix: event logs
+=> fix: LDAP authentication
+=> fix: LDAP import
+=> fix: service group view display double information
+=> fix: first notification delay not managed by meta services
+=> fix: host duplication problem
+=> fix: remove null password possibility for MySQL account during setup
+=> fix: autocomplete password disable in contact form
+=> fix: requiretty problem managed for CentOS/Redhat
+
+## Centreon 2.1.4
+
+=> fix: extended information is loaded properly (for hosts and services)
+=> fix: adds timestamp on host external commands
+=> fix: remove special char in log output
+=> fix: remove error when user create nagios.cfg file
+=> fix: remove errors when laoding nagios.cfg file
+=> enhancement: add auto deploy service attached to hosts templates on hosts when loading cfg files
+=> fix: fix problem with str_replace and URL_notes and URL_actions #1288
+=> fix: fix error with ACL and / and \
+=> fix: problem to load LDAP contact
+=> fix: nagiosPerfTrace => ssh port is now used
+=> fix: problem with ACL in monitoring
+=> enhancement : improve performance in treeview for graphs and logs
+=> fix: enlarge all munti selet in configuration form 
+
+## Centreon 2.1.3
+
+=> fix: problem with \ in ldap properties
+=> fix: problem with graph split : link
+=> fix: remove problem with macro in url
+=> fix: remove bug with selection of poller.
+
+## Centreon 2.1.2
+
+=> fix: bug 1239 => remove error during update of 2.0.2 to 2.1.1
+=> fix: improve SHA1 use
+=> fix: bug 1257 => ACL problem in monitoring > service by servicegroup
+=> fix: bug with pagination in monitoring > service by servicegroup
+=> fix: issue with upgrade
+=> enhancement : better debug in LDAP Search
+=> fix: behavior while installing runlevel of centstorage
+=> fix: display format wasen't use in meta service
+=> fix: remove check language pack during module installation
+
+## Centreon 2.1.1
+
+=> fix: remove error in nagios.cfg form
+=> fix: remove warning when upgrading sql structure
+=> fix: Centstorage & Centcore check if perfdata files exist
+=> fix: could not add new manufacturer
+=> fix: process info page displayed outdated data  
+=> fix #1201: problem when there is more than one escalation with servicegroups
+=> fix #1212: Nagios debug (-v) bug (due to external poller's nagios bin path) 
+=> fix #1227: Problem with sh for SNMP Traps loading
+
+
+## Centreon 2.1
+
+=> fix: error in graph (4 graphs view)
+=> fix: escalation generation in distributed mode
+=> fix: issue when we add a service -> request problem
+=> fix: generation problem for host template
+=> fix: configuration changlog insert problem
+=> fix: configuration > plugins page => Options 
+
+## Centreon 2.1-RC8
+
+=> fix: improve monitoring sql request
+=> fix: Add ACL for Meta services
+=> fix: add foreign keys for hg and sg relations table for ACL
+=> fix: add foreign keys actions rules table on ACL
+
+## Centreon 2.1-RC7
+
+Adds icons in Eventlogs & Graph views search bars
+=> fix: remove use of rsync due to protocol problem with different version of rsync
+=> fix: improve log use in centcore
+=> fix: improve requests performance in monitoring
+=> fix #1089 : Problem with host and service configuration form on "view" mode 
+=> fix #1089 : Media/Images issue
+=> fix #1088 : Duplication problem
+=> fix #1040 : ArchiveDayLog scripted could be executed twice in a day because of an NTP sync
+=> fix #1038 : Entered LDAP passwords were logged in a log file in case of a login failure 
+=> fix #1032 : Incorrect values in flash charts due to translations
+=> fix #1023 : New Acknowledgement System
+=> fix #1021 : Nagios files were generated even on de activated pollers
+
+
+## Centreon 2.1-RC6
+
+Fixes a lot of wordings
+=> Task #1009 :  [Configuration] > [Commands] : Better behavior of forms 
+=> fix #1001 : Centstorage => Incorrect masks applied on created directories
+=> fix #999 : GMT Bug (period not defined)
+=> fix #998 : Pagination bug
+=> fix #950 : Bug in Centstorage
+=> fix #925 : Removes spaces in beginning and end of translatable strings
+=> fix #340 : Configuration generator problems
+=> fix #379 : Meta Services bugs
+
+## Centreon 2.1-RC5
+
+=> fix: remove warning in censtorage
+=> fix: remove warning in cencore
+=> fix: english wording
+=> fix: remove ldap import pb
+=> fix: change scaled problem by default
+=> fix: slope mode in graph is enabled by default
+=> fix: fix date period selection in reporting
+=> fix: #965
+=> fix: #986
+
+## Centreon 2.1-RC4
+
+=> fix: generation of SNMP traps definition files
+=> fix: nagios debug_level works
+=> fix: AJAXed div's were not translated
+=> enhancement : new CentreonLang class that manages user's language and charset
+=> fix: remove problem with generation of service by hostgroup
+=> fix: remove problem with ACL and function getHostService
+=> fix: remove ACL in hostgroups
+
+## Centreon 2.1-RC3
+
+=> fix: error on host configuration page
+=> fix: error on service configuration page
+=> fix: error with color of status in eventlog
+=> enhancement: add status type on host and service monitoring page
+=> fix: remove hardcoded path in install
+=> fix: remove error in DB class
+=> fix: remove error durint shelle install
+=> fix: remove problems with accents in image management pages
+=> fix: remove warning in csv export of reporting
+
+
+## Centreon 2.1-RC2
+
+=> fix problem with colors in eventlogs
+=> fix problem with multi version upgrade
+=> improve nagios statistics graphs color
+=> fix problem with data in nagios statistics graphs
+=> fix problem with sql upgrade script
+=> change color of configuration and administration tab
+=> remove problem with duplicate function require
+=> fix bug with init script for nagios path
+=> improve translation 
+=> add option -p (snmp port) on SNMP plugins 
+=> fix pb with HG pages (toolbar more action not working for enable / disable)
+=> remove warning on centstorage
+=> fix problem wit --del on centcore for rsync
+
+## Centreon 2.1-RC1
+
+=> add Timezone Management in check period for hosts and services
+=> add Timezone Management in notifications period for hosts and services
+=> add Timezone Management for user view
+=> add Configuration changelog
+=> add Action ACL
+=> add update current user ACL view
+=> Improve MySQL request in monitoring
+=> Improve Centstorage status DB generation
+=> add unhandled view in service monitoring page
+=> add unhandled view in host monitoring page
+=> add search in treeviews
+=> add custom colors for host/service acknowledgement status in monitoring
+=> add custom colors for host/service downtime status in monitoring
+=> add new menu ajax for a better navigation
+=> add shortcut for autologin
+=> improve LDAP management
+=> add user login/logout log
+=> add log for sql requets.
+=> improve generation for configuration files (for example : 2000 hosts and 15000 sevices => befor 198 sec => now 17 sec)
+=> improve restart message 
+=> add toolbar with activity message (loading, messsage sent...)
+=> add ajax for external command in object details in monitoring
+=> add nagios poller interface (nagios style)
+=> add env var view for nagios poller
+
+## Centreon 2.0.2
+
+=> Bugfix #586
+=> Bugfix #408
+=> Bugfix #392
+=> Bugfix #417
+=> Bugfix #436
+=> Reporting : CSV export now takes correct timeperiod parameters
+=> Reporting : fixes bug that occured when hosts/services were renamed
+=> ACL : ServiceGroups are no longer restrictions, they grant access to resources instead
+=> Enhanced generation of configuration files
+=> New Centreon logo
+=> CSS menu is fixed (delimiters are back)
+
+## Centreon 2.0.1
+
+=> Bug 353
+=> Bug 370
+=> Bug 375
+=> Bug 355
+=> fix bug with "&" in url => bug in XML monitoring
+=> fix bug with pagination in ACL page (\'\' in search)
+=> Bug 346
+=> Bug 160
+=> Fix bug with recurcive function getMyHostField => infinit loop in host details page
+=> add comment time instead of entry time in comment page
+=> fix sql queries in meta service page
+=> fix translation problems
+=> change header for translations problems
+=> add timeout for ssh commands in centcore
+=> remove errorwith meta service graphs
+=> fix bug with split in graphs  
+
+## Centreon 2.0
+
+=> enhancement : Add new centreon logo :)
+=> bugfix : remove error with meta in eventlog
+=> bugfix : remove error in eventlog with ACL
+=> bugfix : replace #S# and #BS# in meta metric view
+=> bugfix : remove little error in install.sh : warning when set service centcore.
+=> improve monitoring for using ndo on centreon ndo (faster than nagios svn.)
+
+## Centreon 2.0 RC8
+
+=> bugfix : remove error in ACL
+=> bugfix : remove bug when rescheduling meta graphs
+=> bugfix : remove warning in centACL.php
+=> Enhancement : improve index in centreon_acl table
+=> bugfix : remove error in host massiv change
+=> bugfix remove error in hg duplication 
+
+## Centreon 2.0 RC7
+
+=> 
+=> bugfix : replace macro in check_meta_service
+=> bugfix : do no display disable service in service group in sg tree in graphs
+=> bugfix : remove alert poppup when a non-admin user go on graph directly with graph link (icone)
+=> bugfix : curve template now manage special char in metric name (/ and \)
+=> bugfix : remove error with massiv change and delete in all configuration pages.
+=> bugfix : remove syntaxe error in traphandler
+=> bugfix : replace html special char in password when logging in LDAP.
+
+
+## Centreon 2.0-RC5
+
+=> bugfix : remove bug in escalation generation 
+=> bugfix : add alert message on some page when ndo db is not available
+=> bugfix : improve acl construction
+=> bugfix : remove error in sql installation
+=> bugfix : add security in sql request in search
+=> bugfix : add possibility to duplicate traps definition
+=> bugfix : add possibility to search traps by OID
+=> bugfix : improve plugin option for check_centreon_snmp_process
+=> bugfix : add new reporting engine
+=> bugfix : remove all reporting problems
+=> bugfix : remove problem with i18n
+
+## Centreon 2.0-RC4
+
+=> Bugfix : remove passive check in scheduling queue page
+=> Bugfix : add host comment in host details page in monitoring
+=> Bugfix : remove logAnalyser bug with macro
+=> Bugfix : add first and last page in all pagination
+=> Bugfix : add double pagination 
+=> Bugfix : remove bad link in monitoring service gird
+=> Bugfix : remove bug in massive change in host
+=> Bugfix : remove bug in acl in graph and eventlog 
+=> Bugfix : enable Massiv change for host poller when editing a host 
+=> Bugfix : CSS interface configuration, selection problem solved with ie.
+=> Bugfix : Grid then you click on the loupe it displays all services instead of only displaying the host's services.
+=> bugfix : display well comments on host details page
+
+## Centreon 2.0-RC3
+
+=> Enhancement : Notification Options "Flapping" added for Nagios 2, "Downtime Scheduled" added for Nagios 2 and 3.
+=> Bugfix : Generation file problem resolv with escalations.
+=> Bugfix : CSV and XML export updated on eventlog interface. The engine export did use the pagination.
+=> Bugfix : remove problem with documentation links in hosts/hostgroups/services/templates interface configuration.
+=> Bugfix : better display in service groups monitoring on each status.
+=> Bugfix : Solved a few PHP errors on reporting by service groups.
+=> Enhancement : Test added during the first step of the installation. Now, the browser must authorize cookies to proceed with the installation. 
+=> Improve CSS
+=> Bugfix : remove error with downtime
+=> Bugfix : improve alphanumerical sort
+=> Enhancement : Add timeperiod in graphs like cacti
+=> Add template for Unix / Linux environment
+=> add timeperiod in nagios perftrace page
+=> check all montoring pages and improve functions
+=> Bugfix : reduce generate time for popup
+=> Bugix : remove multiple error for IE
+=> Bugfix : remove hardcoded path for filegenerations 
+
+## Centreon 2.0-RC2
+
+=> Bugfix : remove problem with ACL When a user a no acl
+=> Bugfix : remove problem in service by hostgroup page with ACL
+=> Bugfix : remove problem in escalations page with ACL
+=> Bugfix : remove problem in all dependancies page with ACL
+=> Bugfix : remove problem in host monitoring page with ACL
+=> Bugfix : remove problem in service minotirng page with ACL
+=> Bugfix : remove problem with upgrade (multiple update : ie => beta 5 to RC2)
+=> Bugfix : remove problem in centstorage when a metric name contain / or \
+=> Bugfix : remove use of fetchInto
+=> Bugfix : add critical in event log view
+=> Feature : improve Centstorage options display
+=> Bugfix : set ACL for svc-pie.php (JL Gregoire)  
+=> Enhancement : better display on Nagiostats' part, a timeperiod selection is also available
+=> Enhancement : Javascripted checkboxes added to "Dependency pages"
+
+## Centreon 2.0-RC1
+
+=> Bugfix : Solved a few PHP errors
+=> Bugfix : Fixed a few spelling & grammar mistakes
+=> Bugfix : ACL problems fixed on Reporting > Dashboard
+=> Bugfix : Multiple templates work properly
+=> Bugfix : It is now possible to load services/Hostgroup with services.cfg
+=> Bugfix : remove compute errors in reporting
+=> Bugfix : remove errors in SQL install
+=> Bugfix : remove errors in PHP install
+=> Bugfix : remove problem with SHELL install : chmod on module directory
+=> Feature : Add possibilty to link host/service with contactgroups and contacts.
+=> Bugfix : optimize XML for EventLogs
+
+## Centreon 2.0-b6
+
+=> Bugfix : remove error on Tacktical overview with admin and with ACL
+=> Bugfix : configuration : contact -> remove "Mail type" options 
+=> Feature : eventlog : add option "Hard only" 
+=> Feature : eventlog : add pagination in bottom
+=> Feature : #43 eventlog : add ServiceGrp filtering
+=> Bugfix : remove problem with ACL
+=> Bugfix : #60 remove sql injection in reporting
+=> Bugfix : #76 sudo configuration file problem solved during installation.
+=> Bugfix : #77 Disk space problem solved on installation.
+=> Feature : CSV Icons updated to use the same image file.
+=> Feature : Color and output added for intial state on event logs monitoring.
+=> Bugfix : colors fixed in reporting and timeline for services groups.
+=> Bugfix : Services Groups Reporting datas generation updated.
+=> Bugfix : Services Groups Reporting timeline updated.
+=> Bugfix : Services Groups Reporting forme updated.
+=> Bugfix : #79 CSV Export for a servicegroup fixed.
+=> Bugfix : #90 High CPU load resolved in event logs Monitoring.
+=> Feature : XML export on event logs Monitoring.
+=> Feature : Possibly to hide footer
+=> Bugfix : #82 Nagios 3 documentation added.
+
+## Centreon 2.0-b5
+
+=> Bugfix : #29 CentPlugins: snmp uptime problem
+=> Bugfix : #32 Event log's displays are different depending on the source URL.
+=> Bugfix : #33 Install:RH4 template install
+=> Bugfix : #35 Problem when import cfg files (same to #44)
+=> Bugfix : #36 Print info when RRD graph not found
+=> Bugfix : #42 Optim query SQL and Index
+=> Bugfix : #46 Hard-coded path to centcore.cmd
+=> Bugfix : #48 CentCore, problem in initNagios()
+=> Bugfix : #50 Javascript error on "Nagios Configuration Files Export" page
+=> Bugfix : #51 Meta Services : web bug
+=> Bugfix : #53 Internet Explorer : Header fields display no text on Monitoring pages
+=> Bugfix : #54 Bugs in centFillDB and centTrapHandler-2.x
+=> Bugfix : #58 Meta_services display
+=> Bugfix : #59 Meta_service deletion bug
+=> Bugfix : #62 CentWeb-trunk - Missing brackets
+=> Bugifx : #67 Unable to use centreon tactical overview when not admin
+=> Bugfix : #68 ACL problem on dashboard
+=> Bugfix : #69 Removes problem when acknowledging a service.
+=> New feature : Multiple templates for hosts
+=> New feature : On-demand macros for hosts and services
+
+## Centreon 2.0-b4
+
+=> Bugfix : #1  Setup : purge var in shell installer
+=> Task   : #3  Install Script: Create install for SNMP Traps
+=> Bugfix : #13 XML Problem on Views
+=> Bugfix : #15 Loading hosts.cfg configuration file
+=> Bugfix : #16 Loading services.cfg configuration file
+=> Bugfix : #20 Export CSV bad link
+=> Bugfix : #23 bug in "functions" / check_group_apache ?
+=> Bugfix : #24 Login page cannot be shown
+=> Bugfix : #31 change color in graphs page
+=> Task   : add graphs view by servicegroup
+=> Bugfix : fix problem when we duplicate a graph template
+=> Bugfix : change redirection for logs in crons
+=> Bugfix : #30 CentWeb graphic style problem
+=> Bugfix : #31 remove problem with color picker in graphs curve templates.
+=> New feature : Command tester in Configuration > Command
+
+## Centreon 2.0-b3
+
+=> Bugfix : #18 Snmptrapd configuration problem with centGenSnmpttConfFile
+=> Bugfix : #19	Problem with configuration traps
+=> Bugfix : #9	Install: httpd and mysqld aren't start and reload on the installation
+=> Bugfix : #2	Install: field p1.pl empty after setup
+=> Bugfix : #4	Install: gettext was not found in PATH
+=> Bugfix : #5	Install: problem with var NAGIOS_P1_FILE
+=> Bugfix : #8	Impossible to connect on the Centreon's interface
+=> Bugfix : #10 Problems with ndo db user password
+=> Bugfix : #11	Install Script: php command not found
+=> Bugfix : #14 Message Box in Reporting Page
+
+## Use new bugstracket (trac.centreon.com)
+
+## Centreon 2.0-b2
+
+=> Bugfix : #bug 461 : Argument defined in template and service
+=> Bugfix : Add tests when submit the form (fields mandatory not testing)
+=> Bugfix : #bug 458 : Function return_image_list doesn't work for sub dirs
