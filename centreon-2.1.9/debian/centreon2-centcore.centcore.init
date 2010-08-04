@@ -49,7 +49,7 @@ fi
 
 prefix=/usr/share/centreon2/
 exec_prefix=${prefix}
-Bin=/usr/bin/centcore
+Bin=/usr/sbin/centcore
 CfgFile=@CENTREON_ETC@/conf.pm
 VarDir=${prefix}var/
 LogDir=/var/log/centreon2
