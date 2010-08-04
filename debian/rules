@@ -26,6 +26,13 @@ configure-stamp:
 	@echo "Doing $@"
 	dh_testdir
 
+	# Add here commands to configure the package.
+	find  tmpl -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+	find  cron -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+	find  bin -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+	find  plugins/src -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+
+
 #Architecture 
 build: build-arch build-indep
 
@@ -40,7 +47,6 @@ build-indep: build-indep-stamp
 build-indep-stamp: patch configure-stamp 
 
 	# Add here commands to compile the indep part of the package.
-	#$(MAKE) doc
 	touch $@
 
 
@@ -73,13 +79,6 @@ centreon2:
 	cp debian/misc/$@/updateNagiosConfig.sql	debian/$@/mysql/7
 	cp debian/misc/$@/updatePoller.sql		debian/$@/mysql/8
 
-	sed -e 's|@NAGIOS_USER@|nagios|g' \
-	    -e 's|@PERL_BIN@|/usr/bin/perl|g' \
-	    -e 's|@INSTALL_DIR_CENTREON@|/usr/share/centreon2|g' \
-	    -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
-	    -e 's|@WEB_USER@|www-data|g' \
-	    -e 's|@PHP_BIN@|/usr/bin/php|g' \
-	    -i tmpl/install/centreon.cron
 
 	touch debian/$@/mysql.sql
 	for sqlfile in 1 2 3 4 5 6 7 8; do \
@@ -112,8 +111,14 @@ centreon2:
 	# Change macros in www
 	find debian/$@/usr/share/$@/www/ -name "*.php" -exec \
 		sed -i 's|@CENTREON_ETC@|/etc/centreon2|g;s|@CENTREON_GENDIR@|/var/cache/centreon2|g' {} \;
+
 	sed -i 's|@CENTREON_ETC@|/etc/centreon2|g' \
 		debian/$@/usr/share/$@/cron/centAcl.php
+
+	sed -e 's|@CENTREON_ETC@|/etc/centreon2|g' \
+	    -e 's|@CENTREON_VARLIB@|/var/lib/centreon2|g' \
+	    -i debian/$@/usr/share/$@/cron/archiveDayLog
+
 	find debian/$@/usr/share/$@/www/ -name "*.php" -exec \
 		sed -i 's|@CENTREON_LOG@|/var/log/centreon2|g' {} \;
 
@@ -122,6 +127,13 @@ centreon2:
 		sed -i 's|@CENTREON_LOG@|/var/log/centreon2|g' {} \;
 
 	
+	sed -e 's|@NAGIOS_USER@|nagios|g' \
+	    -e 's|@PERL_BIN@|/usr/bin/perl|g' \
+	    -e 's|@INSTALL_DIR_CENTREON@|/usr/share/centreon2|g' \
+	    -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
+	    -e 's|@WEB_USER@|www-data|g' \
+	    -e 's|@PHP_BIN@|/usr/bin/php|g' \
+	    -i tmpl/install/centreon.cron
 
 
 centreon2-centstorage:
@@ -132,7 +144,7 @@ centreon2-centstorage:
 
 	# Change macros for centstorage init script 
 	sed -e 's|@CENTREON_DIR@|/usr/share/centreon2|g' \
-	    -e 's|@CENTSTORAGE_BINDIR@|/usr/bin|g' \
+	    -e 's|@CENTSTORAGE_BINDIR@|/usr/sbin|g' \
 	    -e 's|@CENTREON_ETC@|/etc/centreon2|g' \
 	    -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
 	    -e 's|@CENTREON_RUNDIR@|/var/run/centreon2|g' \
