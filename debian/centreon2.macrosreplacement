@@ -39,3 +39,4 @@ s:@NAGIOS_IMG@:/usr/share/nagios3/htdocs/images/logos:g
 s:@WEB_USER@:www-data:g
 s:/etc/centreon2/conf.pm:/etc/centreon2/centstorage/conf.pm:g
 s:/usr/bin/centcore:/usr/sbin/centcore:g
+s:/usr/bin/centstorage:/usr/sbin/centstorage:g
