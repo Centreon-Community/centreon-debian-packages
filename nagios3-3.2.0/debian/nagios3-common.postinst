@@ -60,7 +60,7 @@ case "$1" in
 	setperm nagios nagios 0750 /var/lib/nagios3/spool
 	setperm nagios nagios 0750 /var/lib/nagios3/spool/checkresults
         setperm nagios www-data 02750 /var/cache/nagios3
-        setperm nagios www-data 0700 /var/lib/nagios3/rw
+        setperm nagios www-data 0770 /var/lib/nagios3/rw
 
 	db_stop
     ;;

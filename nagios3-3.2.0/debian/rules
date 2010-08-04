@@ -138,6 +138,7 @@ install-stamp: build-stamp fix-configs-stamp
 	chmod g+s ${bnc}/var/cache/nagios3
 	chown root:www-data ${bnc}/var/lib/nagios3/rw
 	chmod 700 ${bnc}/var/lib/nagios3/rw
+	chmod g+ws ${bnc}/var/lib/nagios3/rw
 	# alter some installed filenames/locations
 	mv ${b}/nagios3/usr/sbin/nagios ${b}/nagios3-core/usr/sbin/nagios3
 	mv ${b}/nagios3/usr/sbin/nagiostats ${b}/nagios3-core/usr/sbin/nagios3stats
