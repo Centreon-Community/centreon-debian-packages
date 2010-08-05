@@ -18,6 +18,7 @@ var/cache/centreon2/filesUpload/nagiosCFG
 usr/lib/centreon2
 var/lib/centreon2/rrd
 var/lib/centreon2/php
+var/lib/centreon2/nagios-perf
 var/log/centreon2
 var/run/centreon2
 

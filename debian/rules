@@ -369,6 +369,8 @@ binary-indep: build install
 	chmod 644 debian/centreon2/usr/share/centreon2/www/img/icones/16x16/excel8.gif
 	rm -f debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/COPYING
 	rm -f debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/COPYING
+	chown www-data debian/centreon2/var/lib/centreon2/nagios-perf
+	chmod 750 debian/centreon2/var/lib/centreon2/nagios-perf
 	chmod 0755 debian/centreon2/usr/share/centreon2/cron/archiveDayLog
 	chmod 0755 debian/centreon2/usr/share/centreon2/cron/centSyncArchives
 	chmod 0755 debian/centreon2/usr/share/centreon2/cron/centSyncPlugins
