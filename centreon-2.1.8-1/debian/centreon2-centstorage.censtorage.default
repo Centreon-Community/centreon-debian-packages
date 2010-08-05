@@ -1,4 +1,0 @@
-# Config Centstorage Daemon
-
-#Config file for Centstorage
-ODSCfgFile=/etc/centreon2/centstorage/conf.pm
