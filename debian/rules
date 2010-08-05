@@ -160,7 +160,10 @@ centreon2-centstorage:
 	# install the SQL schemes
 	mkdir debian/$@/mysql
 	touch debian/$@/mysql.sql
-	dos2unix www/install/createTablesCentstorage.sql
+	
+	sed -e 's/^M//' \
+            -i www/install/createTablesCentstorage.sql
+
 	cp www/install/createTablesCentstorage.sql	debian/$@/mysql/1
 	cp debian/misc/$@/grantCentUserOnCtsg.sql	debian/$@/mysql/2
 	cp debian/misc/$@/updateCstgConfig.sql		debian/$@/mysql/3
@@ -291,7 +294,10 @@ centreon2-ndodb:
 
 	mkdir debian/$@/mysql
 	touch debian/$@/mysql.sql
-	unix2dos www/install/createNDODB.sql
+
+	sed -e 's|^M||' \
+            -i www/install/createNDODB.sql
+
 	cp www/install/createNDODB.sql			debian/$@/mysql/1
 	cp debian/misc/$@/updateNdo2cfg.sql		debian/$@/mysql/2
 
