@@ -358,6 +358,8 @@ binary-indep: build install
 	dh_testroot
 	dh_installchangelogs	CHANGELOG
 	dh_installdocs          
+	dh_installmans
+	dh_installman
 	dh_installdebconf
 	dh_installlogrotate	-pcentreon2 
 #	dh_installlogcheck
