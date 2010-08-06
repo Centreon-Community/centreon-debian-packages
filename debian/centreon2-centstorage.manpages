@@ -1,1 +1,5 @@
 doc/centstorage.8centreon
+doc/archiveDayLog.8centreon
+doc/logAnalyser.8centreon
+doc/nagiosPerfTrace.8centreon
+doc/resizeRRD.8.centreon

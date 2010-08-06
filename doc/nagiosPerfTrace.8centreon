@@ -1,19 +1,19 @@
-.TH centstorage 8centreon
+.TH nagiosPerfTrace 8centreon
 .SH NOM
-centstorage - daemon processing perfdata for Centreon
+nagiosPerfTrace - Centreon function
 .SH SYNOPSYS
 No options
 .SH DESCRIPTION
-Daemon processing perfdata for Centreon
+Centreon function.
 .SH FICHIER
 .TP
 /etc/centreon2/centstorage/conf.pm
-Configuration file for daemon
+Configuration file for function
 .TP
-/var/log/centreon2/centstorage.log
-Log for daemon
+/var/lib/centreon2/nagiosPerfTrace.lock
+Lock for function
 .SH SEE ALSO
-centcore(8centreon)
+centstorage(8centreon)
 .SH BUGS
 See bugs on package at http://trac.centreon.com/projects/debcentreon/issues?set_filter=1&tracker_id=1
 .SH AUTHORS
