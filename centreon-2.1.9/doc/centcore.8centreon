@@ -1,9 +1,10 @@
 .TH centcore 8centreon
 .SH NOM
-centcore - daemon for centreon
+centcore - daemon managing distributing service for Centreon
 .SH SYNOPSYS
 No options
 .SH DESCRIPTION
+Daemon managing distributing service for Centreon.
 .SH FICHIER
 .TP
 /var/lib/centreon2/centcore.cmd
