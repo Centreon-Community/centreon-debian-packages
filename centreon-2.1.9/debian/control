@@ -6,7 +6,7 @@ Homepage: http://www.centreon.com/
 Vcs-Browser: http://forge.centreon.com/repositories/browse/centreon/trunk/centreon
 Vcs-Svn: http://svn.centreon.com/trunk/centreon
 Standards-Version: 3.7.3
-Build-Depends: debhelper (>= 6), dpatch, tofrdos
+Build-Depends: debhelper (>= 6), dpatch
 
 Package: centreon2
 Architecture: any
