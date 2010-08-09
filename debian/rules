@@ -377,6 +377,8 @@ binary-indep: build install
 	rm -f debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/COPYING
 	chown www-data debian/centreon2/var/lib/centreon2/nagios-perf
 	chmod 750 debian/centreon2/var/lib/centreon2/nagios-perf
+	chown www-data debian/centreon2/var/lib/centreon2/log
+	chmod 750 debian/centreon2/var/lib/centreon2/log
 	chmod 0755 debian/centreon2/usr/share/centreon2/cron/archiveDayLog
 	chmod 0755 debian/centreon2/usr/share/centreon2/cron/centSyncArchives
 	chmod 0755 debian/centreon2/usr/share/centreon2/cron/centSyncPlugins
