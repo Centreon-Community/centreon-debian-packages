@@ -1,0 +1,10 @@
+--- a/package.xml
++++ b/package.xml
+@@ -38,7 +38,6 @@
+    <file baseinstalldir="DB" md5sum="06e890beb94da0cfd9782b220989f25f" name="DataObject/Error.php" role="php" />
+    <file baseinstalldir="DB" md5sum="600ea0d57e035969dfe316dde3c8bd5b" name="DataObject/Generator.php" role="php" />
+    <file baseinstalldir="DB" md5sum="9d98e006265435a3e6e8a3e08a659c3b" name="docs/example.ini" role="doc" />
+-   <file baseinstalldir="DB" md5sum="cdcc4ead8ef5e06df4381ca0976dcdad" name="scripts/DB_DataObject_createTables.bat" role="script" />
+    <file baseinstalldir="DB" md5sum="5ae40e7b15cce285c2f3a0dcaea91a23" name="DataObject.php" role="php">
+     <tasks:replace from="@version@" to="version" type="package-info" />
+    </file>

@@ -1,0 +1,6 @@
+php-db-dataobject (1.9.5-1) unstable; urgency=low
+
+  * Initial Release (Closes #<ITP bug number>).
+  * Switch to dpkg-source 3.0 (quilt) format
+
+ -- David Hannequin <david.hannequin@gmail.com>  Thu, 21 Oct 2010 18:45:32 +0200

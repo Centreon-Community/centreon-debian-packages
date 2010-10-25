@@ -1,0 +1,7 @@
+php-db-dataobject for Debian
+--------------------------
+
+This extension has been created with dh-make-pear which is part
+of dh-make-php.
+
+ -- david.hannequin@gmail.com, Thu, 21 Oct 2010 18:30:47 +0200

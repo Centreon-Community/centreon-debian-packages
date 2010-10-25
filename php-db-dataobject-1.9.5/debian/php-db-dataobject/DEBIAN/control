@@ -1,0 +1,18 @@
+Package: php-db-dataobject
+Version: 1.9.5-1
+Architecture: all
+Maintainer: David Hannequin <david.hannequin@gmail.com>
+Installed-Size: 464
+Depends: php5, php5-cli, php-pear
+Section: web
+Priority: optional
+Description: An SQL Builder, Object Interface to Database Tables
+ DataObject performs 2 tasks:
+   1. Builds SQL statements based on the objects vars and the builder
+ methods.
+   2. acts as a datastore for a table row.
+   The core class is designed to be extended for each of your tables
+ so that you put the
+   data logic inside the data classes.
+   included is a Generator to make your configuration files and your
+ base classes.

@@ -1,0 +1,12 @@
+f22e7c7bf267c7425613cf883819ad17  usr/share/php/.registry/db_dataobject.reg
+b50c79d3a19d9e156c7bfd9a221fab55  usr/share/php/DB/DataObject/Cast.php
+06e890beb94da0cfd9782b220989f25f  usr/share/php/DB/DataObject/Error.php
+600ea0d57e035969dfe316dde3c8bd5b  usr/share/php/DB/DataObject/Generator.php
+8f7382a61580d5be68e31a7544d454d7  usr/share/php/DB/DataObject/createTables.php
+5ae40e7b15cce285c2f3a0dcaea91a23  usr/share/php/DB/DataObject.php
+2c6883aa1b061c9e5ac4a95c848874d6  usr/share/doc/php-db-dataobject/docs/example.ini.gz
+41dc28f332097bd859abd3a8473cfab3  usr/share/doc/php-db-dataobject/copyright
+1ec770c09fd2c16ff3f062ec2147256d  usr/share/doc/php-db-dataobject/changelog.gz
+60bba2a19ab393e16e9b414d82fb3d75  usr/share/doc/php-db-dataobject/changelog.Debian.gz
+6465cdd0c9944e1eac2e39419b71180e  usr/share/doc/php-db-dataobject/README.Debian
+fc2b574959a1c0423e47f8dac587f485  usr/share/doc/php-db-dataobject/package.xml
