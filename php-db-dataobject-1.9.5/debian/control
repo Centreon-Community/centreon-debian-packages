@@ -7,7 +7,7 @@ Standards-Version: 3.8.0
 
 Package: php-db-dataobject
 Architecture: all
-Depends: php5, php5-cli, php-pear
+Depends: php5, php5-cli, php-pear, php-date
 Description: An SQL Builder, Object Interface to Database Tables
  DataObject performs 2 tasks:
    1. Builds SQL statements based on the objects vars and the builder 
