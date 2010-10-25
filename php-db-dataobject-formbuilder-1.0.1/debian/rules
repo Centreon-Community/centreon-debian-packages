@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+# template debian/rules provided by dh-make-php.
+
+DEB_COMPRESS_EXCLUDE=package.xml
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/pear.mk
+
+binary-install/php-db-dataobject-formbuilder::
+	chmod a+x debian/php-db-dataobject-formbuilder/usr/share/php/data/DB_DataObject_FormBuilder/tools/fix0.9.0Files.php
+	chmod a+x debian/php-db-dataobject-formbuilder/usr/share/php/data/DB_DataObject_FormBuilder/tools/fixPre1.52CVSFiles.php

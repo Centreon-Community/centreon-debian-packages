@@ -1,0 +1,10 @@
+Package: php-db-dataobject-formbuilder
+Version: 1.0.1-1
+Architecture: all
+Maintainer: David Hannequin <david.hannequin@gmail.com>
+Installed-Size: 588
+Depends: php5, php5-cli, php-pear
+Section: web
+Priority: optional
+Description: Class automatically build Form objects.
+ This will aid you in rapid application development.

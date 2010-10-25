@@ -1,0 +1,12 @@
+Source: php-db-dataobject-formbuilder
+Section: web
+Priority: optional
+Maintainer: David Hannequin <david.hannequin@gmail.com>
+Build-Depends: debhelper (>= 5), dh-make-php (>= 0.2.3), cdbs
+Standards-Version: 3.8.0
+
+Package: php-db-dataobject-formbuilder
+Architecture: all
+Depends: php5, php5-cli, php-pear 
+Description: Class automatically build Form objects.
+ This will aid you in rapid application development.  
