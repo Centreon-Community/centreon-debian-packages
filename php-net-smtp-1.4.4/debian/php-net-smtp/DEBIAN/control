@@ -1,0 +1,11 @@
+Package: php-net-smtp
+Version: 1.4.4-1
+Architecture: all
+Maintainer: David Hannequin <david.hannequin@gmail.com>
+Installed-Size: 152
+Depends: php5, php-pear, php-auth-sasl, php-net-socket
+Section: web
+Priority: optional
+Description: An implementation of the SMTP protocol
+ Provides an implementation of the SMTP protocol using PEAR's
+ Net_Socket class.

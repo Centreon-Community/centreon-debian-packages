@@ -1,0 +1,7 @@
+php-net-smtp for Debian
+--------------------------
+
+This extension has been created with dh-make-pear which is part
+of dh-make-php.
+
+ -- David Hannequin <david.hannequin@gmail.com>, Mon, 25 Oct 2010 23:50:07 +0200

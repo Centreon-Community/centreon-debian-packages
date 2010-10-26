@@ -1,0 +1,13 @@
+8b9a69a5e17a39f1e65d642ddd5bd727  usr/share/php/.registry/net_smtp.reg
+917deeee49d9cae52ecb5b04ba1f302b  usr/share/php/Net/SMTP.php
+0d8bc4afd5b8bd5d7f93c44e95c251bb  usr/share/doc/php-net-smtp/docs/guide.txt.gz
+27f779ddc22a146e656ebd82bac082c5  usr/share/doc/php-net-smtp/copyright
+f16725403a6ba954af98a07bb10885af  usr/share/doc/php-net-smtp/changelog.gz
+a61264605e58fa38382514a3dbd08f97  usr/share/doc/php-net-smtp/examples/basic.php
+09de2d51511912eecf4d6370e30ba6bf  usr/share/doc/php-net-smtp/tests/quotedata.phpt
+7e312ce93f4f66f38e166533db5e2565  usr/share/doc/php-net-smtp/tests/auth.phpt
+39e65a9e4e66f3bfa25748f6dd43e3cf  usr/share/doc/php-net-smtp/tests/basic.phpt
+8517c458ae5094ee3c31a545d51c69c8  usr/share/doc/php-net-smtp/tests/config.php.dist
+8ff32b49d7a5b279397f40eec4ef1029  usr/share/doc/php-net-smtp/changelog.Debian.gz
+56cdd50a71dd18f68bb8c5285dafc196  usr/share/doc/php-net-smtp/README.Debian
+f693f1357edd21d2a7379d0370e3c8f0  usr/share/doc/php-net-smtp/package.xml
