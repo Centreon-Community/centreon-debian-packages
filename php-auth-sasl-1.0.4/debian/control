@@ -1,0 +1,12 @@
+Source: php-auth-sasl
+Section: web
+Priority: optional
+Maintainer: David Hannequin <david.hannequin@gmail.com>
+Build-Depends: debhelper (>= 5), dh-make-php (>= 0.2.3), cdbs
+Standards-Version: 3.8.0
+
+Package: php-auth-sasl
+Architecture: all
+Depends: php5, php-pear
+Description: Abstraction of various SASL mechanism responses
+ Provides code to generate responses to common SASL mechanisms.

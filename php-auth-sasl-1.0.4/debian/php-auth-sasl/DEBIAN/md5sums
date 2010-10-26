@@ -1,0 +1,14 @@
+843edc5c7feaf3eea49ba9150a2454f7  usr/share/php/Auth/SASL.php
+31f2c68e791fbb5fa997388e61735f03  usr/share/php/Auth/SASL/DigestMD5.php
+2a121fd067af682541db413b4836eadb  usr/share/php/Auth/SASL/Anonymous.php
+3155f1ef99caaa37b6be4af75c23ed3d  usr/share/php/Auth/SASL/Plain.php
+16464ea1fb28c6f3bdd6df160a5a37c4  usr/share/php/Auth/SASL/CramMD5.php
+ff2fb3def3d425ae16361fcfd42397f5  usr/share/php/Auth/SASL/Login.php
+30023404ea78a158995b652f57a139e3  usr/share/php/Auth/SASL/Common.php
+54c3884fec32890ce5057a5f3aa6c2ac  usr/share/php/Auth/SASL/External.php
+372bc4ae16df78b2f4e47973c826e9a5  usr/share/php/.registry/auth_sasl.reg
+b99be4e63e997141744436ca6e3fe158  usr/share/doc/php-auth-sasl/copyright
+6f8a2e4e878f2fd9f2079e5ff92be849  usr/share/doc/php-auth-sasl/changelog.gz
+9e83198b730676066cdeb7415ff899f4  usr/share/doc/php-auth-sasl/changelog.Debian.gz
+3a45e92b4f502f8b268c09f6e89df117  usr/share/doc/php-auth-sasl/README.Debian
+908f4a74524b6fe607d636123d23e5ba  usr/share/doc/php-auth-sasl/package.xml

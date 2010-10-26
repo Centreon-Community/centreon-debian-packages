@@ -1,0 +1,17 @@
+php-auth-sasl (1.0.4-1) unstable; urgency=low
+
+  * Update from upstream 
+
+ -- David Hannequin <david.hannequin@gmail.com>  Mon, 25 Oct 2010 23:26:09 +0200
+
+php-auth-sasl (1.0.3-2) unstable; urgency=low
+
+  * Add dependancies
+
+ -- Cedric TEMPLE <ctemple@merethis.net>  Wed, 24 Feb 2010 13:20:26 +0200
+
+php-auth-sasl (1.0.3-1) unstable; urgency=low
+
+  * Initial Release (Closes #<ITP bug number>).
+
+ -- Olivier LI-KIANG-CHEONG <lkco@gezen.fr>  Fri, 02 Oct 2009 13:32:26 +0200

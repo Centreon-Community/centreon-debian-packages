@@ -1,0 +1,10 @@
+Package: php-auth-sasl
+Version: 1.0.4-1
+Architecture: all
+Maintainer: David Hannequin <david.hannequin@gmail.com>
+Installed-Size: 116
+Depends: php5, php-pear
+Section: web
+Priority: optional
+Description: Abstraction of various SASL mechanism responses
+ Provides code to generate responses to common SASL mechanisms.
