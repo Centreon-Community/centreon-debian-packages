@@ -1,0 +1,13 @@
+Package: php-net-socket
+Version: 1.0.10-1
+Architecture: all
+Maintainer: David Hannequin <david.hannequin@gmail.com>
+Installed-Size: 84
+Depends: php5, php-pear
+Section: web
+Priority: optional
+Description: Network Socket Interface
+ Net_Socket is a class interface to TCP sockets.  It provides blocking
+   and non-blocking operation, with different reading and writing modes
+   (byte-wise, block-wise, line-wise and special formats like network
+   byte-order ip addresses).
