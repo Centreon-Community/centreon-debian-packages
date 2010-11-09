@@ -1,0 +1,349 @@
+ dpkg-buildpackage -rfakeroot -D -us -uc
+dpkg-buildpackage : définir CFLAGS à la valeur par défaut : -g -O2
+dpkg-buildpackage : définir CPPFLAGS à la valeur par défaut : 
+dpkg-buildpackage : définir LDFLAGS à la valeur par défaut : 
+dpkg-buildpackage : définir FFLAGS à la valeur par défaut : -g -O2
+dpkg-buildpackage : définir CXXFLAGS à la valeur par défaut : -g -O2
+dpkg-buildpackage: paquet source centreon
+dpkg-buildpackage: version source 2.1.9-2
+dpkg-buildpackage: source changé par David Hannequin <david.hannequin@gmail.com>
+dpkg-buildpackage: architecture hôte amd64
+ fakeroot debian/rules clean
+dh_testdir
+dh_testroot
+rm -f build-arch-stamp build-indep-stamp configure-stamp
+rm plugins/CHANGELOG.gz
+dh_clean -k
+ dpkg-source -b centreon-2.1.9
+dpkg-source: info: utilisation du format source « 3.0 (quilt) »
+dpkg-source: info: construction de centreon à partir de ./centreon_2.1.9.orig.tar.gz
+dpkg-source: info: construction de centreon dans centreon_2.1.9-2.debian.tar.gz
+dpkg-source: info: construction de centreon dans centreon_2.1.9-2.dsc
+ debian/rules build
+Doing configure-stamp
+dh_testdir
+# Add here commands to configure the package.
+find  tmpl -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+find  cron -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+find  bin -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+find  plugins/src -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+# Add here commands to compile the arch part of the package.
+#/usr/bin/make 
+touch build-arch-stamp
+Doing patch
+# Add here commands to compile the indep part of the package.
+touch build-indep-stamp
+ fakeroot debian/rules binary
+Doing configure-stamp
+dh_testdir
+# Add here commands to configure the package.
+find  tmpl -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+find  cron -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+find  bin -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+find  plugins/src -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+# Add here commands to compile the arch part of the package.
+#/usr/bin/make 
+touch build-arch-stamp
+Doing patch
+# Add here commands to compile the indep part of the package.
+touch build-indep-stamp
+Doing install-clean
+dh_clean -k
+Doing centreon2
+dh_testdir		-pcentreon2
+dh_testroot		-pcentreon2
+dh_installdirs		-pcentreon2
+# install the SQL schemes
+mkdir -p debian/centreon2/mysql
+cp www/install/createTables.sql			debian/centreon2/mysql/1
+cp www/install/insertMacros.sql			debian/centreon2/mysql/2
+cp www/install/insertCmd-Tps.sql		debian/centreon2/mysql/3
+cp www/install/insertTopology.sql		debian/centreon2/mysql/4
+cp www/install/insertBaseConf.sql		debian/centreon2/mysql/5
+cp debian/misc/centreon2/createDefaultsUsers.sql	debian/centreon2/mysql/6
+cp debian/misc/centreon2/updateNagiosConfig.sql	debian/centreon2/mysql/7
+cp debian/misc/centreon2/updatePoller.sql		debian/centreon2/mysql/8
+touch debian/centreon2/mysql.sql
+for sqlfile in 1 2 3 4 5 6 7 8; do \
+		test -e debian/centreon2/mysql/${sqlfile} && \
+			cat debian/centreon2/mysql/${sqlfile} >> debian/centreon2/mysql.sql; \
+	done 
+install -m 644 debian/centreon2/mysql.sql \
+		debian/centreon2/usr/share/dbconfig-common/data/centreon2/install/mysql
+rm -f debian/centreon2/mysql.sql
+rm -rf debian/centreon2/mysql
+# Add update sql
+install -m 644 www/install/sql/centreon/Update-DB-2.1.3_to_2.1.4.sql \
+		debian/centreon2/usr/share/dbconfig-common/data/centreon2/upgrade/mysql/2.1.4
+install -m 644 www/install/sql/centreon/Update-DB-2.1.4_to_2.1.5.sql \
+		debian/centreon2/usr/share/dbconfig-common/data/centreon2/upgrade/mysql/2.1.5
+install -m 644 www/install/sql/centreon/Update-DB-2.1.5_to_2.1.6.sql \
+		debian/centreon2/usr/share/dbconfig-common/data/centreon2/upgrade/mysql/2.1.6
+install -m 644 www/install/sql/centreon/Update-DB-2.1.6_to_2.1.7.sql \
+		debian/centreon2/usr/share/dbconfig-common/data/centreon2/upgrade/mysql/2.1.7
+install -m 644 www/install/sql/centreon/Update-DB-2.1.7_to_2.1.8.sql \
+		debian/centreon2/usr/share/dbconfig-common/data/centreon2/upgrade/mysql/2.1.8
+install -m 644 www/install/sql/centreon/Update-DB-2.1.8_to_2.1.9.sql \
+		debian/centreon2/usr/share/dbconfig-common/data/centreon2/upgrade/mysql/2.1.9
+dh_install	-pcentreon2 
+# Change macros in www
+find debian/centreon2/usr/share/centreon2/www/ -name "*.php" -exec \
+		sed -i 's|@CENTREON_ETC@|/etc/centreon2|g;s|@CENTREON_GENDIR@|/var/cache/centreon2|g' {} \;
+sed -i 's|@CENTREON_ETC@|/etc/centreon2|g' \
+		debian/centreon2/usr/share/centreon2/cron/centAcl.php
+sed -e 's|@CENTREON_ETC@|/etc/centreon2|g' \
+	    -e 's|@CENTREON_VARLIB@|/var/lib/centreon2|g' \
+	    -i debian/centreon2/usr/share/centreon2/cron/archiveDayLog
+find debian/centreon2/usr/share/centreon2/www/ -name "*.php" -exec \
+		sed -i 's|@CENTREON_LOG@|/var/log/centreon2|g' {} \;
+# Change macros in cron
+find debian/centreon2/usr/share/centreon2/cron/ -type f -exec \
+		sed -i 's|@CENTREON_LOG@|/var/log/centreon2|g' {} \;
+sed -e 's|@NAGIOS_USER@|nagios|g' \
+	    -e 's|@PERL_BIN@|/usr/bin/perl|g' \
+	    -e 's|@INSTALL_DIR_CENTREON@|/usr/share/centreon2|g' \
+	    -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
+	    -e 's|@WEB_USER@|www-data|g' \
+	    -e 's|@PHP_BIN@|/usr/bin/php|g' \
+	    -i tmpl/install/centreon.cron
+touch debian/centreon2/usr/share/centreon2/www/locale/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/templates/bulix/deleteme
+touch debian/centreon2/usr/share/centreon2/bin/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/templates/blue/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/templates/kde/images/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/templates/wintendoxp/images/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/templates/templates/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/templates/windows_classic/images/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/templates/orange/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/includes/mb/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/common/javascript/Timeline/src/main/webapp/api/ext/geochrono/styles/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/templates/images/deleteme
+touch debian/centreon2/usr/share/centreon2/lib/deleteme
+touch debian/centreon2/usr/share/centreon2/www/modules/deleteme
+touch debian/centreon2/usr/share/centreon2/cron/Modules/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/monitoring/status/TopCounter/xml/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/monitoring/miscCommands/template/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/templates/typo3/images/images/deleteme
+touch debian/centreon2/usr/lib/centreon2/php/Smarty/demo/templates_c/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/monitoring/status/TopCounter/xsl/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/templates/classic/images/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/accessLists/common/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/common/javascript/Timeline/src/main/webapp/api/ext/geochrono/images/deleteme
+touch debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/templates/includes/deleteme
+Doing centreon2-centcore
+dh_testdir		-pcentreon2-centcore
+dh_testroot		-pcentreon2-centcore
+dh_installdirs		-pcentreon2-centcore
+dh_install		-pcentreon2-centcore 
+sed -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
+	    -e 's|@CENTREON_RUNDIR@|/var/run/centreon2|g' \
+	    -e 's|@CENTREON_VARLIB@|/var/lib/centreon2|g' \
+	    -e 's|@CENTREON_DIR@|/usr/share/centreon2|g' \
+	    -e 's|@BIN_SSH@|/usr/bin/ssh|g' \
+	    -e 's|@BIN_SCP@|/usr/bin/scp|g' \
+	    -e 's|@CENTREON_ETC@|/etc/centreon2|g' \
+	    -i debian/centreon2-centcore/usr/sbin/centcore      	
+sed -e 's|@CENTREON_DIR@|/usr/share/centreon2|g' \
+	    -e 's|@CENTCORE_BINDIR@|/usr/sbin|g' \
+	    -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
+	    -e 's|@CENTREON_RUNDIR@|/var/run/centreon2|g' \
+	    -e 's|@CENTREON_ETC@|/etc/centreon2|g' \
+	    -e 's|@NAGIOS_USER@|nagios|g' \
+	    -i tmpl/install/centcore.init.d 
+Doing centreon2-centstorage
+dh_testdir		-pcentreon2-centstorage
+dh_testroot		-pcentreon2-centstorage
+dh_installdirs		-pcentreon2-centstorage
+# Change macros for centstorage init script 
+sed -e 's|@CENTREON_DIR@|/usr/share/centreon2|g' \
+	    -e 's|@CENTSTORAGE_BINDIR@|/usr/sbin|g' \
+	    -e 's|@CENTREON_ETC@|/etc/centreon2|g' \
+	    -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
+	    -e 's|@CENTREON_RUNDIR@|/var/run/centreon2|g' \
+	    -i tmpl/install/centstorage.init.d 
+# Change macros for centstorage cron
+sed -e 's|@NAGIOS_USER@|nagios|g' \
+	    -e 's|@CENTSTORAGE_BINDIR@|/usr/sbin|g' \
+	    -e 's|@INSTALL_DIR_CENTREON@|/usr/share/centreon2|g' \
+	    -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
+	    -i tmpl/install/centstorage.cron
+# install the SQL schemes
+mkdir debian/centreon2-centstorage/mysql
+touch debian/centreon2-centstorage/mysql.sql
+sed -e 's/^M//' \
+            -i www/install/createTablesCentstorage.sql
+cp www/install/createTablesCentstorage.sql	debian/centreon2-centstorage/mysql/1
+cp debian/misc/centreon2-centstorage/grantCentUserOnCtsg.sql	debian/centreon2-centstorage/mysql/2
+cp debian/misc/centreon2-centstorage/updateCstgConfig.sql		debian/centreon2-centstorage/mysql/3
+for sqlfile in 1 2 3; do \
+		test -e debian/centreon2-centstorage/mysql/${sqlfile} && \
+			cat debian/centreon2-centstorage/mysql/${sqlfile} >> debian/centreon2-centstorage/mysql.sql; \
+	done 
+install -m 644 debian/centreon2-centstorage/mysql.sql \
+		debian/centreon2-centstorage/usr/share/dbconfig-common/data/centreon2-centstorage/install/mysql
+rm -f debian/centreon2-centstorage/mysql.sql
+rm -rf debian/centreon2-centstorage/mysql
+# Add update sql
+install -m 644 www/install/sql/centstorage/Update-CSTG-2.1.2_to_2.1.3.sql \
+		debian/centreon2-centstorage/usr/share/dbconfig-common/data/centreon2-centstorage/upgrade/mysql/2.1.3
+install -m 644 www/install/sql/centstorage/Update-CSTG-2.1.3_to_2.1.4.sql \
+		debian/centreon2-centstorage/usr/share/dbconfig-common/data/centreon2-centstorage/upgrade/mysql/2.1.4
+install -m 644 www/install/sql/centstorage/Update-CSTG-2.1.4_to_2.1.5.sql \
+		debian/centreon2-centstorage/usr/share/dbconfig-common/data/centreon2-centstorage/upgrade/mysql/2.1.5
+install -m 644 www/install/sql/centstorage/Update-CSTG-2.1.5_to_2.1.6.sql \
+		debian/centreon2-centstorage/usr/share/dbconfig-common/data/centreon2-centstorage/upgrade/mysql/2.1.6
+install -m 644 www/install/sql/centstorage/Update-CSTG-2.1.6_to_2.1.7.sql \
+		debian/centreon2-centstorage/usr/share/dbconfig-common/data/centreon2-centstorage/upgrade/mysql/2.1.7
+install -m 644 www/install/sql/centstorage/Update-CSTG-2.1.7_to_2.1.8.sql \
+		debian/centreon2-centstorage/usr/share/dbconfig-common/data/centreon2-centstorage/upgrade/mysql/2.1.8
+install -m 644 www/install/sql/centstorage/Update-CSTG-2.1.8_to_2.1.9.sql \
+		debian/centreon2-centstorage/usr/share/dbconfig-common/data/centreon2-centstorage/upgrade/mysql/2.1.9
+dh_install	-pcentreon2-centstorage 
+# Change macros for logAnalyser
+sed -e 's|@CENTREON_ETC@|/etc/centreon2/centstorage|g' \
+	    -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
+	    -e 's|@CENTREON_VARLIB@|/var/lib/centreon2-centstorage|g' \
+	    -i debian/centreon2-centstorage/usr/sbin/logAnalyser
+# Change macros for nagiosPerfTrace
+sed -e 's|@CENTREON_ETC@|/etc/centreon2/centstorage|g' \
+	    -e 's|@CENTSTORAGE_LIB@|/var/lib/centreon2-centstorage|g' \
+	    -e 's|@NAGIOS_USER@|nagios|g;s|@NAGIOS_GROUP@|nagios|g' \
+	    -i debian/centreon2-centstorage/usr/sbin/nagiosPerfTrace
+# Change macros for archiveDayLog
+sed -e 's|@CENTREON_ETC@|/etc/centreon2/centstorage|g' \
+	    -i debian/centreon2-centstorage/usr/sbin/archiveDayLog
+# Change macros for centstorage
+sed -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
+	    -e 's|@CENTREON_RUNDIR@|/var/run/centreon2|g' \
+	    -e 's|@CENTREON_ETC@|/etc/centreon2/centstorage|g' \
+	    -e 's|@RRD_PERL@|/usr/lib/perl5|g' \
+	    -i debian/centreon2-centstorage/usr/sbin/centstorage
+Doing centreon2-plugins
+dh_testdir		-pcentreon2-plugins
+dh_testroot		-pcentreon2-plugins
+dh_installdirs		-pcentreon2-plugins
+dh_install		-pcentreon2-plugins 
+for file in debian/centreon2-plugins/usr/lib/nagios/plugins/* ; do \
+		sed -e 's|@NAGIOS_PLUGINS@|/usr/lib/nagios/plugins|g' \
+		    -e 's|@CENTPLUGINS_TMP@|/var/lib/centreon2-centplugins|g' \
+		    -i ${file} ; \
+	done
+sed -e 's|@NAGIOS_VAR@|/tmp|' \
+	    -i debian/centreon2-plugins/usr/lib/nagios/plugins/process-service-perfdata
+sed -e 's|@INSTALL_DIR_NAGIOS@|/usr/share/@@nagios_version@@|' \
+	    -e 's|@NAGIOS_ETC@|/etc/centreon2/nagioscfg|' \
+	    -i debian/centreon2-plugins/usr/lib/nagios/plugins/centreon.conf
+sed -e 's|@RRDTOOL_PERL_LIB@|/usr/lib/perl5|' \
+	    -i debian/centreon2-plugins/usr/lib/nagios/plugins/centreon.pm
+# change right on all plugins
+chmod 755 debian/centreon2-plugins/usr/lib/nagios/plugins/*
+chmod 644 debian/centreon2-plugins/usr/lib/nagios/plugins/centreon.pm
+chmod 644 debian/centreon2-plugins/usr/lib/nagios/plugins/centreon.conf
+cat plugins/CHANGELOG | gzip -9 >plugins/CHANGELOG.gz
+Doing centreon2-plugins-traps
+dh_testdir		-pcentreon2-plugins-traps
+dh_testroot		-pcentreon2-plugins-traps
+dh_installdirs		-pcentreon2-plugins-traps
+dh_install		-pcentreon2-plugins-traps 
+Doing centreon2-ndodb
+dh_testdir		-pcentreon2-ndodb
+dh_testroot		-pcentreon2-ndodb
+dh_installdirs		-pcentreon2-ndodb
+mkdir debian/centreon2-ndodb/mysql
+touch debian/centreon2-ndodb/mysql.sql
+sed -e 's|^M||' \
+            -i www/install/createNDODB.sql
+cp www/install/createNDODB.sql			debian/centreon2-ndodb/mysql/1
+cp debian/misc/centreon2-ndodb/updateNdo2cfg.sql		debian/centreon2-ndodb/mysql/2
+for sqlfile in 1 2 ; do \
+		test -e debian/centreon2-ndodb/mysql/${sqlfile} && \
+			cat debian/centreon2-ndodb/mysql/${sqlfile} >> debian/centreon2-ndodb/mysql.sql; \
+	done 
+install -m 644 debian/centreon2-ndodb/mysql.sql \
+		debian/centreon2-ndodb/usr/share/dbconfig-common/data/centreon2-ndodb/install/mysql
+rm -f debian/centreon2-ndodb/mysql.sql
+rm -rf debian/centreon2-ndodb/mysql
+# Add update sql
+install -m 644 www/install/sql/brocker/Update-NDO-2.1.2_to_2.1.3.sql \
+		debian/centreon2-ndodb/usr/share/dbconfig-common/data/centreon2-ndodb/upgrade/mysql/2.1.3
+install -m 644 www/install/sql/brocker/Update-NDO-2.1.3_to_2.1.4.sql \
+		debian/centreon2-ndodb/usr/share/dbconfig-common/data/centreon2-ndodb/upgrade/mysql/2.1.4
+install -m 644 www/install/sql/brocker/Update-NDO-2.1.4_to_2.1.5.sql \
+		debian/centreon2-ndodb/usr/share/dbconfig-common/data/centreon2-ndodb/upgrade/mysql/2.1.5
+install -m 644 www/install/sql/brocker/Update-NDO-2.1.5_to_2.1.6.sql \
+		debian/centreon2-ndodb/usr/share/dbconfig-common/data/centreon2-ndodb/upgrade/mysql/2.1.6
+install -m 644 www/install/sql/brocker/Update-NDO-2.1.6_to_2.1.7.sql \
+		debian/centreon2-ndodb/usr/share/dbconfig-common/data/centreon2-ndodb/upgrade/mysql/2.1.7
+install -m 644 www/install/sql/brocker/Update-NDO-2.1.7_to_2.1.8.sql \
+		debian/centreon2-ndodb/usr/share/dbconfig-common/data/centreon2-ndodb/upgrade/mysql/2.1.8
+install -m 644 www/install/sql/brocker/Update-NDO-2.1.8_to_2.1.9.sql \
+		debian/centreon2-ndodb/usr/share/dbconfig-common/data/centreon2-ndodb/upgrade/mysql/2.1.9
+dh_install		-pcentreon2-ndodb 
+Doing install
+dh_testdir
+dh_testroot
+#dh_clean -k 
+dh_installdirs	-pcentreon2-doc
+# Add here commands to install the indep part of the package into
+# debian/<package>-doc.
+#INSTALLDOC#
+#dh_install	-pcentreon2-doc
+Doing binary-indep
+dh_testdir
+dh_testroot
+dh_installchangelogs	CHANGELOG plugins/CHANGELOG
+dh_installdocs          
+dh_installman
+dh_installdebconf
+dh_installlogrotate	-pcentreon2 
+cp tmpl/install/centstorage.init.d debian/centreon2-centstorage.centstorage.init
+cp tmpl/install/centcore.init.d debian/centreon2-centcore.centcore.init
+rm -f debian/centreon2/usr/lib/centreon2/php/Smarty/COPYING.lib
+chmod 0644 debian/centreon2/usr/share/centreon2/www/include/options/oreon/generalOpt/css/form.ihtml
+chmod 644 debian/centreon2/usr/share/centreon2/www/img/icones/16x16/excel8.gif
+rm -f debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/COPYING
+rm -f debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/COPYING
+rm -rf debian/centreon2/usr/share/centreon2/www/include/options/oreon/patch/
+chown www-data debian/centreon2/var/lib/centreon2/nagios-perf
+chmod 750 debian/centreon2/var/lib/centreon2/nagios-perf
+chown www-data debian/centreon2/var/lib/centreon2/log
+chmod 750 debian/centreon2/var/lib/centreon2/log
+chmod 0755 debian/centreon2/usr/share/centreon2/cron/archiveDayLog
+chmod 0755 debian/centreon2/usr/share/centreon2/cron/centSyncArchives
+chmod 0755 debian/centreon2/usr/share/centreon2/cron/centSyncPlugins
+chmod 0755 debian/centreon2/usr/share/centreon2/cron/centSyncTraps
+chmod 0755 debian/centreon2/usr/share/centreon2/cron/centreonPurge.sh
+chmod 0755 debian/centreon2/usr/share/centreon2/cron/purgeCentstorage
+chmod 0755 debian/centreon2/usr/share/centreon2/cron/purgeComments
+chmod 0755 debian/centreon2/usr/share/centreon2/cron/purgeLogs
+dh_installinit 		-pcentreon2-centstorage	--name=centstorage --no-start
+dh_installinit 		-pcentreon2-centcore	--name=centcore
+dh_installcron 		-pcentreon2		--name=centreon2
+dh_installcron 		-pcentreon2-centstorage	--name=centstorage
+dh_link
+dh_compress
+dh_fixperms
+dh_installdeb
+dh_gencontrol
+dh_md5sums
+dh_builddeb
+dpkg-deb : construction du paquet « centreon2 » dans « ../centreon2_2.1.9-2_amd64.deb ».
+dpkg-deb : construction du paquet « centreon2-plugins » dans « ../centreon2-plugins_2.1.9-2_all.deb ».
+dpkg-deb : construction du paquet « centreon2-plugins-traps » dans « ../centreon2-plugins-traps_2.1.9-2_all.deb ».
+dpkg-deb : construction du paquet « centreon2-centcore » dans « ../centreon2-centcore_2.1.9-2_all.deb ».
+dpkg-deb : construction du paquet « centreon2-centstorage » dans « ../centreon2-centstorage_2.1.9-2_all.deb ».
+dpkg-deb : construction du paquet « centreon2-ndodb » dans « ../centreon2-ndodb_2.1.9-2_all.deb ».
+dpkg-deb : construction du paquet « centreon2-doc » dans « ../centreon2-doc_2.1.9-2_all.deb ».
+ dpkg-genchanges  >../centreon_2.1.9-2_amd64.changes
+dpkg-genchanges: inclusion du code source original dans l'envoi (« upload »)
+dpkg-buildpackage: envoi complet (inclusion du code source d'origine)
+Now running lintian...
+W: centreon source: missing-templates-pot
+W: centreon2-ndodb: no-debconf-templates
+W: centreon2-centstorage: binary-without-manpage usr/sbin/resizeRRD.pl
+W: centreon2-centstorage: script-with-language-extension usr/sbin/resizeRRD.pl
+W: centreon2: image-file-in-usr-lib usr/lib/centreon2/php/Color_Picker/colpick.jpg
+W: centreon2: image-file-in-usr-lib usr/lib/centreon2/php/Smarty/misc/smarty_icon.gif
+W: centreon2: embedded-javascript-library usr/share/centreon2/www/include/common/javascript/scriptaculous/prototype.js
+W: centreon2: embedded-javascript-library usr/share/centreon2/www/include/common/javascript/scriptaculous/scriptaculous.js
+Finished running lintian.
