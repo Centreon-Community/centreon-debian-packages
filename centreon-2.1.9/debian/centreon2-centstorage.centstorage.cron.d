@@ -3,11 +3,11 @@
 #
 
 # Cron for log analyser - for reporting
-0 1 1-31 * * centreon perl /usr/sbin/archiveDayLog >> /var/log/centreon2/centstorage/archiveDayLog.log 2>&1
+0 1 1-31 * * nagios perl /usr/sbin/archiveDayLog >> /var/log/centreon2/centstorage/archiveDayLog.log 2>&1
 
 # Cron for log parsor
-* * * * * centreon /usr/sbin/logAnalyser >> /var/log/centreon2/centstorage/logAnalyser.log 2>&1
+* * * * * nagios /usr/sbin/logAnalyser >> /var/log/centreon2/centstorage/logAnalyser.log 2>&1
 
 # Cron for tracing Nagios Poller Performances
-*/5 * * * * centreon /usr/sbin/nagiosPerfTrace >> /var/log/centreon2/centstorage/nagiosPerfTrace.log 2>&1
+*/5 * * * * nagios /usr/sbin/nagiosPerfTrace >> /var/log/centreon2/centstorage/nagiosPerfTrace.log 2>&1
 

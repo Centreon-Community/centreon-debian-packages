@@ -31,6 +31,7 @@ configure-stamp:
 	find  cron -type f | xargs sed -i -f debian/centreon2.macrosreplacement
 	find  bin -type f | xargs sed -i -f debian/centreon2.macrosreplacement
 	find  plugins/src -type f | xargs sed -i -f debian/centreon2.macrosreplacement
+	find  www/install/ -type f | xargs sed -i -f debian/centreon2.macrosreplacement
 
 
 #Architecture 
@@ -126,7 +127,6 @@ centreon2:
 	find debian/$@/usr/share/$@/cron/ -type f -exec \
 		sed -i 's|@CENTREON_LOG@|/var/log/centreon2|g' {} \;
 
-	
 	sed -e 's|@NAGIOS_USER@|nagios|g' \
 	    -e 's|@PERL_BIN@|/usr/bin/perl|g' \
 	    -e 's|@INSTALL_DIR_CENTREON@|/usr/share/centreon2|g' \
@@ -160,7 +160,7 @@ centreon2-centstorage:
 	# install the SQL schemes
 	mkdir debian/$@/mysql
 	touch debian/$@/mysql.sql
-	
+
 	sed -e 's/^M//' \
             -i www/install/createTablesCentstorage.sql
 
@@ -229,7 +229,7 @@ centreon2-centcore:
 
 
 	dh_install		-p$@ 
-	
+
 	sed -e 's|@CENTREON_LOG@|/var/log/centreon2|g' \
 	    -e 's|@CENTREON_RUNDIR@|/var/run/centreon2|g' \
 	    -e 's|@CENTREON_VARLIB@|/var/lib/centreon2|g' \
@@ -262,7 +262,7 @@ centreon2-plugins:
 		    -i $${file} ; \
 	done
 
-	sed -e 's|@NAGIOS_VAR@|/tmp|' \
+	sed -e 's|@NAGIOS_VAR@|/var/log/nagios3/|' \
 	    -i debian/$@/usr/lib/nagios/plugins/process-service-perfdata
 
 	sed -e 's|@INSTALL_DIR_NAGIOS@|/usr/share/@@nagios_version@@|' \
@@ -277,7 +277,7 @@ centreon2-plugins:
 	chmod 644 debian/$@/usr/lib/nagios/plugins/centreon.pm
 	chmod 644 debian/$@/usr/lib/nagios/plugins/centreon.conf
 	cat plugins/CHANGELOG | gzip -9 >plugins/CHANGELOG.gz
-	
+
 centreon2-plugins-traps:
 	@echo "Doing $@"
 	dh_testdir		-p$@
@@ -375,10 +375,10 @@ binary-indep: build install
 	chmod 644 debian/centreon2/usr/share/centreon2/www/img/icones/16x16/excel8.gif
 	rm -f debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/COPYING
 	rm -f debian/centreon2/usr/share/centreon2/www/include/options/sysInfos/images/COPYING
-	chown www-data debian/centreon2/var/lib/centreon2/nagios-perf
-	chmod 750 debian/centreon2/var/lib/centreon2/nagios-perf
-	chown www-data debian/centreon2/var/lib/centreon2/log
-	chmod 750 debian/centreon2/var/lib/centreon2/log
+#	chown centreon:nagios debian/centreon2/var/lib/centreon2/nagios-perf
+	chmod 775 debian/centreon2/var/lib/centreon2/nagios-perf
+#	chown centreon:nagios debian/centreon2/var/lib/centreon2/log
+	chmod 770 debian/centreon2/var/lib/centreon2/log
 	chmod 0755 debian/centreon2/usr/share/centreon2/cron/archiveDayLog
 	chmod 0755 debian/centreon2/usr/share/centreon2/cron/centSyncArchives
 	chmod 0755 debian/centreon2/usr/share/centreon2/cron/centSyncPlugins
