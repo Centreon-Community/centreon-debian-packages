@@ -1,6 +1,0 @@
-/usr/sbin
-/usr/lib/ndoutils
-/usr/share/@@PACKAGE@@/tmpl
-/usr/share/dbconfig-common/data/@@PKG_SHORT@@/install
-/usr/share/dbconfig-common/data/@@PKG_SHORT@@/upgrade/@@DB@@
-
