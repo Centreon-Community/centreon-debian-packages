@@ -1,0 +1,20 @@
+.TH nagiosPerfTrace 8centreon
+.SH NOM
+nagiosPerfTrace - Centreon function
+.SH SYNOPSYS
+No options
+.SH DESCRIPTION
+Centreon function.
+.SH FICHIER
+.TP
+/etc/centreon2/centstorage/conf.pm
+Configuration file for function
+.TP
+/var/lib/centreon2/nagiosPerfTrace.lock
+Lock for function
+.SH SEE ALSO
+centstorage(8centreon)
+.SH BUGS
+See bugs on package at http://trac.centreon.com/projects/debcentreon/issues?set_filter=1&tracker_id=1
+.SH AUTHORS
+David Dumortier <d.dumortier@free.fr>
