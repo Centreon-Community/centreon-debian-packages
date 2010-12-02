@@ -1,0 +1,55 @@
+Template: centreon2/adminpass
+Type: password
+Description: Centreon web administration password:
+ Please provide the password to be created with the centreon admin user.
+ .
+ This is the username and password you will use to log in to your centreon
+ installation after configuration is complete.
+ .
+ The password can't be empty
+
+Template: centreon2/adminpass-repeat
+Type: password
+Description: Password confirmation:
+
+Template: centreon2/adminpass-mismatch
+Type: note
+Description: The passwords do not match
+
+Template: centreon2/adminlogin
+Type: string
+Default: centreon
+Description: Centreon Web administrator login:
+ Please enter the Centreon Web administrator's login
+ to your Centreon Web console.
+
+Template: centreon2/adminmail
+Type: string
+Default: centreon@localhost
+Description: Centreon Web administrator e-mail address:
+ Please enter the Centreon Web administrator's e-mail address
+ to your Centreon Web console.
+
+Template: centreon2/nagios_config
+Type: note
+Description: Nagios configuration
+ Please change NAGIOSCFG and CGICFG parameters in:
+ .
+ For nagios2: /etc/default/nagios2
+ NAGIOSCFG="/etc/nagios2/nagios.cfg"
+ CGICFG="/etc/nagios2/cgi.cfg"
+ .
+ Change by:
+ NAGIOSCFG="/etc/centreon2/nagioscfg/nagios.cfg"
+ CGICFG="/etc/centreon2/nagioscfg/cgi.cfg"
+ .
+ For nagios3: /etc/default/nagios3
+ NAGIOSCFG="/etc/nagios3/nagios.cfg"
+ CGICFG="/etc/nagios3/cgi.cfg"
+ .
+ Change by:
+ NAGIOSCFG="/etc/centreon2/nagioscfg/nagios.cfg"
+ CGICFG="/etc/centreon2/nagioscfg/cgi.cfg"
+ . 
+ Please read a DEBIAN.readme file
+

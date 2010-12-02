@@ -1,0 +1,3 @@
+plugins/src/traps/conf/snmptt.ini /etc/snmp/centreon_traps
+plugins/src/traps/conf/snmp.conf /etc/snmp/centreon_traps
+plugins/src/traps/conf/snmptrapd.conf /etc/snmp/centreon_traps
