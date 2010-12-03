@@ -1,5 +1,0 @@
-centreon (2.1.9-3) unstable; urgency=low
-
-  * Fix bad perms
-
- -- Cedric Temple <ctemple@merethis.com>  Mon, 15 Nov 2010 14:50:56 +0200
