@@ -1,7 +1,0 @@
-php-db-dataobject-formbuilder for Debian
---------------------------
-
-This extension has been created with dh-make-pear which is part
-of dh-make-php.
-
- -- david.hannequin@gmail.com, Thu, 01 Oct 2009 23:57:24 +0200
