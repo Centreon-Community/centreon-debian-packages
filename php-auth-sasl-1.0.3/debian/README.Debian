@@ -1,7 +1,0 @@
-php-auth-sasl for Debian
---------------------------
-
-This extension has been created with dh-make-pear which is part
-of dh-make-php.
-
- -- Olivier LI-KIANG-CHEONG <lkco@gezen.fr>, Fri, 02 Oct 2009 13:32:26 +0200
