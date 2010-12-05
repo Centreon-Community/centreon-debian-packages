@@ -17,6 +17,23 @@ set -e
 # for details, see http://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
+setperm() {
+#	local user="$1"
+#	local group="$2"
+#	local mode="$3"
+#	local file="$4"
+	 user="$1"
+	 group="$2"
+	 mode="$3"
+	 file="$4"
+	shift 4
+	# only do something when no setting exists
+	if ! dpkg-statoverride --list "$file" >/dev/null 2>&1; then
+		chown "$user":"$group" "$file"
+		chmod "$mode" "$file"
+	fi
+}
+
 centstorageDbConfig() {
 	local nagversion="nagios2 nagios3"
 	for nagios in $nagversion ; do
@@ -86,14 +103,15 @@ case "$1" in
 		dbc_generate_include_perms='0640'
 		dbc_go centreon2-centstorage $@
 	fi
-	chown nagios:www-data /var/lib/centreon2-centstorage/metrics
-	chmod 750 /var/lib/centreon2-centstorage/metrics
-	chown nagios:www-data /var/lib/centreon2-centstorage/log
-	chmod 750 /var/lib/centreon2-centstorage/log
-	chown nagios:www-data /var/lib/centreon2-centstorage/nagios-perf
-	chmod 750 /var/lib/centreon2-centstorage/nagios-perf
-	chown nagios:www-data /var/lib/centreon2-centstorage/status
-	chmod 750 /var/lib/centreon2-centstorage/status
+	setperm nagios www-data 0770 /var/log/centreon2/centstorage
+	setperm nagios www-data 775 /var/lib/centreon2/nagios-perf
+	setperm nagios www-data 775 /var/lib/centreon2-centstorage/metrics
+	setperm nagios www-data 775 /var/lib/centreon2-centstorage/log
+	setperm nagios www-data 775 /var/lib/centreon2-centstorage/nagios-perf
+	setperm nagios www-data 750 /var/lib/centreon2-centstorage/status
+	setperm nagios www-data 660 /etc/centreon2/centstorage.db.conf.php
+	usermod --shell /bin/bash nagios
+	update-rc.d centstorage defaults
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

@@ -38,6 +38,8 @@ case "$1" in
 	ucf --purge /etc/centreon2/centstorage.db.conf.php
 
 	rm -f /var/log/centreon2/centstorage/*
+	update-rc.d centstorage remove
+	db_purge
     ;;
 
     upgrade)

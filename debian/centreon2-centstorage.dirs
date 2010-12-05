@@ -10,3 +10,4 @@ var/lib/centreon2-centstorage/metrics
 var/lib/centreon2-centstorage/nagios-perf
 var/lib/centreon2-centstorage/status
 var/lib/centreon2-centstorage/log
+usr/sbin

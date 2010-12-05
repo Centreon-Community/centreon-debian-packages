@@ -19,9 +19,9 @@ Description: The passwords do not match
 Template: centreon2/adminlogin
 Type: string
 Default: centreon
-Description: Centreon Web administrator login
- Please enter the Centreon Web administrator's login.
- It will use to access to your Centreon Web console.
+Description: Centreon Web administrator login:
+ Please enter the Centreon Web administrator's login
+ to your Centreon Web console.
 
 Template: centreon2/adminmail
 Type: string

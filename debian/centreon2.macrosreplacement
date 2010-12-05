@@ -1,5 +1,5 @@
-s:@BIN_SCP@:/usr/bin/ssh:g
-s:@BIN_SSH@:/usr/bin/scp:g
+s:@BIN_SSH@:/usr/bin/ssh:g
+s:@BIN_SCP@:/usr/bin/scp:g
 s:@BIN_MAIL@:/usr/bin/mail:g
 s:@CENTCORE_BINDIR@:/usr/sbin:g
 s:@CENTPLUGINS_TMP@:/tmp:g
@@ -25,7 +25,7 @@ s:@SNMPTT_BINDIR@:/usr/sbin:g
 s:@SNMP_ETC@:/etc/snmp/centreon_traps/:g
 s:@SNMPTT_INI_FILE@:/etc/snmp/centreon_traps/snmptt.ini:g
 s:@CENTSTORAGE_LIB@:/var/lib/centreon2:g
-s:@CENTREON_GENDIR@:/usr/share/centreon2:g
+s:@CENTREON_GENDIR@:/usr/cache/centreon2:g
 s:@PERL_BIN@:/usr/bin/perl:g
 s:@CENTPLUGINSTRAPS_BINDIR@:/usr/sbin:g
 s:@NAGIOS_BINARY@:/usr/sbin/nagios3:g
@@ -38,3 +38,5 @@ s:@CENTSTORAGE_RRD@:/var/lib/centreon2:g
 s:@NAGIOS_IMG@:/usr/share/nagios3/htdocs/images/logos:g
 s:@WEB_USER@:www-data:g
 s:/etc/centreon2/conf.pm:/etc/centreon2/centstorage/conf.pm:g
+s:/usr/bin/centcore:/usr/sbin/centcore:g
+s:/usr/bin/centstorage:/usr/sbin/centstorage:g

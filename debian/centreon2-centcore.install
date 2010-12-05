@@ -1,1 +1,1 @@
-SOURCE_DIR/bin/centcore                    usr/sbin
+bin/centcore                    usr/sbin
